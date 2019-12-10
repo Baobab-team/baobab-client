@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ClientLayoutComponent} from './layouts';
+import {AuthAdminLayoutComponent} from './layouts/auth-admin-layout/auth-admin-layout.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/search/search.module').then(
         m => m.SearchModule
+      ),
+  },
+  // admin layout
+  {
+    path: 'admin',
+    component: AuthAdminLayoutComponent,
+    loadChildren: () =>
+      import('./features-admin/auth/auth.module').then(
+        m => m.AuthModule
       ),
   },
   {
