@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SearchService } from '../../../../core/services';
+import { SearchService } from '../../../core/services';
 import { Router } from '@angular/router';
 
 
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./tool-search.component.scss']
 })
 export class ToolSearchComponent implements OnInit {
+  @Input() modeNormal = true;
   searchForm: FormGroup;
   submitted = false;
 
