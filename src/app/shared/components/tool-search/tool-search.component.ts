@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class ToolSearchComponent implements OnInit {
   @Input() modeNormal = true;
   searchForm: FormGroup;
-  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,20 +28,15 @@ export class ToolSearchComponent implements OnInit {
       searchbar: ['', [Validators.required]],
     });
   }
-  // convenience getter for easy access to form fields
-  get f() { return this.searchForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.searchForm.invalid) {
-      return;
+    const query = this.searchForm.get('searchbar').value;
+
+    if (query) {
+      this.router.navigate(['/search', query]);
     }
-
-    const q = this.searchForm.get('searchbar').value;
-
-    this.router.navigate(['/search', q]);
+    return null;
   }
 
 }

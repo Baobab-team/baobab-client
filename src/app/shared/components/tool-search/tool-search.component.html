@@ -8,13 +8,9 @@
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
       <div class="form-row align-items-center">
         <div class="input-group input-group-lg">
-          <input type="text" class="form-control" placeholder="Trouver votre business"
-                 [ngClass]="{ 'is-invalid': submitted && f.searchbar.errors }" formControlName="searchbar">
+          <input type="text" class="form-control" placeholder="Trouver votre business" formControlName="searchbar">
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit" id="search">Rechercher</button>
-          </div>
-          <div *ngIf="submitted && f.searchbar.errors" class="invalid-feedback">
-            <div *ngIf="f.searchbar.errors.required">Element de recherche requis</div>
           </div>
         </div>
       </div>
