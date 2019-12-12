@@ -26,7 +26,8 @@
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1",
     "messageformat": "^2.0.2",
-    "ngx-translate-messageformat-compiler": "^4.4.0"
+    "ngx-translate-messageformat-compiler": "^4.4.0",
+    "serialize-javascript": ">=2.1.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.18",
