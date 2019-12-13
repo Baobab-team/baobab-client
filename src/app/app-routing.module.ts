@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ClientLayoutComponent} from './layouts';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
+import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 
 
 const routes: Routes = [
@@ -21,13 +22,22 @@ const routes: Routes = [
         m => m.SearchModule
       ),
   },
-  // admin layout
+  // auth layout
   {
     path: '',
     component: AuthLayoutComponent,
     loadChildren: () =>
       import('./features/auth/auth.module').then(
         m => m.AuthModule
+      ),
+  },
+  // admin layout
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    loadChildren: () =>
+      import('./features-admin/home/home.module').then(
+        m => m.HomeModule
       ),
   },
   {
