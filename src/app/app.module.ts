@@ -19,7 +19,7 @@ import { LayoutsModule } from './layouts';
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
-    LayoutsModule
+    LayoutsModule,
   ],
   providers: [
     {
