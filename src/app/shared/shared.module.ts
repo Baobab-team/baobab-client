@@ -50,6 +50,7 @@ export class SharedModule {
     ReactiveFormsModule,
     RouterModule,
     NgbModule,
-    DataTablesModule
+    DataTablesModule,
+    TranslateModule
   ];
 }
