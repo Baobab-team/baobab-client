@@ -1,16 +1,20 @@
 <div class="search">
 
   <h1 class="search__title" *ngIf="modeNormal">
-    Que cherchez-vous?
+    {{'shared.tool-search.page_title_search' | translate}}
   </h1>
 
   <div class="search__form">
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
       <div class="form-row align-items-center">
         <div class="input-group input-group-lg">
-          <input type="text" class="form-control" placeholder="Trouver votre business" formControlName="searchbar">
+          <input type="text" class="form-control"
+                 placeholder="{{'shared.tool-search.form_label_search' | translate}}"
+                 formControlName="searchbar">
           <div class="input-group-append">
-            <button class="btn btn-primary" type="submit" id="search">Rechercher</button>
+            <button class="btn btn-primary" type="submit" id="search">
+              {{'shared.tool-search.form_btn_search' | translate}}
+            </button>
           </div>
         </div>
       </div>

@@ -10,7 +10,9 @@ export const environment = {
   serverUrl: '',
   paths_api: {
     search: 'search',
-  }
+  },
+  defaultLanguage: 'fr',
+  supportedLanguages: ['en', 'fr'],
 };
 
 /*
