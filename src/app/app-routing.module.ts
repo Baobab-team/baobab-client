@@ -35,9 +35,23 @@ const routes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
+    data: {
+      title: 'Bienvenue'
+    },
     loadChildren: () =>
       import('./features-admin/home/home.module').then(
         m => m.HomeModule
+      ),
+  },
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    data: {
+      title: 'Categories'
+    },
+    loadChildren: () =>
+      import('./features-admin/category/category.module').then(
+        m => m.CategoryModule
       ),
   },
   {

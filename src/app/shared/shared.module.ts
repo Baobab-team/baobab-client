@@ -10,6 +10,8 @@ import { HeaderAdminComponent } from './components/header-admin/header-admin.com
 import { MenuLeftAdminComponent } from './components/menu-left-admin/menu-left-admin.component';
 import { HeaderClientProfileComponent } from './components/header-client-profile/header-client-profile.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DataTablesModule } from 'angular-datatables';
+import { HeaderPageAdminComponent } from './components/header-page-admin/header-page-admin.component';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ToolSearchComponent,
     HeaderAdminComponent,
     MenuLeftAdminComponent,
-    HeaderClientProfileComponent
+    HeaderClientProfileComponent,
+    HeaderPageAdminComponent
   ],
   imports: [
     SharedModule.MODULE_LIST,
@@ -36,6 +39,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     TranslateModule,
     ReactiveFormsModule,
+    DataTablesModule,
+    HeaderPageAdminComponent,
   ]
 })
 
@@ -44,6 +49,7 @@ export class SharedModule {
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    DataTablesModule
   ];
 }
