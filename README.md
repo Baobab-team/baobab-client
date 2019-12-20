@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
 
+## json traduction syntax
+For create traduction in the code, use this syntaxe `name_layout.name_component.id_text_translate`.
+for generate new file traduction do this `npm run extract-i18n
+`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

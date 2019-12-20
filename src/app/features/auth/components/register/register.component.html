@@ -2,54 +2,54 @@
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="register">
-      <h1>Enregistrer votre compte</h1>
+      <h1>{{"auth.register.page_title_register" | translate}}</h1>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="username"
+          <input type="text" class="form-control" placeholder="{{'auth.register.form_label_username' | translate}}"
                  [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">username requis</div>
+            <div *ngIf="f.username.errors.required">{{'auth.register.form_error_username_required' | translate}}</div>
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="firstname">
+          <input type="text" class="form-control" placeholder="{{'auth.register.form_label_firstname' | translate}}">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="lastname"
+          <input type="text" class="form-control" placeholder="{{'auth.register.form_label_lastname' | translate}}"
                  [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
           <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
-            <div *ngIf="f.lastname.errors.required">Nom requis</div>
+            <div *ngIf="f.lastname.errors.required">{{'auth.register.form_error_lastname_required' | translate}}</div>
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Email"
+          <input type="text" class="form-control" placeholder="{{'auth.register.form_label_email' | translate}}"
                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email requis</div>
+            <div *ngIf="f.email.errors.required">{{'auth.register.form_error_email_required' | translate}}</div>
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Mot de passe"
+          <input type="text" class="form-control" placeholder="{{'auth.register.form_label_password' | translate}}"
                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password requis</div>
+            <div *ngIf="f.password.errors.required">{{'auth.register.form_error_password_required' | translate}}</div>
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Mot de passe"
+          <input type="text" class="form-control" placeholder="{{'auth.register.form_label_cpassword' | translate}}"
                  [ngClass]="{ 'is-invalid': submitted && f.cpassword.errors }">
           <div *ngIf="submitted && f.cpassword.errors" class="invalid-feedback">
-            <div *ngIf="f.cpassword.errors.required">Password requis</div>
+            <div *ngIf="f.cpassword.errors.required">{{'auth.register.form_error_cpassword_required' | translate}}</div>
           </div>
         </div>
         <div class="input-group-append">
-          <button class="btn btn-primary" type="submit">Ajouter</button>
+          <button class="btn btn-primary" type="submit">{{'auth.register.btn_submit_send' | translate}}</button>
         </div>
       </form>
     </div>
     <ul>
-      <li><a [routerLink]="['/']">Accueil</a></li>
-      <li><a [routerLink]="['/login']">Login</a></li>
+      <li><a [routerLink]="['/']">{{'auth.register.link_home' | translate}}</a></li>
+      <li><a [routerLink]="['/login']">{{'auth.register.link_login' | translate}}</a></li>
     </ul>
   </div>
   <div class="col-md-3"></div>
