@@ -47,11 +47,22 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     data: {
-      title: 'Categories'
+      title: 'Category'
     },
     loadChildren: () =>
       import('./features-admin/category/category.module').then(
         m => m.CategoryModule
+      ),
+  },
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    data: {
+      title: 'Business'
+    },
+    loadChildren: () =>
+      import('./features-admin/business/business.module').then(
+        m => m.BusinessModule
       ),
   },
   {
