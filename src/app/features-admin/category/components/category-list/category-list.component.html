@@ -1,42 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="table-responsive">
-        <table datatable [dtOptions]="dtOptions"
-               class="table table-striped table-bordered table-hover row-border">
-          <thead class="thead-dark">
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">col 1</th>
-            <th scope="col">col 2</th>
-            <th scope="col">
-              col 3
-            </th>
-            <th scope="col">col 4</th>
-            <th scope="col">col 5</th>
-          </tr>
-          </thead>
-          <tbody *ngIf="videos?.length != 0">
-          <tr *ngFor="let video of videos">
-            <td>{{ video.id }}</td>
-            <td>{{ video.title }}</td>
-            <td><input type="checkbox" disabled [checked]="video.is_active"></td>
-            <td>{{ video.durationToHMS }}</td>
-            <td>
-              <ul class="list-inline">
-                <li class="list-inline-item" *ngFor="let genre of video.genres">{{genre.label}}</li>
-              </ul>
-            </td>
-            <td>{{video.is_created | date}}</td>
-          </tr>
-          </tbody>
-          <tbody *ngIf="videos?.length == 0">
-          <tr>
-            <td colspan="5" class="no-data-available">pas de donnnees</td>
-          </tr>
-          <tbody>
-        </table>
-      </div>
+      <app-datatable
+        [headerElements]="headers"
+        [elements]="videos"
+        [dtOptions]="dtOptions"
+      ></app-datatable>
     </div>
   </div>
 </div>

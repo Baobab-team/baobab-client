@@ -12,6 +12,7 @@ import { HeaderClientProfileComponent } from './components/header-client-profile
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
 import { HeaderPageAdminComponent } from './components/header-page-admin/header-page-admin.component';
+import { DatatableComponent } from './components/datatable/datatable.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HeaderPageAdminComponent } from './components/header-page-admin/header-
     HeaderAdminComponent,
     MenuLeftAdminComponent,
     HeaderClientProfileComponent,
-    HeaderPageAdminComponent
+    HeaderPageAdminComponent,
+    DatatableComponent
   ],
   imports: [
     SharedModule.MODULE_LIST,
@@ -41,6 +43,7 @@ import { HeaderPageAdminComponent } from './components/header-page-admin/header-
     ReactiveFormsModule,
     DataTablesModule,
     HeaderPageAdminComponent,
+    DatatableComponent,
   ]
 })
 

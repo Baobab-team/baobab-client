@@ -6,46 +6,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-
-  dtOptions: DataTables.Settings = {};
-  videos = [
-    {
-      id: 1,
-      title: 'je suis la plus fort',
-      durationToHMS: 3,
-      is_active: true,
-      genres: [
-        {
-          label: 'bn genre'
-        }
-      ],
-      label: 'comme ca',
-      is_created: '1990-04-13 15:02:03'
-    }
+  headers = ['col1', 'col2', 'col3'];
+  line1 = [
+    'col1',
+    'col2',
+    'col3',
   ];
+  line2 = [
+    'col4',
+    'col5',
+    'col6',
+  ];
+  line3 = [
+    'col7',
+    'col8',
+    'col9',
+  ];
+  videos = [
+    this.line1,
+    this.line2,
+    this.line3
+  ];
+
+  dtOptions = {
+    pagingType: 'simple_numbers',
+    pageLength: 10
+  };
+
   constructor() { }
 
-  ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'simple_numbers',
-      pageLength: 10,
-      columns: [
-        { title: 'id', visible: false },
-        { },
-        {
-          searchable: false,
-          className: 'text-center',
-          width: '70px'
-        },
-        {
-          width: '70px',
-        },
-        {},
-        {
-          width: '70px',
-        }
-      ]
-    };
-  }
+  ngOnInit() {}
 
 }
