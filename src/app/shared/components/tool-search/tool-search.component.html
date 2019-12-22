@@ -1,9 +1,5 @@
 <div class="search">
 
-  <h1 class="search__title" *ngIf="modeNormal">
-    {{'shared.tool-search.page_title_search' | translate}}
-  </h1>
-
   <div class="search__form">
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
       <div class="form-row align-items-center">
