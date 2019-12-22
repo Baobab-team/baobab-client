@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss']
+  selector: 'app-business-list',
+  templateUrl: './business-list.component.html',
+  styleUrls: ['./business-list.component.scss']
 })
-export class CategoryListComponent implements OnInit {
+export class BusinessListComponent implements OnInit {
   headers = ['col1', 'col2', 'col3'];
   line1 = [
     'col1',
@@ -22,7 +22,7 @@ export class CategoryListComponent implements OnInit {
     'col8',
     'col9',
   ];
-  categories = [
+  businesses = [
     this.line1,
     this.line2,
     this.line3
@@ -35,6 +35,7 @@ export class CategoryListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }
