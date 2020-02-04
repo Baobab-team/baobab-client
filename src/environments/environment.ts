@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   baseApiUrl: 'http://127.0.0.1:5000', // For connecting to server running elsewhere update the base API URL
-  apiProvider: 'api_v1',
-  apiVersion: '',
+  apiProvider: '',
+  apiVersion: 'api_v1',
   serverUrl: '',
   paths_api: {
-    search: 'search',
+    search: 'businesses',
   },
   defaultLanguage: 'fr',
   supportedLanguages: ['en', 'fr'],

@@ -1,6 +1,8 @@
 import { HttpParams } from '@angular/common/http';
+import {environment} from '../../../environments';
 
-export class ServiceCoreService {
+export class CoreService {
+  BASE_URL_API = environment.baseApiUrl + '/' + environment.apiVersion;
 
   /**
    * convert object to HttpParams object

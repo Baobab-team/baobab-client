@@ -11,7 +11,7 @@ import {
 import { Observable } from 'rxjs';
 
 /** Environment Configuration */
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments';
 // import {I18nService} from '../services/core/i18n.service';
 
 /**
@@ -46,12 +46,11 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
     //   header = header.append('Authorization', 'token ' + token);
     // }
 
-    const apiProvider = environment.apiProvider + '/';
     // const apiProvider = '/' + this.i18nService.language;
 
     const requestTmp = request.clone({
       headers: header,
-      url: environment.serverUrl + apiProvider + request.url
+      url: request.url
     });
 
     return next.handle(requestTmp);
