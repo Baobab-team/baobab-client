@@ -1,0 +1,47 @@
+{
+ "auth": {
+  "login": {
+   "btn_submit_send": "Envoyer",
+   "form_error_email_required": "Email requis",
+   "form_error_password_required": "Mot de passe requis",
+   "form_label_email": "Email",
+   "form_label_password": "Mot de passe",
+   "link_home": "Accueil",
+   "link_register": "Creer un compte",
+   "page_title_login": "Connectez-vous"
+  },
+  "register": {
+   "btn_submit_send": "Envoyer",
+   "form_error_cpassword_required": "Mot de passe requis",
+   "form_error_email_required": "Email reauis",
+   "form_error_lastname_required": "Nom requis",
+   "form_error_password_required": "Mot de passe requis",
+   "form_error_username_required": "username requis",
+   "form_label_cpassword": "Confirmation Mot de passe",
+   "form_label_email": "Email",
+   "form_label_firstname": "Prenom",
+   "form_label_lastname": "Nom",
+   "form_label_password": "Mot de passe",
+   "form_label_username": "Username",
+   "link_home": "Accueil",
+   "link_login": "Connectez-vous",
+   "page_title_register": "Enregistrer votre compte"
+  }
+ },
+ "shared": {
+  "header": {
+   "link_home": "Acceuil",
+   "link_login": "Connectez-vous"
+  },
+  "menu-left-admin": {
+   "link_business": "Business",
+   "link_category": "Category",
+   "link_home": "Accueil"
+  },
+  "tool-search": {
+   "form_btn_search": "Rechercher",
+   "form_label_search": "Trouver votre business",
+   "page_title_search": "Que cherchez-vous?"
+  }
+ }
+}

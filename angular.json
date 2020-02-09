@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "apps",
   "projects": {
     "baobab-client": {
       "projectType": "application",
@@ -126,6 +126,134 @@
           "configurations": {
             "production": {
               "devServerTarget": "baobab-client:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "console-admin": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/console-admin",
+      "sourceRoot": "apps/console-admin/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/console-admin",
+            "index": "apps/console-admin/src/index.html",
+            "main": "apps/console-admin/src/main.ts",
+            "polyfills": "apps/console-admin/src/polyfills.ts",
+            "tsConfig": "apps/console-admin/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/console-admin/src/favicon.ico",
+              "apps/console-admin/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "apps/console-admin/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/js/dist/index.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/console-admin/src/environments/environment.ts",
+                  "with": "apps/console-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "console-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "console-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "console-admin:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/console-admin/src/test.ts",
+            "polyfills": "apps/console-admin/src/polyfills.ts",
+            "tsConfig": "apps/console-admin/tsconfig.spec.json",
+            "karmaConfig": "apps/console-admin/karma.conf.js",
+            "assets": [
+              "apps/console-admin/src/favicon.ico",
+              "apps/console-admin/src/assets"
+            ],
+            "styles": [
+              "apps/console-admin/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/console-admin/tsconfig.app.json",
+              "apps/console-admin/tsconfig.spec.json",
+              "apps/console-admin/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/console-admin/e2e/protractor.conf.js",
+            "devServerTarget": "console-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "console-admin:serve:production"
             }
           }
         }
