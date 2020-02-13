@@ -17,9 +17,15 @@ export class SearchService extends CoreService {
     super();
   }
 
-  public getBusiness(): Observable<Business[]> {
+  public getBusiness(params: {
+    name: string,
+    description?: string
+                     }): Observable<Business[]> {
     return this.httpClient.get<Business[]>(
-      this.BASE_URL_API + '/' + environment.paths_api.search
+      this.BASE_URL_API + '/' + environment.paths_api.search,
+      {
+        params: this.toHttpParams(params)
+      }
     );
   }
 }
