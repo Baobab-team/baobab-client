@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SearchService} from '../../services/search.service';
+import {Business, Search} from '../../../../core/models';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -8,22 +10,32 @@ import {SearchService} from '../../services/search.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  businesses$: Observable<Business[]>;
 
   constructor(
+    private router: Router,
     private actiavteRoute: ActivatedRoute,
     private searchService: SearchService
   ) { }
 
   ngOnInit() {
-    this.getSearch();
+    this.getResultUrl();
   }
 
-  getSearch() {
-    const querySearch = this.actiavteRoute.snapshot.paramMap.get('query');
-    this.searchService.getBusiness()
-      .subscribe((businesses) => {
-        // console.log('je suis la', businesses[0]);
-      });
+  getResultUrl() {
+    const querySearch = this.actiavteRoute.snapshot.paramMap.get('querySearch');
+    this.businesses$ = this.serviceSearchResults({
+      name: querySearch
+    });
   }
 
+  getResulForm(params: Search) {
+    this.businesses$ = this.serviceSearchResults({
+      name: params.querySearch
+    });
+  }
+
+  serviceSearchResults(params) {
+    return this.searchService.getBusiness(params);
+  }
 }
