@@ -9,7 +9,16 @@ for generate new file traduction do this `npm run extract-i18n
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+**Client interface**
+
+Run `ng serve` for a dev server/client front-end. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+
+**Admin interface**
+
+
+Run `npm run start:console` for a dev server/console admin. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss']
+  selector: 'app-categories-list',
+  templateUrl: './categories-list.component.html',
+  styleUrls: ['./categories-list.component.scss']
 })
-export class CategoryListComponent implements OnInit {
+export class CategoriesListComponent implements OnInit {
   headers = ['col1', 'col2', 'col3'];
   line1 = [
     'col1',
@@ -22,7 +22,7 @@ export class CategoryListComponent implements OnInit {
     'col8',
     'col9',
   ];
-  categories = [
+  businesses = [
     this.line1,
     this.line2,
     this.line3
@@ -32,9 +32,9 @@ export class CategoryListComponent implements OnInit {
     pagingType: 'simple_numbers',
     pageLength: 10
   };
-
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

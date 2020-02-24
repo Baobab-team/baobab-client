@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-business-list',
-  templateUrl: './business-list.component.html',
-  styleUrls: ['./business-list.component.scss']
+  selector: 'app-businesses-list',
+  templateUrl: './businesses-list.component.html',
+  styleUrls: ['./businesses-list.component.scss']
 })
-export class BusinessListComponent implements OnInit {
+export class BusinessesListComponent implements OnInit {
   headers = ['col1', 'col2', 'col3'];
   line1 = [
     'col1',

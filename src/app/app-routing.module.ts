@@ -47,17 +47,6 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     data: {
-      title: 'Category'
-    },
-    loadChildren: () =>
-      import('./features-admin/category/category.module').then(
-        m => m.CategoryModule
-      ),
-  },
-  {
-    path: '',
-    component: AdminLayoutComponent,
-    data: {
       title: 'Business'
     },
     loadChildren: () =>

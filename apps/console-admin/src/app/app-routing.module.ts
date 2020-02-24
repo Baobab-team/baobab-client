@@ -15,6 +15,28 @@ const routes: Routes = [
         m => m.HomeModule
       ),
   },
+  {
+    path: '',
+    component: MainComponent,
+    data: {
+      title: 'Category'
+    },
+    loadChildren: () =>
+      import('./category/category.module').then(
+        m => m.CategoryModule
+      ),
+  },
+  {
+    path: '',
+    component: MainComponent,
+    data: {
+      title: 'Business'
+    },
+    loadChildren: () =>
+      import('./business/business.module').then(
+        m => m.BusinessModule
+      ),
+  },
 ];
 
 @NgModule({

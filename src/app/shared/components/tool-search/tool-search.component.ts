@@ -1,6 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CATEGORY_BUSINESS } from '../../../core/models';
+import {Search} from '../../../core/models';
 
 
 @Component({
@@ -8,33 +19,49 @@ import { Router } from '@angular/router';
   templateUrl: './tool-search.component.html',
   styleUrls: ['./tool-search.component.scss']
 })
-export class ToolSearchComponent implements OnInit {
-  @Input() modeNormal = true;
+export class ToolSearchComponent implements OnInit, AfterViewInit {
+  @Input() bigForm = true;
+  @Input() optionsFields = false;
+  @Output() onSearch = new EventEmitter<Search>();
+  @ViewChild('querySearch', {static: false}) querySearch: ElementRef;
+
   searchForm: FormGroup;
+  keys = Object.keys;
+  categories = CATEGORY_BUSINESS;
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private activateRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.initForm();
   }
 
+  ngAfterViewInit(): void {
+    this.querySearch.nativeElement.focus();
+  }
+
   initForm() {
+    const querySearch = this.activateRoute.snapshot.queryParamMap.get('querySearch');
+    const category = this.activateRoute.snapshot.queryParamMap.get('category');
+
     this.searchForm = this.formBuilder.group({
-      searchbar: ['', [Validators.required]],
+      querySearch: [(querySearch) ? querySearch : '', [Validators.required]],
+      category: [(category) ? category : ''],
     });
   }
 
   onSubmit() {
+    const formValues = this.searchForm.value as Search;
 
-    const query = this.searchForm.get('searchbar').value;
-
-    if (query) {
-      this.router.navigate(['/search', query]);
+    if (formValues) {
+      this.onSearch.emit(formValues);
     }
-    return null;
+    return;
   }
+
+
 
 }

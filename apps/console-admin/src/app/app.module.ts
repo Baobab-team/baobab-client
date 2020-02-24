@@ -19,17 +19,17 @@ import {HttpClient} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      compiler: {
-        provide: TranslateCompiler,
-        useClass: TranslateMessageFormatCompiler
-      }
-    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [HttpClient]
+    //   },
+    //   compiler: {
+    //     provide: TranslateCompiler,
+    //     useClass: TranslateMessageFormatCompiler
+    //   }
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent]

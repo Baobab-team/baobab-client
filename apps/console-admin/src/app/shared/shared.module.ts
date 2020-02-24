@@ -1,24 +1,27 @@
+import { DatatableComponent } from './datatable/datatable.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MenuLeftAdminComponent } from './menu-left-admin/menu-left-admin.component';
 import {RouterModule} from '@angular/router';
-import {TranslateModule} from '@ngx-translate/core';
+// import {TranslateModule} from '@ngx-translate/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    MenuLeftAdminComponent
+    MenuLeftAdminComponent,
+    DatatableComponent
   ],
   exports: [
     CommonModule,
     HeaderComponent,
     MenuLeftAdminComponent,
-    TranslateModule,
+    DatatableComponent,
+    // TranslateModule,
     NgbModule,
     DataTablesModule
   ],
@@ -33,6 +36,6 @@ export class SharedModule {
     RouterModule,
     NgbModule,
     DataTablesModule,
-    TranslateModule
+    // TranslateModule
   ];
 }
