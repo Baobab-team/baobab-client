@@ -66,6 +66,17 @@ const routes: Routes = [
       ),
   },
   {
+    path: '',
+    component: AdminLayoutComponent,
+    data: {
+      title: 'Restaurant'
+    },
+    loadChildren: () =>
+      import('./features-admin/restaurant/restaurant.module').then(
+        m => m.RestaurantModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: '/',
   },

@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CATEGORY_BUSINESS } from '../../../core/models';
 import {Search} from '../../../core/models';
 
 
@@ -27,7 +26,6 @@ export class ToolSearchComponent implements OnInit, AfterViewInit {
 
   searchForm: FormGroup;
   keys = Object.keys;
-  categories = CATEGORY_BUSINESS;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,11 +43,9 @@ export class ToolSearchComponent implements OnInit, AfterViewInit {
 
   initForm() {
     const querySearch = this.activateRoute.snapshot.queryParamMap.get('querySearch');
-    const category = this.activateRoute.snapshot.queryParamMap.get('category');
 
     this.searchForm = this.formBuilder.group({
       querySearch: [(querySearch) ? querySearch : '', [Validators.required]],
-      category: [(category) ? category : ''],
     });
   }
 

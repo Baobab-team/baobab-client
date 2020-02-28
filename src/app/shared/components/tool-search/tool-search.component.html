@@ -1,18 +1,16 @@
 <div class="search">
-  <div class="search__form">
-    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-      <div class="form-row align-items-center">
-        <div class="mb-3 input-group" [ngClass]="(bigForm) ? 'input-group-lg' : ''">
-          <input type="text" class="form-control"
-                 placeholder="{{'shared.tool-search.form_label_search' | translate}}"
-                 formControlName="querySearch" #querySearch>
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="submit" id="search">
+    <div class="search__form">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <div class="form-row align-items-center">
+                <div class="mb-3 input-group" [ngClass]="(bigForm) ? 'input-group-lg' : ''">
+                    <input type="text" class="form-control" placeholder="{{'shared.tool-search.form_label_search' | translate}}" formControlName="querySearch" #querySearch>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="search">
               {{'shared.tool-search.form_btn_search' | translate}}
             </button>
-          </div>
-        </div>
-        <div class="search__form__options" *ngIf="optionsFields">
+                    </div>
+                </div>
+                <!-- <div class="search__form__options" *ngIf="optionsFields">
           <div class="search__form__options">
             <div class="form-group">
               <label class="pr-2">{{'shared.tool-search.form_label_option_category' | translate}}:</label>
@@ -22,8 +20,8 @@
               </select>
             </div>
           </div>
-        </div>
-      </div>
-    </form>
-  </div>
+        </div> -->
+            </div>
+        </form>
+    </div>
 </div>
