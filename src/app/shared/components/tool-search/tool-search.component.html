@@ -5,9 +5,9 @@
                 <div class="mb-3 input-group" [ngClass]="(bigForm) ? 'input-group-lg' : ''">
                     <input type="text" class="form-control" placeholder="{{'shared.tool-search.form_label_search' | translate}}" formControlName="querySearch" #querySearch>
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit" id="search">
-              {{'shared.tool-search.form_btn_search' | translate}}
-            </button>
+                        <button [disabled]="!searchForm.valid" class="btn btn-primary" type="submit">
+                          {{'shared.tool-search.form_btn_search' | translate}}
+                        </button>
                     </div>
                 </div>
                 <!-- <div class="search__form__options" *ngIf="optionsFields">

@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,6 +10,7 @@ import { RestaurantCreateComponent } from './components/restaurant-create/restau
   declarations: [RestaurantCreateComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RestaurantRoutingModule
   ]
 })

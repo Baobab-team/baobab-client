@@ -8,9 +8,10 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import {Search} from '../../../core/models';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 
 
 @Component({
@@ -25,11 +26,10 @@ export class ToolSearchComponent implements OnInit, AfterViewInit {
   @ViewChild('querySearch', {static: false}) querySearch: ElementRef;
 
   searchForm: FormGroup;
-  keys = Object.keys;
+  // keys = Object.keys;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
+    private formBuilder: RxFormBuilder,
     private activateRoute: ActivatedRoute
   ) { }
 
@@ -44,9 +44,9 @@ export class ToolSearchComponent implements OnInit, AfterViewInit {
   initForm() {
     const querySearch = this.activateRoute.snapshot.queryParamMap.get('querySearch');
 
-    this.searchForm = this.formBuilder.group({
-      querySearch: [(querySearch) ? querySearch : '', [Validators.required]],
-    });
+    this.searchForm = this.formBuilder.formGroup(
+      new Search(querySearch)
+    );
   }
 
   onSubmit() {
@@ -57,7 +57,4 @@ export class ToolSearchComponent implements OnInit, AfterViewInit {
     }
     return;
   }
-
-
-
 }
