@@ -13,6 +13,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
 import { HeaderPageAdminComponent } from './components/header-page-admin/header-page-admin.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { DatatableComponent } from './components/datatable/datatable.component';
     DataTablesModule,
     HeaderPageAdminComponent,
     DatatableComponent,
+    RxReactiveFormsModule
   ]
 })
 
@@ -54,6 +56,7 @@ export class SharedModule {
     RouterModule,
     NgbModule,
     DataTablesModule,
-    TranslateModule
+    TranslateModule,
+    RxReactiveFormsModule
   ];
 }
