@@ -1,0 +1,11 @@
+.second-header {
+    &__menus {
+        list-style: none;
+        &__item {
+            border-right: 1px solid #eaeaea;
+        }
+        &__item:last-child {
+            border-right: none;
+        }
+    }
+}

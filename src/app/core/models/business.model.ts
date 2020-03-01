@@ -16,7 +16,7 @@ export enum LANGUAGE {
 //   RESTAURANT = 'Restaurant',
 // }
 
-export enum PAYMENT_TYPE_BUSINESS {
+export enum BUSINESS_PAYMENT_TYPES {
   NOTHING = 'NOTHING',
   CREDIT = 'CREDIT',
   DEBIT = 'DEBIT',
@@ -24,13 +24,13 @@ export enum PAYMENT_TYPE_BUSINESS {
   CRYPTO = 'CRYPTO'
 }
 
-export enum SOCIAL_LINK {
+export enum BUSINESS_SOCIAL_LINKS {
   FACEBOOK = 'FACEBOOK',
   TWITTER = 'TWITTER',
   INSTAGRAM = 'INSTAGRAM'
 }
 
-export enum STATUS_BUSINESS {
+export enum BUSINESS_STATUSES {
   PENDING = 'PENDING',
   ACCEPTED = 'ACCEPTED',
   REFUSED = 'REFUSED'
@@ -47,7 +47,7 @@ export enum DAYS_WEEK {
 }
 
 export function values() {
-  return Object.keys(PAYMENT_TYPE_BUSINESS).filter(
+  return Object.keys(BUSINESS_PAYMENT_TYPES).filter(
     (type) => isNaN(type as any) && type !== 'values'
   );
 }
@@ -55,7 +55,6 @@ export function values() {
 export class Category {
   id?: number;
   name: string;
-  businessId?: number;
 }
 
 export class BusinessHour {
@@ -98,8 +97,8 @@ export class Business {
   protected acceptedAt: string;
   protected deletedAt?: string;
   @required({message: 'admin.restaurant.message_errors.payment_type_valid'})
-  protected paymentType: PAYMENT_TYPE_BUSINESS;
-  protected status: STATUS_BUSINESS;
+  protected paymentType: BUSINESS_PAYMENT_TYPES;
+  protected status: BUSINESS_STATUSES;
 
   constructor(
     id?: number,
@@ -118,8 +117,8 @@ export class Business {
     email?: string,
     acceptedAt?: string,
     language?: LANGUAGE,
-    paymentType?: PAYMENT_TYPE_BUSINESS,
-    status?: STATUS_BUSINESS
+    paymentType?: BUSINESS_PAYMENT_TYPES,
+    status?: BUSINESS_STATUSES
   ) {
     this.id = id;
     this.phoneId = phoneId;

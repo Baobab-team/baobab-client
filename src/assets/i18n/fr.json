@@ -40,6 +40,7 @@
             "payment_type": "Type de paiement"
         },
         "restaurant": {
+            "title_restaurant": "Restaurant",
             "title_create_restaurant": "Crée un restaurant",
             "title_list_restaurant": "Liste restaurants",
             "button_submit": "Envoyer",
@@ -59,9 +60,9 @@
             "link_login": "Connectez-vous"
         },
         "menu-left-admin": {
-            "link_restaurant": "Liste restaurants",
+            "link_list_restaurant": "Liste restaurants",
             "link_add_restaurant": "Ajouter restaurant",
-            "link_category": "Category",
+            "link_category": "Categorie",
             "link_home": "Accueil"
         },
         "tool-search": {

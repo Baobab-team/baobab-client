@@ -1,8 +1,8 @@
 import {
   Business,
   LANGUAGE,
-  PAYMENT_TYPE_BUSINESS,
-  STATUS_BUSINESS
+  BUSINESS_STATUSES,
+  BUSINESS_PAYMENT_TYPES
 } from './business.model';
 
 
@@ -40,8 +40,8 @@ export class Restaurant extends Business {
     email?: string,
     acceptedAt?: string,
     language?: LANGUAGE,
-    paymentType?: PAYMENT_TYPE_BUSINESS,
-    status?: STATUS_BUSINESS,
+    paymentType?: BUSINESS_PAYMENT_TYPES,
+    status?: BUSINESS_STATUSES,
     menuId?: number
   ) {
     super(

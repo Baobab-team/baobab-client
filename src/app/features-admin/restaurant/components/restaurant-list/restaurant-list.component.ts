@@ -6,6 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant-list.component.scss']
 })
 export class RestaurantListComponent implements OnInit {
+  menuHeader = [
+    {
+      title: 'shared.menu-left-admin.link_add_restaurant',
+      link: '/admin/restaurant'
+    },
+    {
+      title: 'shared.menu-left-admin.link_list_restaurant',
+      link: '/admin/restaurants'
+    }
+  ];
   headers = ['col1', 'col2', 'col3'];
   line1 = [
     'col1',

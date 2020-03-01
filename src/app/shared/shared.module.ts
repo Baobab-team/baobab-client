@@ -14,6 +14,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { HeaderPageAdminComponent } from './components/header-page-admin/header-page-admin.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { AdminSecondHeaderComponent } from './components/admin-second-header/admin-second-header.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     MenuLeftAdminComponent,
     HeaderClientProfileComponent,
     HeaderPageAdminComponent,
-    DatatableComponent
+    DatatableComponent,
+    AdminSecondHeaderComponent
   ],
   imports: [
     SharedModule.MODULE_LIST,
@@ -37,14 +39,15 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     HeaderAdminComponent,
     HeaderClientProfileComponent,
     MenuLeftAdminComponent,
+    AdminSecondHeaderComponent,
+    HeaderPageAdminComponent,
+    DatatableComponent,
 
     CommonModule,
     NgbModule,
     TranslateModule,
     ReactiveFormsModule,
     DataTablesModule,
-    HeaderPageAdminComponent,
-    DatatableComponent,
     RxReactiveFormsModule
   ]
 })
