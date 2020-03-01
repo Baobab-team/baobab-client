@@ -41,6 +41,7 @@
         },
         "restaurant": {
             "title_create_restaurant": "Crée un restaurant",
+            "title_list_restaurant": "Liste restaurants",
             "button_submit": "Envoyer",
             "message_errors": {
                 "name_required": "Name requis",
@@ -58,7 +59,8 @@
             "link_login": "Connectez-vous"
         },
         "menu-left-admin": {
-            "link_business": "Business",
+            "link_restaurant": "Liste restaurants",
+            "link_add_restaurant": "Ajouter restaurant",
             "link_category": "Category",
             "link_home": "Accueil"
         },

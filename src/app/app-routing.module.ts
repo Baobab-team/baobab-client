@@ -58,17 +58,6 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     data: {
-      title: 'Business'
-    },
-    loadChildren: () =>
-      import('./features-admin/business/business.module').then(
-        m => m.BusinessModule
-      ),
-  },
-  {
-    path: '',
-    component: AdminLayoutComponent,
-    data: {
       title: 'Restaurant'
     },
     loadChildren: () =>
