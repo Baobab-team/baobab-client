@@ -37,21 +37,26 @@
             "email": "Email",
             "slogan": "Slogan",
             "capacity": "Capacity",
-            "payment_type": "Type de paiement"
+            "payment_type": "Type de paiement",
+            "language": "Langue du service",
+            "message_errors": {
+                "name_required": "Name requis",
+                "email_required": "Email requis",
+                "language_required": "Language requis",
+                "payment_type_required": "Type de paiement requis",
+                "email_valid": "Email non valide",
+                "numeric_valid": "Nombre non valide",
+                "payment_type_valid": "Type de paiement non valide",
+                "url_valid": "URL non valide",
+                "note_alpha": "Note ne peut avoir de caracteres speciaux",
+                "description_alpha": "Description ne peut avoir de caracteres speciaux"
+            }
         },
         "restaurant": {
             "title_restaurant": "Restaurant",
             "title_create_restaurant": "Crée un restaurant",
             "title_list_restaurant": "Liste restaurants",
-            "button_submit": "Envoyer",
-            "message_errors": {
-                "name_required": "Name requis",
-                "email_required": "Email requis",
-                "email_valid": "Email non valide",
-                "numeric_valid": "Nombre non valide",
-                "payment_type_valid": "Type de paiement non valide",
-                "url_valid": "URL non valide"
-            }
+            "button_submit": "Envoyer"
         }
     },
     "shared": {

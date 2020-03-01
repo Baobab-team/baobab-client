@@ -1,5 +1,4 @@
-import { TranslateService } from '@ngx-translate/core';
-import { BUSINESS_PAYMENT_TYPES } from './../../../../core/models/business.model';
+import { BUSINESS_PAYMENT_TYPES, BUSINESS_LANGUAGE } from './../../../../core/models/business.model';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
@@ -14,6 +13,7 @@ export class RestaurantCreateComponent implements OnInit {
   restaurantForm: FormGroup;
   keys = Object.keys;
   paymentTypes = BUSINESS_PAYMENT_TYPES;
+  languages = BUSINESS_LANGUAGE;
   submitted = false;
   menuHeader = [
     {

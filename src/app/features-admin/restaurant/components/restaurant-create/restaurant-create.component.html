@@ -50,14 +50,24 @@
                     <div class="form-group">
                         <label>{{'admin.business.note' | translate}}</label>
                         <textarea class="form-control" formControlName="note"></textarea>
+                        <!-- <div *ngIf="submitted && f.note.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.note.errors.alphaNumeric">
+                                {{f.note.errors.alphaNumeric.message | translate}}
+                            </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <label>{{'admin.business.description' | translate}}</label>
                         <textarea class="form-control" formControlName="description"></textarea>
+                        <!-- <div *ngIf="submitted && f.description.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.description.errors.alphaNumeric">
+                                {{f.description.errors.alphaNumeric.message | translate}}
+                            </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <label class="pr-2">{{'admin.business.payment_type' | translate}}</label>
-                        <select formControlName="paymentType" class="form-control">
+                        <select formControlName="paymentType" class="form-control" multiple>
                         <option value=""></option>
                         <option *ngFor="let paymentType of keys(paymentTypes)" [ngValue]="paymentType">
                           {{paymentType | lowercase}}
@@ -66,6 +76,19 @@
                         <div *ngIf="submitted && f.paymentType.status==='INVALID'" class="invalid-feedback d-block">
                             <div *ngIf="f.paymentType.errors.required">
                                 {{f.paymentType.errors.required.message | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="pr-2">{{'admin.business.language' | translate}}</label>
+                        <select formControlName="language" class="form-control" multiple>
+                          <option *ngFor="let language of keys(languages)" [ngValue]="language">
+                            {{language | lowercase}}
+                          </option>
+                        </select>
+                        <div *ngIf="submitted && f.language.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.language.errors.required">
+                                {{f.language.errors.required.message | translate}}
                             </div>
                         </div>
                     </div>

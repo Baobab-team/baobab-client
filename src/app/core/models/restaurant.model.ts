@@ -1,6 +1,6 @@
 import {
   Business,
-  LANGUAGE,
+  BUSINESS_LANGUAGE,
   BUSINESS_STATUSES,
   BUSINESS_PAYMENT_TYPES
 } from './business.model';
@@ -39,7 +39,7 @@ export class Restaurant extends Business {
     website?: string,
     email?: string,
     acceptedAt?: string,
-    language?: LANGUAGE,
+    language?: BUSINESS_LANGUAGE,
     paymentType?: BUSINESS_PAYMENT_TYPES,
     status?: BUSINESS_STATUSES,
     menuId?: number

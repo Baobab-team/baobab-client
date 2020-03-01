@@ -4,12 +4,15 @@ import {
   trim,
   email,
   numeric,
-  url
+  url,
+  prop,
+  alpha
 } from '@rxweb/reactive-form-validators';
 
-export enum LANGUAGE {
+export enum BUSINESS_LANGUAGE {
   FRENCH = 'Francais',
-  ENGLISH = 'English'
+  ENGLISH = 'English',
+  SPAIN = 'English',
 }
 
 // export enum CATEGORY_BUSINESS {
@@ -36,7 +39,7 @@ export enum BUSINESS_STATUSES {
   REFUSED = 'REFUSED'
 }
 
-export enum DAYS_WEEK {
+export enum BUSINESS_DAYS_WEEK {
   MONDAY = 'MONDAY',
   TUESDAY = 'TUESDAY',
   WEDNESDAY = 'WEDNESDAY',
@@ -46,11 +49,11 @@ export enum DAYS_WEEK {
   SUNDAY = 'SUNDAY'
 }
 
-export function values() {
-  return Object.keys(BUSINESS_PAYMENT_TYPES).filter(
-    (type) => isNaN(type as any) && type !== 'values'
-  );
-}
+// export function businessPaymentTypesValues() {
+//   return Object.keys(BUSINESS_PAYMENT_TYPES).filter(
+//     (type) => isNaN(type as any) && type !== 'values'
+//   );
+// }
 
 export class Category {
   id?: number;
@@ -60,7 +63,7 @@ export class Category {
 export class BusinessHour {
   id?: number;
   businessId: number;
-  day: DAYS_WEEK;
+  day: BUSINESS_DAYS_WEEK;
   closingTime: string;
   openingTime: string;
 }
@@ -70,33 +73,36 @@ export class Business {
   protected phoneId?: number;
   protected categoryId?: number;
   protected restaurantId?: number;
-  @required({message: 'admin.restaurant.message_errors.name_required'})
+  @required({message: 'admin.business.message_errors.name_required'})
   @trim()
   protected name: string;
-  @alphaNumeric()
+  // @alphaNumeric({message: 'admin.business.message_errors.description_alpha'})
+  @prop()
   @trim()
   protected description: string;
-  @alphaNumeric()
+  // @alphaNumeric({message: 'admin.business.message_errors.note_alpha'})
+  @prop()
   @trim()
   protected note: string;
-  @url({message: 'admin.restaurant.message_errors.url_valid'})
+  @url({message: 'admin.business.message_errors.url_valid'})
   @trim()
   protected website: string;
   @trim()
-  @email({message: 'admin.restaurant.message_errors.email_valid'})
-  @required({message: 'admin.restaurant.message_errors.email_required'})
+  @email({message: 'admin.business.message_errors.email_valid'})
+  @required({message: 'admin.business.message_errors.email_required'})
   protected email: string;
-  @alphaNumeric()
+  @alphaNumeric({message: 'admin.business.message_errors.name_required'})
   @trim()
   protected slogan?: string;
-  protected language: LANGUAGE;
-  @numeric({message: 'admin.restaurant.message_errors.numeric_valid'})
+  @required({message: 'admin.business.message_errors.language_required'})
+  protected language: BUSINESS_LANGUAGE;
+  @numeric({message: 'admin.business.message_errors.numeric_valid'})
   protected capacity?: number;
   protected createdAt: string;
   protected updatetedAt?: string;
   protected acceptedAt: string;
   protected deletedAt?: string;
-  @required({message: 'admin.restaurant.message_errors.payment_type_valid'})
+  @required({message: 'admin.business.message_errors.payment_type_required'})
   protected paymentType: BUSINESS_PAYMENT_TYPES;
   protected status: BUSINESS_STATUSES;
 
@@ -116,7 +122,7 @@ export class Business {
     website?: string,
     email?: string,
     acceptedAt?: string,
-    language?: LANGUAGE,
+    language?: BUSINESS_LANGUAGE,
     paymentType?: BUSINESS_PAYMENT_TYPES,
     status?: BUSINESS_STATUSES
   ) {
