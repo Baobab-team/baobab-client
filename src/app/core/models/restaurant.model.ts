@@ -1,8 +1,10 @@
+import { Phone } from './phone.model';
 import {
   Business,
   BUSINESS_LANGUAGE,
   BUSINESS_STATUSES,
-  BUSINESS_PAYMENT_TYPES
+  BUSINESS_PAYMENT_TYPES,
+  Category
 } from './business.model';
 
 
@@ -25,9 +27,8 @@ export class Restaurant extends Business {
 
   constructor(
     id?: number,
-    phoneId?: number,
-    categoryId?: number,
-    restaurantId?: number,
+    phone?: Phone[],
+    category?: Category,
     capacity?: number,
     createdAt?: string,
     updatetedAt?: string,
@@ -46,9 +47,8 @@ export class Restaurant extends Business {
   ) {
     super(
       id,
-      phoneId,
-      categoryId,
-      restaurantId,
+      phone,
+      category,
       capacity,
       createdAt,
       updatetedAt,

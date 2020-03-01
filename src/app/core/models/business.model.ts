@@ -1,3 +1,4 @@
+import { Phone } from './phone.model';
 import {
   required,
   alphaNumeric,
@@ -70,9 +71,8 @@ export class BusinessHour {
 
 export class Business {
   protected id?: number;
-  protected phoneId?: number;
-  protected categoryId?: number;
-  protected restaurantId?: number;
+  protected phone?: Phone[];
+  protected category?: Category;
   @required({message: 'admin.business.message_errors.name_required'})
   @trim()
   protected name: string;
@@ -108,9 +108,8 @@ export class Business {
 
   constructor(
     id?: number,
-    phoneId?: number,
-    categoryId?: number,
-    restaurantId?: number,
+    phone?: Phone[],
+    category?: Category,
     capacity?: number,
     createdAt?: string,
     updatetedAt?: string,
@@ -127,10 +126,9 @@ export class Business {
     status?: BUSINESS_STATUSES
   ) {
     this.id = id;
-    this.phoneId = phoneId;
-    this.categoryId = categoryId;
+    this.phone = phone;
+    this.category = category;
     this.capacity = capacity;
-    this.restaurantId = restaurantId;
     this.name = name;
     this.description = description;
     this.note = note;
