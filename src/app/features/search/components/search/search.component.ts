@@ -25,13 +25,13 @@ export class SearchComponent implements OnInit {
   getResultUrl() {
     const querySearch = this.actiavteRoute.snapshot.paramMap.get('querySearch');
     this.businesses$ = this.serviceSearchResults({
-      name: querySearch
+      querySearch: querySearch
     });
   }
 
   getResulForm(params: Search) {
     this.businesses$ = this.serviceSearchResults({
-      name: params.querySearch
+      querySearch: params.querySearch
     });
   }
 

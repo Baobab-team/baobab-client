@@ -18,7 +18,7 @@ export class SearchService extends CoreService {
   }
 
   public getBusiness(params: {
-    name: string,
+    querySearch: string,
     description?: string
                      }): Observable<Business[]> {
     return this.httpClient.get<Business[]>(
