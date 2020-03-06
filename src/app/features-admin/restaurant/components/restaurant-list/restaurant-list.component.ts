@@ -1,11 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-business-list',
-  templateUrl: './business-list.component.html',
-  styleUrls: ['./business-list.component.scss']
+  selector: 'app-restaurant-list',
+  templateUrl: './restaurant-list.component.html',
+  styleUrls: ['./restaurant-list.component.scss']
 })
-export class BusinessListComponent implements OnInit {
+export class RestaurantListComponent implements OnInit {
+  menuHeader = [
+    {
+      title: 'shared.menu-left-admin.link_add_restaurant',
+      link: '/admin/restaurant'
+    },
+    {
+      title: 'shared.menu-left-admin.link_list_restaurant',
+      link: '/admin/restaurants'
+    }
+  ];
   headers = ['col1', 'col2', 'col3'];
   line1 = [
     'col1',

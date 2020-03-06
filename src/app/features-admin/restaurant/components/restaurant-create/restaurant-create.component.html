@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-md">
+        <div class="login">
+            <div class="login__box">
+                <app-admin-second-header [title]="'admin.restaurant.title_create_restaurant'" [menus]="menuHeader"></app-admin-second-header>
+                <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>{{'admin.business.name' | translate}}</label>
+                        <input type="text" class="form-control" formControlName="name">
+                        <div *ngIf="submitted && f.name.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.name.errors.required">
+                                {{f.name.errors.required.message | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{'admin.business.website' | translate}}</label>
+                        <input type="url" class="form-control" formControlName="website">
+                        <div *ngIf="submitted && f.website.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.website.errors.url">
+                                {{f.name.errors.url.message | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{'admin.business.slogan' | translate}}</label>
+                        <input type="text" class="form-control" formControlName="slogan">
+                    </div>
+                    <div class="form-group">
+                        <label>{{'admin.business.email' | translate}}</label>
+                        <input type="email" class="form-control" formControlName="email">
+                        <div *ngIf="submitted && f.email.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.email.errors.email">
+                                {{f.email.errors.email.message | translate}}
+                            </div>
+                            <div *ngIf="f.email.errors.required">
+                                {{f.email.errors.required.message | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{'admin.business.capacity' | translate}}</label>
+                        <input type="number" class="form-control" formControlName="capacity">
+                        <div *ngIf="submitted && f.capacity.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.capacity.errors.url">
+                                {{f.capacity.errors.url.message | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{'admin.business.note' | translate}}</label>
+                        <textarea class="form-control" formControlName="note"></textarea>
+                        <!-- <div *ngIf="submitted && f.note.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.note.errors.alphaNumeric">
+                                {{f.note.errors.alphaNumeric.message | translate}}
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label>{{'admin.business.description' | translate}}</label>
+                        <textarea class="form-control" formControlName="description"></textarea>
+                        <!-- <div *ngIf="submitted && f.description.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.description.errors.alphaNumeric">
+                                {{f.description.errors.alphaNumeric.message | translate}}
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label class="pr-2">{{'admin.business.payment_type' | translate}}</label>
+                        <select formControlName="paymentType" class="form-control" multiple>
+                        <option value=""></option>
+                        <option *ngFor="let paymentType of keys(paymentTypes)" [ngValue]="paymentType">
+                          {{paymentType | lowercase}}
+                        </option>
+                      </select>
+                        <div *ngIf="submitted && f.paymentType.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.paymentType.errors.required">
+                                {{f.paymentType.errors.required.message | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="pr-2">{{'admin.business.language' | translate}}</label>
+                        <select formControlName="language" class="form-control" multiple>
+                          <option *ngFor="let language of keys(languages)" [ngValue]="language">
+                            {{language | lowercase}}
+                          </option>
+                        </select>
+                        <div *ngIf="submitted && f.language.status==='INVALID'" class="invalid-feedback d-block">
+                            <div *ngIf="f.language.errors.required">
+                                {{f.language.errors.required.message | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                        {{'admin.restaurant.button_submit' | translate}}
+                      </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md"></div>
+</div>
