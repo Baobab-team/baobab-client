@@ -2,7 +2,6 @@ import { BUSINESS_PAYMENT_TYPES, BUSINESS_LANGUAGE } from './../../../../core/mo
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { Restaurant } from 'src/app/core/models';
 
 @Component({
   selector: 'app-restaurant-create',
@@ -34,9 +33,9 @@ export class RestaurantCreateComponent implements OnInit {
   get f() { return this.restaurantForm.controls; }
 
   ngOnInit() {
-    this.restaurantForm = this.formBuilder.formGroup(
-      new Restaurant()
-    );
+    // this.restaurantForm = this.formBuilder.formGroup(
+    //   new Restaurant()
+    // );
   }
 
   onSubmit() {

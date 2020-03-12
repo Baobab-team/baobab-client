@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -10,6 +11,11 @@ import { LayoutsModule } from './layouts';
 import { TranslateLoader, TranslateModule, TranslateCompiler } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
+import { REDUCER_TOKEN, getReducers, appEffects } from './store';
+import { StoreModule } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { environment } from 'src/environments';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 @NgModule({
@@ -21,7 +27,13 @@ import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-comp
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
+    StoreModule.forRoot(REDUCER_TOKEN),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
     LayoutsModule,
+    EffectsModule.forRoot(appEffects),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -35,10 +47,15 @@ import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-comp
     }),
   ],
   providers: [
+    Store,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiPrefixInterceptor,
       multi: true
+    },
+    {
+      provide: REDUCER_TOKEN,
+      useFactory: getReducers
     }
   ],
   bootstrap: [AppComponent]

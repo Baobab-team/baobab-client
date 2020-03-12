@@ -1,3 +1,4 @@
+import { Business } from './business.model';
 import { Phone } from './phone.model';
 import {
   required,
@@ -9,6 +10,7 @@ import {
   prop,
   alpha
 } from '@rxweb/reactive-form-validators';
+import { Search } from './search.model';
 
 export enum BUSINESS_LANGUAGE {
   FRENCH = 'Francais',
@@ -69,78 +71,29 @@ export class BusinessHour {
   openingTime: string;
 }
 
-export class Business {
-  protected id?: number;
-  protected phone?: Phone[];
-  protected category?: Category;
-  @required({message: 'admin.business.message_errors.name_required'})
-  @trim()
-  protected name: string;
-  // @alphaNumeric({message: 'admin.business.message_errors.description_alpha'})
-  @prop()
-  @trim()
-  protected description: string;
-  // @alphaNumeric({message: 'admin.business.message_errors.note_alpha'})
-  @prop()
-  @trim()
-  protected note: string;
-  @url({message: 'admin.business.message_errors.url_valid'})
-  @trim()
-  protected website: string;
-  @trim()
-  @email({message: 'admin.business.message_errors.email_valid'})
-  @required({message: 'admin.business.message_errors.email_required'})
-  protected email: string;
-  @alphaNumeric({message: 'admin.business.message_errors.name_required'})
-  @trim()
-  protected slogan?: string;
-  @required({message: 'admin.business.message_errors.language_required'})
-  protected language: BUSINESS_LANGUAGE;
-  @numeric({message: 'admin.business.message_errors.numeric_valid'})
-  protected capacity?: number;
-  protected createdAt: string;
-  protected updatetedAt?: string;
-  protected acceptedAt: string;
-  protected deletedAt?: string;
-  @required({message: 'admin.business.message_errors.payment_type_required'})
-  protected paymentType: BUSINESS_PAYMENT_TYPES;
-  protected status: BUSINESS_STATUSES;
+export interface Business {
+  readonly id?: number;
+  phone?: Phone[];
+  category?: Category;
+  name: string;
+  description: string;
+  note: string;
+  website: string;
+  email: string;
+  slogan?: string;
+  language: BUSINESS_LANGUAGE;
+  capacity?: number;
+  createdAt: string;
+  updatetedAt?: string;
+  acceptedAt: string;
+  deletedAt?: string;
+  paymentType: BUSINESS_PAYMENT_TYPES;
+  status: BUSINESS_STATUSES;
+}
 
-  constructor(
-    id?: number,
-    phone?: Phone[],
-    category?: Category,
-    capacity?: number,
-    createdAt?: string,
-    updatetedAt?: string,
-    deletedAt?: string,
-    slogan?: string,
-    name?: string,
-    description?: string,
-    note?: string,
-    website?: string,
-    email?: string,
-    acceptedAt?: string,
-    language?: BUSINESS_LANGUAGE,
-    paymentType?: BUSINESS_PAYMENT_TYPES,
-    status?: BUSINESS_STATUSES
-  ) {
-    this.id = id;
-    this.phone = phone;
-    this.category = category;
-    this.capacity = capacity;
-    this.name = name;
-    this.description = description;
-    this.note = note;
-    this.website = website;
-    this.email = email;
-    this.acceptedAt = acceptedAt;
-    this.slogan = slogan;
-    this.language = language;
-    this.createdAt = createdAt;
-    this.updatetedAt = updatetedAt;
-    this.deletedAt = deletedAt;
-    this.paymentType = paymentType;
-    this.status = status;
-  }
+export interface BusinessState {
+  data?: Business[];
+  search?: Search;
+  loading: boolean;
+  loaded: boolean;
 }
