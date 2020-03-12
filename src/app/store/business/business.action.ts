@@ -4,13 +4,13 @@ import { Business, Search } from 'src/app/core/models';
 export namespace BusinessModule {
 
   export enum ActionTypes {
-    LOAD_INIT_BUSINESS = '[Business] Load Init Business',
-    SUCCESS_INIT_BUSINESS = '[Business] Success Init Business',
-    ERROR_INT_RBUSINESS = '[Business] Error Init Business',
+    LOAD_SEARCH_BUSINESS = '[Business] Load Search Business',
+    SUCCESS_SEARCH_BUSINESS = '[Business] Success Search Business',
+    ERROR_SEARCH_RBUSINESS = '[Business] Error Search Business',
   }
 
   export class LoadInitBusiness {
-    readonly type = ActionTypes.LOAD_INIT_BUSINESS;
+    readonly type = ActionTypes.LOAD_SEARCH_BUSINESS;
     payload: Search;
     constructor(payload: Search) {
       this.payload = payload;
@@ -18,7 +18,7 @@ export namespace BusinessModule {
   }
 
   export class SuccessInitBusiness {
-    readonly type = ActionTypes.SUCCESS_INIT_BUSINESS;
+    readonly type = ActionTypes.SUCCESS_SEARCH_BUSINESS;
     payload: Business[];
     constructor(payload: Business[]) {
       this.payload = payload;
@@ -26,7 +26,7 @@ export namespace BusinessModule {
   }
 
   export class ErrorInitBusiness {
-    readonly type = ActionTypes.ERROR_INT_RBUSINESS;
+    readonly type = ActionTypes.ERROR_SEARCH_RBUSINESS;
   }
 
   export type Actions = LoadInitBusiness

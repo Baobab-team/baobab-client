@@ -7,7 +7,9 @@
         </div>
     </div>
     <hr>
-    <div *ngIf="(businessesloading$ | async)"> chargemetn en cours...</div>
+    <div *ngIf="(businessesloading$ | async)" class="container">
+        <div class="text-center">chargemetn en cours...</div>
+    </div>
     <div class="container search__results" *ngIf="!(businessesloading$ | async)">
         <ul>
             <li *ngFor="let restaurant of (businesses$ | async)">

@@ -13,20 +13,20 @@ export function BusinessReducer(
   action: BusinessModule.Actions
 ): BusinessState {
   switch (action.type) {
-    case BusinessModule.ActionTypes.LOAD_INIT_BUSINESS:
+    case BusinessModule.ActionTypes.LOAD_SEARCH_BUSINESS:
       return {
         ...state,
         search: action.payload,
         loading: true
       };
-    case BusinessModule.ActionTypes.SUCCESS_INIT_BUSINESS:
+    case BusinessModule.ActionTypes.SUCCESS_SEARCH_BUSINESS:
       return {
         ...state,
         loading: false,
         loaded: true,
         data: action.payload
       };
-    case BusinessModule.ActionTypes.ERROR_INT_RBUSINESS:
+    case BusinessModule.ActionTypes.ERROR_SEARCH_RBUSINESS:
       return {
         ...state,
         loading: false
