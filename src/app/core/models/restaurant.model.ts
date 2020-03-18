@@ -1,69 +1,20 @@
-import { Phone } from './phone.model';
-import {
-  Business,
-  BUSINESS_LANGUAGE,
-  BUSINESS_STATUSES,
-  BUSINESS_PAYMENT_TYPES,
-  Category
-} from './business.model';
+import { Business } from './business.model';
 
-
-export class Plate {
+export interface Plate {
   id?: number;
-  menuId: number;
+  menu?: Menu;
   nom: string;
   price: number;
   description: string;
 }
 
-export class Menu {
+export interface Menu {
   id?: number;
-  RestaurantId: number;
+  Restaurant?: Restaurant;
   name: string;
 }
 
-export class Restaurant extends Business {
-  menuId: number;
-
-  constructor(
-    id?: number,
-    phone?: Phone[],
-    category?: Category,
-    capacity?: number,
-    createdAt?: string,
-    updatetedAt?: string,
-    deletedAt?: string,
-    slogan?: string,
-    name?: string,
-    description?: string,
-    note?: string,
-    website?: string,
-    email?: string,
-    acceptedAt?: string,
-    language?: BUSINESS_LANGUAGE,
-    paymentType?: BUSINESS_PAYMENT_TYPES,
-    status?: BUSINESS_STATUSES,
-    menuId?: number
-  ) {
-    super(
-      id,
-      phone,
-      category,
-      capacity,
-      createdAt,
-      updatetedAt,
-      deletedAt,
-      slogan,
-      name,
-      description,
-      note,
-      website,
-      email,
-      acceptedAt,
-      language,
-      paymentType,
-      status
-    );
-    this.menuId = menuId;
-  }
+export interface Restaurant extends Business {
+  menu?: Menu;
 }
+
