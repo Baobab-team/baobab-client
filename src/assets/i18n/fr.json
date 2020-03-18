@@ -39,11 +39,13 @@
             "capacity": "Capacity",
             "payment_type": "Type de paiement",
             "language": "Langue du service",
+            "category": "Catégorie de votre activité",
             "message_errors": {
                 "name_required": "Name requis",
                 "email_required": "Email requis",
                 "language_required": "Language requis",
                 "payment_type_required": "Type de paiement requis",
+                "category_required": "Catégorie requise",
                 "email_valid": "Email non valide",
                 "numeric_valid": "Nombre non valide",
                 "payment_type_valid": "Type de paiement non valide",
@@ -56,6 +58,7 @@
             "title_restaurant": "Restaurant",
             "title_create_restaurant": "Crée un restaurant",
             "title_list_restaurant": "Liste restaurants",
+            "title_list_category": "Liste catégories",
             "button_submit": "Envoyer"
         }
     },
@@ -68,6 +71,7 @@
             "link_list_restaurant": "Liste restaurants",
             "link_add_restaurant": "Ajouter restaurant",
             "link_category": "Categorie",
+            "link_list_categories": "Liste categories",
             "link_home": "Accueil"
         },
         "tool-search": {

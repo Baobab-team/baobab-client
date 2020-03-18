@@ -74,7 +74,7 @@ export class BusinessHour {
 export interface Business {
   readonly id?: number;
   phone?: Phone[];
-  category?: Category;
+  category: Category;
   name: string;
   description: string;
   note: string;

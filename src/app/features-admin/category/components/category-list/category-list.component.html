@@ -1,5 +1,6 @@
 <div class="category-list">
+    <app-admin-second-header [title]="'admin.restaurant.title_list_category'" [menus]="menuHeader"></app-admin-second-header>
     <!-- <app-datatable [headerElements]="[]" [elements]="[]" [dtOptions]="dtOptions"></app-datatable> -->
-    <ngx-datatable class="material" [rows]="(categories$ | async)" [columns]="columns" [columnMode]="force" [headerHeight]="40" [footerHeight]="40" [limit]="20" rowHeight="auto" [loadingIndicator]="(categoriesLoading$ | async)">
+    <ngx-datatable class="material" [rows]="(categories$ | async)" [columns]="columns" [headerHeight]="40" [footerHeight]="40" [limit]="20" rowHeight="auto" [loadingIndicator]="(categoriesLoading$ | async)">
     </ngx-datatable>
 </div>

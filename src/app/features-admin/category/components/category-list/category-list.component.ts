@@ -20,6 +20,16 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     { prop: 'id' },
     { name: 'Name', dir: 'asc' },
   ];
+  readonly menuHeader = [
+    {
+      title: 'shared.menu-left-admin.link_list_categories',
+      link: '/admin/categories'
+    },
+    {
+      title: 'shared.menu-left-admin.link_add_restaurant',
+      link: '/admin/restaurant'
+    }
+  ];
 
   constructor(
     private store: Store<any>

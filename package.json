@@ -29,7 +29,6 @@
         "@rxweb/reactive-form-validators": "^1.9.9-beta2",
         "@swimlane/ngx-datatable": "^16.0.3",
         "admin-lte": "^3.0.1",
-        "ag-grid": "^18.1.2",
         "angular-datatables": "^8.0.0",
         "bootstrap": "^4.4.1",
         "datatables.net": "^1.10.20",
