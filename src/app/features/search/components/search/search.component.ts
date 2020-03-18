@@ -1,9 +1,10 @@
+import { takeUntil } from 'rxjs/operators';
 import { Restaurant, Search } from 'src/app/core/models';
 import { selectBusinessLoading$, selectBusinesses$ } from '../../../../store/business/business.selector';
 import { Store, select } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { BusinessModule } from 'src/app/store/business/business.action';
 
 @Component({
@@ -11,9 +12,10 @@ import { BusinessModule } from 'src/app/store/business/business.action';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   public businessesloading$: Observable<boolean>;
   public businesses$: Observable<Restaurant[]>;
+  public unsubsscribe$ = new Subject<void>();
 
   constructor(
     private router: Router,
@@ -21,11 +23,17 @@ export class SearchComponent implements OnInit {
     private store: Store<any>
   ) {
     this.businessesloading$ = store.pipe(
-      select(selectBusinessLoading$)
+      select(selectBusinessLoading$),
+      takeUntil(this.unsubsscribe$)
     );
     this.businesses$ = store.pipe(
       select(selectBusinesses$),
+      takeUntil(this.unsubsscribe$)
     );
+  }
+  ngOnDestroy(): void {
+    this.unsubsscribe$.next();
+    this.unsubsscribe$.complete();
   }
 
   ngOnInit() {
