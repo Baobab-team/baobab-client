@@ -15,6 +15,7 @@ import { HeaderPageAdminComponent } from './components/header-page-admin/header-
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { AdminSecondHeaderComponent } from './components/admin-second-header/admin-second-header.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AdminSecondHeaderComponent } from './components/admin-second-header/adm
     TranslateModule,
     ReactiveFormsModule,
     DataTablesModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
+    NgxDatatableModule,
   ]
 })
 
@@ -60,6 +62,7 @@ export class SharedModule {
     NgbModule,
     DataTablesModule,
     TranslateModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
+    NgxDatatableModule,
   ];
 }
