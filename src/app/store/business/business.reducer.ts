@@ -3,6 +3,7 @@ import { BusinessModule } from './business.action';
 
 const restaurantInitialState: BusinessState = {
   data: [],
+  search: null,
   loading: false,
   loaded: false
 };
