@@ -97,3 +97,9 @@ export interface BusinessState {
   loading: boolean;
   loaded: boolean;
 }
+
+export interface CategoryState {
+  data: Category[];
+  loading: boolean;
+  loaded: boolean;
+}
