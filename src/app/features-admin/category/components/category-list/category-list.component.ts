@@ -42,7 +42,8 @@ export class CategoryListComponent implements OnInit, OnDestroy {
       select(selectCategories$),
       takeUntil(this.unsubsscribe$)
     );
-   }
+  }
+
   ngOnDestroy(): void {
     this.unsubsscribe$.next();
     this.unsubsscribe$.complete();
