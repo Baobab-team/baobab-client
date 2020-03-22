@@ -4,7 +4,7 @@ import { CategoryListComponent } from './components/category-list/category-list.
 
 const routes: Routes = [
   {
-    path: 'admin/category',
+    path: 'admin/categories',
     component: CategoryListComponent,
   },
 ];

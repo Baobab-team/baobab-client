@@ -1,9 +1,4 @@
 <div class="category-list">
-  <app-datatable
-    [headerElements]="headers"
-    [elements]="categories"
-    [dtOptions]="dtOptions"
-  ></app-datatable>
+    <app-admin-second-header [title]="'admin.restaurant.title_list_category'" [menus]="menuHeader"></app-admin-second-header>
+    <app-datatable [rows]="(categories$ | async)" [columns]="columns" [loadingIndicator]="(categoriesLoading$ | async)"></app-datatable>
 </div>
-
-

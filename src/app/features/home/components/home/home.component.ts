@@ -17,10 +17,12 @@ export class HomeComponent implements OnInit {
   }
 
   search($event: Search) {
-    this.router.navigate(
-      ['search'],
-      {queryParams: $event}
-    );
+    if ($event.querySearch) {
+      this.router.navigate(
+        ['search'],
+        {queryParams: $event}
+      );
+    }
   }
 
 }

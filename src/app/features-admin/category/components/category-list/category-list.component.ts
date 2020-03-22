@@ -1,40 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { CategoryModule } from './../../../../store/category/category.action';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { Category } from 'src/app/core/models';
+import { selectCategories$, selectBusinessLoading$ } from '../../../../store/category/category.selector';
+import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent implements OnInit {
-  headers = ['col1', 'col2', 'col3'];
-  line1 = [
-    'col1',
-    'col2',
-    'col3',
+export class CategoryListComponent implements OnInit, OnDestroy {
+  readonly categoriesLoading$: Observable<boolean>;
+  readonly categories$: Observable<Category[]>;
+  public unsubsscribe$ = new Subject<void>();
+  readonly columns = [
+    { prop: 'id', sortable: false },
+    { prop: 'name', name: 'Nom', sortable: true, dir: 'asc' },
   ];
-  line2 = [
-    'col4',
-    'col5',
-    'col6',
-  ];
-  line3 = [
-    'col7',
-    'col8',
-    'col9',
-  ];
-  categories = [
-    this.line1,
-    this.line2,
-    this.line3
+  readonly menuHeader = [
+    {
+      title: 'shared.menu-left-admin.link_list_categories',
+      link: '/admin/categories'
+    },
+    {
+      title: 'shared.menu-left-admin.link_add_restaurant',
+      link: '/admin/restaurant'
+    }
   ];
 
-  dtOptions = {
-    pagingType: 'simple_numbers',
-    pageLength: 10
-  };
+  constructor(
+    private store: Store<any>
+  ) {
+    this.categoriesLoading$ = store.pipe(
+      select(selectBusinessLoading$),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.categories$ = store.pipe(
+      select(selectCategories$),
+      takeUntil(this.unsubsscribe$)
+    );
+  }
 
-  constructor() { }
+  ngOnDestroy(): void {
+    this.unsubsscribe$.next();
+    this.unsubsscribe$.complete();
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new CategoryModule.LoadListCategory());
+  }
+
+  // onFilterChange(event: { target: { value: string; }; }) {
+  //   const val = event.target.value.toLowerCase();
+  //   console.log(val)
+
+    // filter our data
+    // const temp = this.rows.filter(function(d) {
+    //   return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    // });
+    // update the rows
+    // this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    // this.table.offset = 0;
+  // }
 
 }

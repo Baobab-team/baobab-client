@@ -1,8 +1,13 @@
-import { TranslateService } from '@ngx-translate/core';
-import { BUSINESS_PAYMENT_TYPES, BUSINESS_LANGUAGE } from './../../../../core/models/business.model';
-import { Component, OnInit } from '@angular/core';
+import { BUSINESS_PAYMENT_TYPES, BUSINESS_LANGUAGE, Category } from './../../../../core/models/business.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators';
+import { CategoryModule } from 'src/app/store/category/category.action';
+import { Store, select } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { selectBusinessLoading$ } from 'src/app/store/business/business.selector';
+import { takeUntil } from 'rxjs/operators';
+import { selectCategories$ } from 'src/app/store/category/category.selector';
 
 
 @Component({
@@ -10,7 +15,7 @@ import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators'
   templateUrl: './restaurant-create.component.html',
   styleUrls: ['./restaurant-create.component.scss']
 })
-export class RestaurantCreateComponent implements OnInit {
+export class RestaurantCreateComponent implements OnInit, OnDestroy {
   restaurantForm: FormGroup;
   keys = Object.keys;
   paymentTypes = BUSINESS_PAYMENT_TYPES;
@@ -27,14 +32,33 @@ export class RestaurantCreateComponent implements OnInit {
     }
   ];
 
+  readonly categoriesLoading$: Observable<boolean>;
+  readonly categories$: Observable<Category[]>;
+  public unsubsscribe$ = new Subject<void>();
+
   constructor(
     private formBuilder: RxFormBuilder,
-  ) {}
+    private store: Store<any>
+  ) {
+    this.categoriesLoading$ = store.pipe(
+      select(selectBusinessLoading$),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.categories$ = store.pipe(
+      select(selectCategories$),
+      takeUntil(this.unsubsscribe$)
+    );
+  }
+  ngOnDestroy(): void {
+    this.unsubsscribe$.next();
+    this.unsubsscribe$.complete();
+  }
 
   // convenience getter for easy access to form fields
   get f() { return this.restaurantForm.controls; }
 
   ngOnInit() {
+    this.store.dispatch(new CategoryModule.LoadListCategory());
     this.restaurantForm = this.formBuilder.group(
       {
         name: ['', [RxwebValidators.required({message: 'admin.business.message_errors.name_required'})]],
@@ -49,6 +73,9 @@ export class RestaurantCreateComponent implements OnInit {
         language: ['', [RxwebValidators.required({message: 'admin.business.message_errors.language_required'})]],
         capacity: ['', [RxwebValidators.numeric({message: 'admin.business.message_errors.numeric_valid'})]],
         paymentType: [''],
+        category: ['', [
+          RxwebValidators.url({message: 'admin.business.message_errors.category_required'})
+        ]]
       }
     );
   }

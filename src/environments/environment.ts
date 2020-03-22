@@ -10,6 +10,7 @@ export const environment = {
   serverUrl: '',
   paths_api: {
     search: 'businesses',
+    list_category: 'categories',
   },
   defaultLanguage: 'fr',
   supportedLanguages: ['en', 'fr'],

@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from '../environments/environment';
 import {I18nService} from './core/services/i18n.service';
 import {Logger} from './core/services/logger.service';
+import * as $ from 'jquery';
+
 
 /** Initialize Logger */
 const log = new Logger('app.component');
-
 
 @Component({
   selector: 'app-root',
