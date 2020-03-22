@@ -1,5 +1,5 @@
 <div class="business-list">
     <app-admin-second-header [title]="'admin.restaurant.title_list_restaurant'" [menus]="menuHeader"></app-admin-second-header>
 
-    <!-- <app-datatable [headerElements]="headers" [elements]="businesses" [dtOptions]="dtOptions"></app-datatable> -->
+    <app-datatable [rows]="(businesses$ | async)" [columns]="columns" [loadingIndicator]="(businessesLoading$ | async)"></app-datatable>
 </div>
