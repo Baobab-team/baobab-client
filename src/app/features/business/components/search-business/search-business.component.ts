@@ -8,11 +8,11 @@ import {Observable, Subject} from 'rxjs';
 import { BusinessModule } from 'src/app/store/business/business.action';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: 'app-search-business',
+  templateUrl: './search-business.component.html',
+  styleUrls: ['./search-business.component.scss']
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchBusinessComponent implements OnInit, OnDestroy {
   public businessesloading$: Observable<boolean>;
   public businesses$: Observable<Restaurant[]>;
   public unsubsscribe$ = new Subject<void>();

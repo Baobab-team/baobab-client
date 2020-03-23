@@ -6,7 +6,7 @@ export namespace BusinessModule {
   export enum ActionTypes {
     LOAD_SEARCH_BUSINESS = '[Business] Load Search Business',
     SUCCESS_SEARCH_BUSINESS = '[Business] Success Search Business',
-    ERROR_SEARCH_RBUSINESS = '[Business] Error Search Business',
+    ERROR_SEARCH_BUSINESS = '[Business] Error Search Business',
   }
 
   export class LoadInitBusiness {
@@ -26,7 +26,7 @@ export namespace BusinessModule {
   }
 
   export class ErrorInitBusiness {
-    readonly type = ActionTypes.ERROR_SEARCH_RBUSINESS;
+    readonly type = ActionTypes.ERROR_SEARCH_BUSINESS;
   }
 
   export type Actions = LoadInitBusiness

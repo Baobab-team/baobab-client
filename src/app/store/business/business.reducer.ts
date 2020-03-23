@@ -27,7 +27,7 @@ export function BusinessReducer(
         loaded: true,
         data: action.payload
       };
-    case BusinessModule.ActionTypes.ERROR_SEARCH_RBUSINESS:
+    case BusinessModule.ActionTypes.ERROR_SEARCH_BUSINESS:
       return {
         ...state,
         loading: false
