@@ -16,3 +16,7 @@ export const selectBusinessLoaded$ = createSelector(
   selectBusinessState$,
   (businesses) => businesses.loaded
 );
+export const selectBusinessDetail$ = createSelector(
+  selectBusinessState$,
+  (business) => business.detailBusiness
+);

@@ -1,62 +1,43 @@
-import { Business } from './business.model';
 import { Phone } from './phone.model';
-import {
-  required,
-  alphaNumeric,
-  trim,
-  email,
-  numeric,
-  url,
-  prop,
-  alpha
-} from '@rxweb/reactive-form-validators';
 import { Search } from './search.model';
 
 export enum BUSINESS_LANGUAGE {
-  FRENCH = 'Francais',
-  ENGLISH = 'English',
-  SPAIN = 'English',
+  FRENCH = 'francais',
+  ENGLISH = 'english',
+  SPAIN = 'english',
 }
 
-// export enum CATEGORY_BUSINESS {
-//   RESTAURANT = 'Restaurant',
-// }
-
 export enum BUSINESS_PAYMENT_TYPES {
-  NOTHING = 'NOTHING',
-  CREDIT = 'CREDIT',
-  DEBIT = 'DEBIT',
-  CASH = 'CASH',
-  CRYPTO = 'CRYPTO'
+  NOTHING = 'nothing',
+  CREDIT = 'credit',
+  DEBIT = 'debit',
+  CASH = 'cash',
+  CRYPTO = 'crypto'
 }
 
 export enum BUSINESS_SOCIAL_LINKS {
-  FACEBOOK = 'FACEBOOK',
-  TWITTER = 'TWITTER',
-  INSTAGRAM = 'INSTAGRAM'
+  FACEBOOK = 'facebook',
+  TWITTER = 'twitter',
+  INSTAGRAM = 'instagram',
+  LINKEDIN = 'linkedin',
+  SNAPCHAT = 'snapchat'
 }
 
 export enum BUSINESS_STATUSES {
-  PENDING = 'PENDING',
-  ACCEPTED = 'ACCEPTED',
-  REFUSED = 'REFUSED'
+  PENDING = 'pending',
+  ACCEPTED = 'accepted',
+  REFUSED = 'refused'
 }
 
 export enum BUSINESS_DAYS_WEEK {
-  MONDAY = 'MONDAY',
-  TUESDAY = 'TUESDAY',
-  WEDNESDAY = 'WEDNESDAY',
-  THURSDAY = 'THURSDAY',
-  FRIDAY = 'FRIDAY',
-  SATURDAY = 'SATURDAY',
-  SUNDAY = 'SUNDAY'
+  MONDAY = 'monday',
+  TUESDAY = 'tuesday',
+  WEDNESDAY = 'wednesday',
+  THURSDAY = 'thursday',
+  FRIDAY = 'friday',
+  SATURDAY = 'saturday',
+  SUNDAY = 'sunday'
 }
-
-// export function businessPaymentTypesValues() {
-//   return Object.keys(BUSINESS_PAYMENT_TYPES).filter(
-//     (type) => isNaN(type as any) && type !== 'values'
-//   );
-// }
 
 export class Category {
   id?: number;
@@ -67,8 +48,14 @@ export class BusinessHour {
   id?: number;
   businessId: number;
   day: BUSINESS_DAYS_WEEK;
-  closingTime: string;
-  openingTime: string;
+  closing_time: string;
+  opening_time: string;
+}
+
+export interface SocialLink {
+  readonly id?: number;
+  link: string;
+  type: BUSINESS_SOCIAL_LINKS;
 }
 
 export interface Business {
@@ -89,11 +76,14 @@ export interface Business {
   deletedAt?: string;
   paymentType: BUSINESS_PAYMENT_TYPES;
   status: BUSINESS_STATUSES;
+  social_links: BUSINESS_SOCIAL_LINKS;
 }
 
 export interface BusinessState {
   data?: Business[];
   search?: Search;
+  businessId: number;
+  detailBusiness: Business;
   loading: boolean;
   loaded: boolean;
 }

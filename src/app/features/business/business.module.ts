@@ -4,11 +4,14 @@ import { SearchBusinessComponent } from './components/search-business/search-bus
 import { SearchRoutingModule } from './business-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { LayoutsModule } from '../../layouts';
-import { DetailBusinessComponent } from './detail-business/detail-business.component';
+import { DetailBusinessComponent } from './components/detail-business/detail-business.component';
 
 
 @NgModule({
-  declarations: [SearchBusinessComponent, DetailBusinessComponent],
+  declarations: [
+    SearchBusinessComponent,
+    DetailBusinessComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
