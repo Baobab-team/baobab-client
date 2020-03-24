@@ -12,18 +12,18 @@
     </div>
     <div class="container search__results" *ngIf="!(businessesloading$ | async)">
         <ul>
-            <li *ngFor="let restaurant of (businesses$ | async)">
+            <li *ngFor="let business of (businesses$ | async)" (click)="selectBusiness(business)">
                 <div class="search__results__group">
-                    <div href="#" class="search__results__group__title">
+                    <div class="search__results__group__title">
                         <h4>
-                            <a href="#">{{restaurant.name}}</a>
+                            <a routerLink="/detail" [queryParams]="{id: business.id}">{{business.name}}</a>
                         </h4>
                     </div>
                     <div class="search__results__group__body">
-                        <p>{{restaurant.description}}</p>
+                        <p>{{business.description | truncate}}</p>
                     </div>
                     <div class="search__results__group__footer">
-                        {{restaurant.createdAt}}
+                        {{business.createdAt}}
                     </div>
                 </div>
             </li>
