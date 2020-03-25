@@ -49,8 +49,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.unsubsscribe$.complete();
   }
 
-  ngOnInit() {
-    this.store.dispatch(new CategoryModule.LoadListCategory());
-  }
+  ngOnInit() {}
 
 }

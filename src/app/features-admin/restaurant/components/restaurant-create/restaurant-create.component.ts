@@ -58,7 +58,6 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
   get f() { return this.restaurantForm.controls; }
 
   ngOnInit() {
-    this.store.dispatch(new CategoryModule.LoadListCategory());
     this.restaurantForm = this.formBuilder.group(
       {
         name: ['', [RxwebValidators.required({message: 'admin.business.message_errors.name_required'})]],

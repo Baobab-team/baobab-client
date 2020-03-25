@@ -46,12 +46,7 @@ export class RestaurantListComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit() {
-    this.store.dispatch(new BusinessModule.LoadSearchBusiness({
-      querySearch: '',
-      status: BUSINESS_STATUSES.PENDING
-    }));
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.unsubsscribe$.next();

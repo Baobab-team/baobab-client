@@ -1,3 +1,5 @@
+import { IsCategoriesLoadedGuard } from './core/guards/guards/is-categories-loaded.guard';
+import { IsBusinessesLoadedGuard } from './core/guards/guards/business/is-businesses-loaded.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
@@ -56,7 +58,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     {
       provide: REDUCER_TOKEN,
       useFactory: getReducers
-    }
+    },
+    IsBusinessesLoadedGuard,
+    IsCategoriesLoadedGuard
   ],
   bootstrap: [AppComponent]
 })
