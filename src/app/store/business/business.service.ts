@@ -1,4 +1,4 @@
-import { Restaurant, Search } from 'src/app/core/models';
+import { Search, Business } from 'src/app/core/models';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment} from '../../../environments';
@@ -17,12 +17,18 @@ export class BusinessService extends CoreService {
     super();
   }
 
-  public getBusinesses(params: Search): Observable<Restaurant[]> {
-    return this.httpClient.get<Restaurant[]>(
-      this.BASE_URL_API + '/' + environment.paths_api.search,
+  public getBusinesses(params: Search): Observable<Business[]> {
+    return this.httpClient.get<Business[]>(
+      this.BASE_URL_API + '/' + environment.paths_api.businesses,
       {
         params: this.toHttpParams(params)
       }
+    );
+  }
+
+  public getBusiness(id: number): Observable<Business> {
+    return this.httpClient.get<Business>(
+      this.BASE_URL_API + '/' + environment.paths_api.businesses + '/' + id,
     );
   }
 }

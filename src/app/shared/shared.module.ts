@@ -1,3 +1,4 @@
+import { TruncatePipe } from './../core/pipes/truncate.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
@@ -27,7 +28,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     HeaderClientProfileComponent,
     HeaderPageAdminComponent,
     DatatableComponent,
-    AdminSecondHeaderComponent
+    AdminSecondHeaderComponent,
+    TruncatePipe
   ],
   imports: [
     SharedModule.MODULE_LIST,
@@ -42,6 +44,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AdminSecondHeaderComponent,
     HeaderPageAdminComponent,
     DatatableComponent,
+
+    TruncatePipe,
 
     CommonModule,
     NgbModule,

@@ -18,8 +18,8 @@ const routes: Routes = [
     path: '',
     component: ClientLayoutComponent,
     loadChildren: () =>
-      import('./features/search/search.module').then(
-        m => m.SearchModule
+      import('./features/business/business.module').then(
+        m => m.BusinessModule
       ),
   },
   // auth layout

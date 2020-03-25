@@ -3,7 +3,9 @@ import { BusinessModule } from './business.action';
 
 const restaurantInitialState: BusinessState = {
   data: [],
-  search: null,
+  search: undefined,
+  businessId: NaN,
+  detailBusiness: undefined,
   loading: false,
   loaded: false
 };
@@ -27,7 +29,25 @@ export function BusinessReducer(
         loaded: true,
         data: action.payload
       };
-    case BusinessModule.ActionTypes.ERROR_SEARCH_RBUSINESS:
+    case BusinessModule.ActionTypes.ERROR_SEARCH_BUSINESS:
+      return {
+        ...state,
+        loading: false
+      };
+    case BusinessModule.ActionTypes.LOAD_DETAIL_BUSINESS:
+      return {
+        ...state,
+        loading: true,
+        businessId: action.payload
+      };
+    case BusinessModule.ActionTypes.SUCCESS_DETAIL_BUSINESS:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        detailBusiness: action.payload
+      };
+    case BusinessModule.ActionTypes.ERROR_DETAIL_BUSINESS:
       return {
         ...state,
         loading: false

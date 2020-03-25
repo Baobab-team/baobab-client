@@ -9,7 +9,7 @@ export const environment = {
   apiVersion: 'api_v1',
   serverUrl: '',
   paths_api: {
-    search: 'businesses',
+    businesses: 'businesses',
     list_category: 'categories',
   },
   defaultLanguage: 'fr',
