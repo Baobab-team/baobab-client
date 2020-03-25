@@ -18,6 +18,8 @@ import { StoreModule } from '@ngrx/store';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         useClass: TranslateMessageFormatCompiler
       }
     }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     Store,
