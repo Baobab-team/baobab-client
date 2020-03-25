@@ -2,12 +2,13 @@ import { BUSINESS_PAYMENT_TYPES, BUSINESS_LANGUAGE, Category } from './../../../
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators';
-import { CategoryModule } from 'src/app/store/category/category.action';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { selectBusinessLoading$ } from 'src/app/store/business/business.selector';
-import { takeUntil } from 'rxjs/operators';
+import { selectBusinessLoading$, selectBusinessErrors$ } from 'src/app/store/business/business.selector';
+import { takeUntil, tap } from 'rxjs/operators';
 import { selectCategories$ } from 'src/app/store/category/category.selector';
+import { Log, LOG_TYPES } from 'src/app/core/models';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -34,11 +35,13 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
 
   readonly categoriesLoading$: Observable<boolean>;
   readonly categories$: Observable<Category[]>;
+  readonly businessLogs$: Observable<Log>;
   public unsubsscribe$ = new Subject<void>();
 
   constructor(
     private formBuilder: RxFormBuilder,
-    private store: Store<any>
+    private store: Store<any>,
+    private toastr: ToastrService
   ) {
     this.categoriesLoading$ = store.pipe(
       select(selectBusinessLoading$),
@@ -48,6 +51,21 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
       select(selectCategories$),
       takeUntil(this.unsubsscribe$)
     );
+    this.businessLogs$ = store.pipe(
+      select(selectBusinessErrors$),
+      tap((dialog) => {
+        if (!dialog) {
+          return;
+        }
+        if (dialog.type === LOG_TYPES.ERROR) {
+          this.toastr.error(dialog.message);
+        } else {
+          this.toastr.success(dialog.message);
+        }
+      }),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.businessLogs$.subscribe();
   }
   ngOnDestroy(): void {
     this.unsubsscribe$.next();

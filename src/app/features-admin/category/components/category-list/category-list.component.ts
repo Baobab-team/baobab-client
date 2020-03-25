@@ -1,5 +1,4 @@
 import { LOG_TYPES, Log } from './../../../../core/models/log.model';
-import { CategoryModule } from './../../../../store/category/category.action';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
@@ -49,7 +48,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.categoryLogs$ = store.pipe(
       select(selectCategoryErrors$),
       tap((dialog) => {
-        console.log('je suis dans compoenent', dialog);
         if (!dialog) {
           return;
         }

@@ -1,4 +1,5 @@
 import { Business, Search } from 'src/app/core/models';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 export namespace BusinessModule {
@@ -7,11 +8,11 @@ export namespace BusinessModule {
     // search business
     LOAD_SEARCH_BUSINESS = '[Business] Load Search Business',
     SUCCESS_SEARCH_BUSINESS = '[Business] Success Search Business',
-    ERROR_SEARCH_BUSINESS = '[Business] Error Search Business',
     // detail business
     LOAD_DETAIL_BUSINESS = '[Business] Load Detail Business',
     SUCCESS_DETAIL_BUSINESS = '[Business] Success Detail Business',
-    ERROR_DETAIL_BUSINESS = '[Business] ERROR Detail Business',
+    // Error action business
+    ERROR_BUSINESS_ACTION = '[Business] ERROR Detail Business',
   }
 
   // search business
@@ -31,10 +32,6 @@ export namespace BusinessModule {
     }
   }
 
-  export class ErrorSearchBusiness {
-    readonly type = ActionTypes.ERROR_SEARCH_BUSINESS;
-  }
-
   // detail business
   export class SuccessDetailBusiness {
     readonly type = ActionTypes.SUCCESS_DETAIL_BUSINESS;
@@ -52,14 +49,14 @@ export namespace BusinessModule {
     }
   }
 
-  export class ErrorDetailBusiness {
-    readonly type = ActionTypes.ERROR_DETAIL_BUSINESS;
+  export class ErrorBusinessAction {
+    readonly type = ActionTypes.ERROR_BUSINESS_ACTION;
+    constructor(public payload: HttpErrorResponse) { }
   }
 
   export type Actions = LoadSearchBusiness
                         | SuccessSearchBusiness
-                        | ErrorSearchBusiness
+                        | ErrorBusinessAction
                         | LoadDetailBusiness
-                        | ErrorDetailBusiness
                         | SuccessDetailBusiness;
 }

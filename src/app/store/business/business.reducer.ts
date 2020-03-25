@@ -1,5 +1,6 @@
 import { BusinessState } from './../../core/models/business.model';
 import { BusinessModule } from './business.action';
+import { LOG_TYPES } from 'src/app/core/models';
 
 const restaurantInitialState: BusinessState = {
   data: [],
@@ -29,11 +30,6 @@ export function BusinessReducer(
         loaded: true,
         data: action.payload
       };
-    case BusinessModule.ActionTypes.ERROR_SEARCH_BUSINESS:
-      return {
-        ...state,
-        loading: false
-      };
     case BusinessModule.ActionTypes.LOAD_DETAIL_BUSINESS:
       return {
         ...state,
@@ -47,9 +43,10 @@ export function BusinessReducer(
         loaded: true,
         detailBusiness: action.payload
       };
-    case BusinessModule.ActionTypes.ERROR_DETAIL_BUSINESS:
+    case BusinessModule.ActionTypes.ERROR_BUSINESS_ACTION:
       return {
         ...state,
+        logs: { type: LOG_TYPES.ERROR, message: action.payload.message },
         loading: false
       };
     default:
