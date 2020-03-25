@@ -1,5 +1,5 @@
 import { takeUntil } from 'rxjs/operators';
-import { Restaurant, Search } from 'src/app/core/models';
+import { Search, Business, BUSINESS_STATUSES } from 'src/app/core/models';
 import { selectBusinessLoading$, selectBusinesses$ } from '../../../../store/business/business.selector';
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -8,13 +8,13 @@ import {Observable, Subject} from 'rxjs';
 import { BusinessModule } from 'src/app/store/business/business.action';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: 'app-search-business',
+  templateUrl: './search-business.component.html',
+  styleUrls: ['./search-business.component.scss']
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchBusinessComponent implements OnInit, OnDestroy {
   public businessesloading$: Observable<boolean>;
-  public businesses$: Observable<Restaurant[]>;
+  public businesses$: Observable<Business[]>;
   public unsubsscribe$ = new Subject<void>();
 
   constructor(
@@ -37,12 +37,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(new BusinessModule.LoadInitBusiness(this.getQueryString()));
+    this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getQueryString()));
   }
 
   getQueryString(): Search {
     return {
-      querySearch: this.actiavteRoute.snapshot.queryParamMap.get('querySearch')
+      querySearch: this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
+      status: BUSINESS_STATUSES.ACCEPTED
     };
   }
 
@@ -53,12 +54,17 @@ export class SearchComponent implements OnInit, OnDestroy {
     ).then(
       (data) => {
         (data) ?
-        this.store.dispatch(new BusinessModule.LoadInitBusiness(params))
+        this.store.dispatch(new BusinessModule.LoadSearchBusiness(params))
         // TODO: cette partie sera améliorée lors de la gestion des notifications
-        :  console.log('une erreur est survenue lors de votre recherche');
+        :  console.error('une erreur est survenue lors de votre recherche');
       }
     );
+  }
 
-
+  selectBusiness(businessId: number) {
+    // this.store.dispatch(new BusinessModule.LoadDetailBusiness(business));
+    this.router.navigate(
+      ['/detail', businessId],
+    );
   }
 }

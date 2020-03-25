@@ -1,4 +1,4 @@
-import { Business } from 'src/app/core/models';
+import { Business, BUSINESS_STATUSES } from 'src/app/core/models';
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
@@ -47,8 +47,9 @@ export class RestaurantListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(new BusinessModule.LoadInitBusiness({
-      querySearch: ''
+    this.store.dispatch(new BusinessModule.LoadSearchBusiness({
+      querySearch: '',
+      status: BUSINESS_STATUSES.PENDING
     }));
   }
 
