@@ -12,7 +12,7 @@ export class CategoryEffects {
     ofType(CategoryModule.ActionTypes.LOAD_LIST_CATEGORY),
     switchMap(() => this.categoryService.getCategories()),
     map(categories => new CategoryModule.SuccessListCategory(categories)),
-    catchError(() => of(new CategoryModule.ErrorListCategory()))
+    catchError((err) => of(new CategoryModule.ErrorBusinessCategory(err)))
   );
 
   constructor(

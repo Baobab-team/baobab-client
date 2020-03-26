@@ -1,11 +1,12 @@
 import { Category } from 'src/app/core/models';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export namespace CategoryModule {
 
   export enum ActionTypes {
     LOAD_LIST_CATEGORY = '[Category] Load list category',
     SUCCESS_LIST_CATEGORY = '[Category] Success list category',
-    ERROR_LIST_CATEGORY = '[Category] Error list category',
+    ERROR_BUSINESS_CATEGORY = '[Category] Error list category',
   }
 
   export class LoadListCategory {
@@ -20,11 +21,12 @@ export namespace CategoryModule {
     }
   }
 
-  export class ErrorListCategory {
-    readonly type = ActionTypes.ERROR_LIST_CATEGORY;
+  export class ErrorBusinessCategory {
+    readonly type = ActionTypes.ERROR_BUSINESS_CATEGORY;
+    constructor(public payload: HttpErrorResponse) { }
   }
 
   export type Actions = LoadListCategory
                         | SuccessListCategory
-                        | ErrorListCategory;
+                        | ErrorBusinessCategory;
 }

@@ -1,10 +1,12 @@
+import { LOG_TYPES, Log } from './../../core/models/log.model';
 import { CategoryState } from './../../core/models/business.model';
 import { CategoryModule } from './category.action';
 
 const categoryInitialState: CategoryState = {
   data: [],
   loading: false,
-  loaded: false
+  loaded: false,
+  logs: null
 };
 
 export function CategoryReducer(
@@ -24,9 +26,10 @@ export function CategoryReducer(
         loading: false,
         loaded: true
       };
-    case CategoryModule.ActionTypes.ERROR_LIST_CATEGORY:
+    case CategoryModule.ActionTypes.ERROR_BUSINESS_CATEGORY:
       return {
         ...state,
+        logs: { type: LOG_TYPES.ERROR, message: action.payload.message },
         loading: false
       };
     default:

@@ -1,10 +1,10 @@
-import { Business, BUSINESS_STATUSES } from 'src/app/core/models';
+import { Business, Log, LOG_TYPES } from 'src/app/core/models';
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { selectBusinessLoading$, selectBusinesses$ } from '../../../../store/business/business.selector';
-import { takeUntil } from 'rxjs/operators';
-import { BusinessModule } from 'src/app/store/business/business.action';
+import { selectBusinessLoading$, selectBusinesses$, selectBusinessErrors$ } from '../../../../store/business/business.selector';
+import { takeUntil, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-restaurant-list',
@@ -25,6 +25,7 @@ export class RestaurantListComponent implements OnInit, OnDestroy {
   private unsubsscribe$ = new Subject<void>();
   readonly businessesLoading$: Observable<boolean>;
   readonly businesses$: Observable<Business[]>;
+  readonly businessLogs$: Observable<Log>;
   readonly columns = [
     { prop: 'id', sortable: false },
     { prop: 'name', name: 'Nom', sortable: true, dir: 'asc' },
@@ -34,7 +35,8 @@ export class RestaurantListComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
-    private store: Store<any>
+    private store: Store<any>,
+    private toastr: ToastrService
   ) {
     this.businessesLoading$ = store.pipe(
       select(selectBusinessLoading$),
@@ -44,6 +46,21 @@ export class RestaurantListComponent implements OnInit, OnDestroy {
       select(selectBusinesses$),
       takeUntil(this.unsubsscribe$)
     );
+    this.businessLogs$ = store.pipe(
+      select(selectBusinessErrors$),
+      tap((dialog) => {
+        if (!dialog) {
+          return;
+        }
+        if (dialog.type === LOG_TYPES.ERROR) {
+          this.toastr.error(dialog.message);
+        } else {
+          this.toastr.success(dialog.message);
+        }
+      }),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.businessLogs$.subscribe();
   }
 
   ngOnInit() {}

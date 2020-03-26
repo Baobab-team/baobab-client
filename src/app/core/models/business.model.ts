@@ -1,3 +1,4 @@
+import { Log } from './log.model';
 import { Phone } from './phone.model';
 import { Search } from './search.model';
 
@@ -86,10 +87,12 @@ export interface BusinessState {
   detailBusiness: Business;
   loading: boolean;
   loaded: boolean;
+  logs: Log;
 }
 
 export interface CategoryState {
   data: Category[];
   loading: boolean;
   loaded: boolean;
+  logs: Log;
 }

@@ -20,3 +20,7 @@ export const selectBusinessDetail$ = createSelector(
   selectBusinessState$,
   (business) => business.detailBusiness
 );
+export const selectBusinessErrors$ = createSelector(
+  selectBusinessState$,
+  (business) => business.logs
+);

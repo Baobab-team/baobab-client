@@ -14,7 +14,7 @@ export class BusinessEffects {
     ofType<BusinessModule.LoadSearchBusiness>(BusinessModule.ActionTypes.LOAD_SEARCH_BUSINESS),
     switchMap((querySearch: BusinessModule.LoadSearchBusiness) => this.businessService.getBusinesses(querySearch.payload)),
     map(businesses => new BusinessModule.SuccessSearchBusiness(businesses)),
-    catchError(() => of(new BusinessModule.ErrorSearchBusiness()))
+    catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 
   @Effect() LoadDetailBusiness$: Observable<BusinessModule.Actions> = this.actions$
@@ -22,7 +22,7 @@ export class BusinessEffects {
     ofType<BusinessModule.LoadDetailBusiness>(BusinessModule.ActionTypes.LOAD_DETAIL_BUSINESS),
     switchMap((businessId: BusinessModule.LoadDetailBusiness) => this.businessService.getBusiness(businessId.payload)),
     map(business => new BusinessModule.SuccessDetailBusiness(business)),
-    catchError(() => of(new BusinessModule.ErrorDetailBusiness()))
+    catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 
   constructor(
