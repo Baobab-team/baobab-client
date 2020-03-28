@@ -5,13 +5,15 @@ export class Search {
   @prop()
   @trim()
   querySearch: string;
-  status: BUSINESS_STATUSES;
+  status?: BUSINESS_STATUSES[];
 
   constructor(
     querySearch?: string,
-    status: BUSINESS_STATUSES = BUSINESS_STATUSES.PENDING
+    status: BUSINESS_STATUSES[] = null
   ) {
     this.querySearch = querySearch;
-    this.status = status;
+    if (status) {
+      this.status = status;
+    }
   }
 }

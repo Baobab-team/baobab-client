@@ -24,10 +24,9 @@ export class IsBusinessesLoadedGuard implements CanActivate {
       select(selectBusinessLoaded$),
       map(
         (isLoaded) => {
-          if(!isLoaded) {
+          if (!isLoaded) {
             this.store.dispatch(new BusinessModule.LoadSearchBusiness({
-              querySearch: '',
-              status: BUSINESS_STATUSES.ACCEPTED
+              querySearch: ''
             }));
           }
           return true;
