@@ -4,9 +4,8 @@ import { FormGroup } from '@angular/forms';
 import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { selectBusinessLoading$, selectBusinessErrors$ } from 'src/app/store/business/business.selector';
 import { takeUntil, tap } from 'rxjs/operators';
-import { selectCategories$ } from 'src/app/store/category/category.selector';
+import { selectCategories$, selectCategoryLoading$, selectCategoryErrors$ } from 'src/app/store/category/category.selector';
 import { Log, LOG_TYPES } from 'src/app/core/models';
 import { ToastrService } from 'ngx-toastr';
 
@@ -35,7 +34,7 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
 
   readonly categoriesLoading$: Observable<boolean>;
   readonly categories$: Observable<Category[]>;
-  readonly businessLogs$: Observable<Log>;
+  readonly categoryLogs$: Observable<Log>;
   public unsubsscribe$ = new Subject<void>();
 
   constructor(
@@ -44,15 +43,16 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
     private toastr: ToastrService
   ) {
     this.categoriesLoading$ = store.pipe(
-      select(selectBusinessLoading$),
+      select(selectCategoryLoading$),
+      tap((data) => console.log('dans create', data)),
       takeUntil(this.unsubsscribe$)
     );
     this.categories$ = store.pipe(
       select(selectCategories$),
       takeUntil(this.unsubsscribe$)
     );
-    this.businessLogs$ = store.pipe(
-      select(selectBusinessErrors$),
+    this.categoryLogs$ = store.pipe(
+      select(selectCategoryErrors$),
       tap((dialog) => {
         if (!dialog) {
           return;
@@ -65,7 +65,7 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
       }),
       takeUntil(this.unsubsscribe$)
     );
-    this.businessLogs$.subscribe();
+    this.categoryLogs$.subscribe();
   }
   ngOnDestroy(): void {
     this.unsubsscribe$.next();

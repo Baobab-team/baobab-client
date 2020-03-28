@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from './../index';
-import { tap } from 'rxjs/operators';
 
 
 export const selectCategoryState$ = (state: AppState) => state.category;
@@ -9,11 +8,11 @@ export const selectCategories$ = createSelector(
   selectCategoryState$,
   (category) => category.data
 );
-export const selectBusinessLoading$ = createSelector(
+export const selectCategoryLoading$ = createSelector(
   selectCategoryState$,
   (category) => category.loading
 );
-export const selectBusinessLoaded$ = createSelector(
+export const selectCategoryLoaded$ = createSelector(
   selectCategoryState$,
   (category) => category.loaded
 );

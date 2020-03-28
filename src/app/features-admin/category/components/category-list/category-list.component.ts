@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { Category } from 'src/app/core/models';
-import { selectCategories$, selectBusinessLoading$, selectCategoryErrors$ } from '../../../../store/category/category.selector';
+import { selectCategories$, selectCategoryErrors$, selectCategoryLoading$ } from '../../../../store/category/category.selector';
 import { takeUntil, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
@@ -38,7 +38,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     private toastr: ToastrService
   ) {
     this.categoriesLoading$ = store.pipe(
-      select(selectBusinessLoading$),
+      select(selectCategoryLoading$),
       takeUntil(this.unsubsscribe$)
     );
     this.categories$ = store.pipe(
