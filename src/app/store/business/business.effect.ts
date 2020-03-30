@@ -25,6 +25,14 @@ export class BusinessEffects {
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 
+  @Effect() LoadCreateBusiness$: Observable<BusinessModule.Actions> = this.actions$
+  .pipe(
+    ofType<BusinessModule.LoadCreateBusiness>(BusinessModule.ActionTypes.LOAD_CREATE_BUSINESS),
+    switchMap((businessId: BusinessModule.LoadCreateBusiness) => this.businessService.saveBusiness(businessId.payload)),
+    map(business => new BusinessModule.SuccessCreateBusiness(business)),
+    catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
+  );
+
   constructor(
     private businessService: BusinessService,
     private actions$: Actions

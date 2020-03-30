@@ -11,8 +11,11 @@ export namespace BusinessModule {
     // detail business
     LOAD_DETAIL_BUSINESS = '[Business] Load Detail Business',
     SUCCESS_DETAIL_BUSINESS = '[Business] Success Detail Business',
+    // create business
+    LOAD_CREATE_BUSINESS = '[Business] Load Create Business',
+    SUCCESS_CREATE_BUSINESS = '[Business] Success Create Business',
     // Error action business
-    ERROR_BUSINESS_ACTION = '[Business] ERROR Detail Business',
+    ERROR_BUSINESS_ACTION = '[Business] ERROR Business action',
   }
 
   // search business
@@ -49,14 +52,33 @@ export namespace BusinessModule {
     }
   }
 
+  // create business
+  export class SuccessCreateBusiness {
+    readonly type = ActionTypes.SUCCESS_CREATE_BUSINESS;
+    payload: Business;
+    constructor(payload: Business) {
+      this.payload = payload;
+    }
+  }
+
+  export class LoadCreateBusiness {
+    readonly type = ActionTypes.LOAD_CREATE_BUSINESS;
+    payload: Business;
+    constructor(payload: Business) {
+      this.payload = payload;
+    }
+  }
+
   export class ErrorBusinessAction {
     readonly type = ActionTypes.ERROR_BUSINESS_ACTION;
-    constructor(public payload: HttpErrorResponse) { }
+    constructor(public payload: HttpErrorResponse) {}
   }
 
   export type Actions = LoadSearchBusiness
                         | SuccessSearchBusiness
                         | ErrorBusinessAction
                         | LoadDetailBusiness
-                        | SuccessDetailBusiness;
+                        | SuccessDetailBusiness
+                        | SuccessCreateBusiness
+                        | LoadCreateBusiness;
 }

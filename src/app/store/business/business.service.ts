@@ -31,4 +31,10 @@ export class BusinessService extends CoreService {
       this.BASE_URL_API + '/' + environment.paths_api.businesses + '/' + id,
     );
   }
+
+  public saveBusiness(business: Business): Observable<Business> {
+    return this.httpClient.post<Business>(
+      this.BASE_URL_API + '/' + environment.paths_api.businesses, business
+    );
+  }
 }

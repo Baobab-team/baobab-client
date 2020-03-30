@@ -43,7 +43,7 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
   getQueryString(): Search {
     return {
       querySearch: this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
-      status: BUSINESS_STATUSES.ACCEPTED
+      status: [BUSINESS_STATUSES.ACCEPTED]
     };
   }
 

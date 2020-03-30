@@ -29,7 +29,10 @@ export function CategoryReducer(
     case CategoryModule.ActionTypes.ERROR_BUSINESS_CATEGORY:
       return {
         ...state,
-        logs: { type: LOG_TYPES.ERROR, message: action.payload.message },
+        log: {
+          type: LOG_TYPES.ERROR,
+          message: (action.payload.error.message === undefined) ? action.payload.message : action.payload.error.message
+        },
         loading: false
       };
     default:

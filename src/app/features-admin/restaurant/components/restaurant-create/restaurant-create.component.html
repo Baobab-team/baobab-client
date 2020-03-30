@@ -1,8 +1,12 @@
 <div class="row">
     <div class="col-md">
-        <div *ngIf="(categoriesLoading$ | async)"></div>
+        <div *ngIf="(categoriesLoading$ | async)" class="alert alert-danger" role="alert">
+            {{'admin.business.message_errors.category_loading' | translate}}
+        </div>
+
         <div *ngIf="!(categoriesLoading$ | async)">
             <app-admin-second-header [title]="'admin.restaurant.title_create_restaurant'" [menus]="menuHeader"></app-admin-second-header>
+            <div><small>{{'admin.business.form_message_required_fields' | translate}}</small></div> <br>
             <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label>{{'admin.business.name' | translate}}</label>
@@ -16,16 +20,17 @@
                 <div class="form-group">
                     <label>{{'admin.business.website' | translate}}</label>
                     <input type="url" class="form-control" formControlName="website">
+                    <small>{{"admin.business.example" | translate}}</small>
                     <div *ngIf="submitted && f.website.status==='INVALID'" class="invalid-feedback d-block">
                         <div *ngIf="f.website.errors.url">
-                            {{f.name.errors.url.message | translate}}
+                            {{f.website.errors.url.message | translate}}
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>{{'admin.business.slogan' | translate}}</label>
                     <input type="text" class="form-control" formControlName="slogan">
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label>{{'admin.business.email' | translate}}</label>
                     <input type="email" class="form-control" formControlName="email">
@@ -49,10 +54,10 @@
                 </div>
                 <div class="form-group">
                     <label>{{'admin.business.note' | translate}}</label>
-                    <textarea class="form-control" formControlName="note"></textarea>
-                    <div *ngIf="submitted && f.note.status==='INVALID'" class="invalid-feedback d-block">
-                        <div *ngIf="f.note.errors.alphaNumeric">
-                            {{f.note.errors.alphaNumeric.message | translate}}
+                    <textarea class="form-control" formControlName="notes"></textarea>
+                    <div *ngIf="submitted && f.notes.status==='INVALID'" class="invalid-feedback d-block">
+                        <div *ngIf="f.notes.errors.alphaNumeric">
+                            {{f.notes.errors.alphaNumeric.message | translate}}
                         </div>
                     </div>
                 </div>
@@ -65,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="pr-2">{{'admin.business.payment_type' | translate}}</label>
                     <select formControlName="paymentType" class="form-control" multiple>
                   <option value=""></option>
@@ -78,11 +83,11 @@
                             {{f.paymentType.errors.required.message | translate}}
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label class="pr-2">{{'admin.business.category' | translate}}</label>
                     <select formControlName="category" class="form-control">
-                  <option *ngFor="let category of (categories$ | async)" [ngValue]="category.id">
+                  <option *ngFor="let category of (categories$ | async)" [ngValue]="category">
                     {{category.name | lowercase}}
                   </option>
                 </select>
@@ -92,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="pr-2">{{'admin.business.language' | translate}}</label>
                     <select formControlName="language" class="form-control" multiple>
                     <option *ngFor="let language of keys(languages)" [ngValue]="language">
@@ -104,9 +109,9 @@
                             {{f.language.errors.required.message | translate}}
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary" type="submit" [disabled]="(business$ | async).length < 0 ">
                   {{'admin.restaurant.button_submit' | translate}}
                 </button>
                 </div>

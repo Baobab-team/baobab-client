@@ -65,17 +65,17 @@ export interface Business {
   category: Category;
   name: string;
   description: string;
-  note: string;
+  notes: string;
   website: string;
   email: string;
-  slogan?: string;
-  language: BUSINESS_LANGUAGE;
+  // slogan?: string;
+  // language: BUSINESS_LANGUAGE;
   capacity?: number;
   createdAt: string;
   updatetedAt?: string;
   acceptedAt: string;
   deletedAt?: string;
-  paymentType: BUSINESS_PAYMENT_TYPES;
+  // paymentType: BUSINESS_PAYMENT_TYPES;
   status: BUSINESS_STATUSES;
   social_links: BUSINESS_SOCIAL_LINKS;
 }
@@ -84,15 +84,15 @@ export interface BusinessState {
   data?: Business[];
   search?: Search;
   businessId: number;
-  detailBusiness: Business;
+  business: Business;
   loading: boolean;
   loaded: boolean;
-  logs: Log;
+  log: Log;
 }
 
 export interface CategoryState {
   data: Category[];
   loading: boolean;
   loaded: boolean;
-  logs: Log;
+  log: Log;
 }
