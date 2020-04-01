@@ -54,9 +54,10 @@ export class RestaurantListComponent implements OnInit, OnDestroy {
         }
         if (dialog.type === LOG_TYPES.ERROR) {
           this.toastr.error(dialog.message);
-        } else {
-          this.toastr.success(dialog.message);
         }
+        //  else {
+        //   this.toastr.success(dialog.message);
+        // }
       }),
       takeUntil(this.unsubsscribe$)
     );

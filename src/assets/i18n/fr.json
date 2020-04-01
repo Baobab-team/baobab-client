@@ -30,16 +30,18 @@
     },
     "admin": {
         "business": {
-            "name": "Nom",
+            "name": "* Nom",
             "description": "Description",
             "note": "Note",
             "website": "Site web",
-            "email": "Email",
+            "email": "* Email",
             "slogan": "Slogan",
             "capacity": "Capacity",
             "payment_type": "Type de paiement",
             "language": "Langue du service",
-            "category": "Catégorie de votre activité",
+            "category": "* Catégorie de votre activité",
+            "example": "exemple: www.exemple.exemple",
+            "form_message_required_fields": "(*) champs obligatoires",
             "message_errors": {
                 "name_required": "Name requis",
                 "email_required": "Email requis",
@@ -49,9 +51,10 @@
                 "email_valid": "Email non valide",
                 "numeric_valid": "Nombre non valide",
                 "payment_type_valid": "Type de paiement non valide",
-                "url_valid": "URL non valide",
+                "url_valid": "Site web non valide",
                 "note_alpha": "Note ne peut avoir de caracteres speciaux",
-                "description_alpha": "Description ne peut avoir de caracteres speciaux"
+                "description_alpha": "Description ne peut avoir de caracteres speciaux",
+                "category_loading": "Les catégories non pas été chargées. Veillez attendre quelques minutes avant de recommencer. Si cela persiste, veillez nous contacter."
             }
         },
         "restaurant": {
@@ -59,7 +62,11 @@
             "title_create_restaurant": "Crée un restaurant",
             "title_list_restaurant": "Liste restaurants",
             "title_list_category": "Liste catégories",
-            "button_submit": "Envoyer"
+            "button_submit": "Envoyer",
+            "log": {
+                "success": "Restaurant crée",
+                "error": "Erreur lors de la création du restaurant"
+            }
         }
     },
     "shared": {
