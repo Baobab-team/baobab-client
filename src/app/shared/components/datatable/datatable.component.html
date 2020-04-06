@@ -1,7 +1,4 @@
 <div class="table-responsive">
-    <div class="text-center">
-        <input type="text" style="padding:8px;margin:15px auto;width:30%;" placeholder="{{'shared.datatable.input-search' | translate}}" (keyup)='filterDatatable($event)' />
-    </div>
-    <ngx-datatable #table class="bootstrap" [rows]="rows" [columns]="columns" [headerHeight]="40" [footerHeight]="40" [limit]="20" rowHeight="40" [columnMode]="'force'" [loadingIndicator]="loadingIndicator">
-    </ngx-datatable>
+    <table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered table-hover row-border">
+    </table>
 </div>
