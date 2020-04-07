@@ -46,9 +46,9 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
         width: '140',
         render(data, type, full) {
           return `
-          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.VIEW + `">view</a>
-          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.EDIT + `">edit</a>
-          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.DELETE + `">delete</a>`;
+          <a class="btn btn-sm btn-link" category-id="` + data + `" btn-type="` + BTN_TYPE.VIEW + `">view</a>
+          <a class="btn btn-sm btn-link" category-id="` + data + `" btn-type="` + BTN_TYPE.EDIT + `">edit</a>
+          <a class="btn btn-sm btn-link" category-id="` + data + `" btn-type="` + BTN_TYPE.DELETE + `">delete</a>`;
         }
       }
     ]
@@ -103,17 +103,17 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.renderer.listen('document', 'click', (event) => {
-      if (event.target.getAttribute('business-id')) {
-        const businessId = event.target.getAttribute('business-id');
+      if (event.target.getAttribute('category-id')) {
+        const categoryId = event.target.getAttribute('category-id');
         const btnType = event.target.getAttribute('btn-type');
 
         if (btnType === BTN_TYPE.VIEW) {
-          console.log(BTN_TYPE.VIEW, businessId)
+          console.log(BTN_TYPE.VIEW, categoryId)
           // this.router.navigate(['/admin/restaurants/' + businessId]);
         } else if (btnType === BTN_TYPE.EDIT) {
-          console.log(BTN_TYPE.EDIT, businessId)
+          console.log(BTN_TYPE.EDIT, categoryId)
         } else if (btnType === BTN_TYPE.DELETE) {
-          console.log(BTN_TYPE.DELETE, businessId)
+          console.log(BTN_TYPE.DELETE, categoryId)
         }
       }
     });
