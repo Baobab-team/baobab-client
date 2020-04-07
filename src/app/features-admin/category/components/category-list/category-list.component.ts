@@ -1,11 +1,13 @@
 import { LOG_TYPES, Log } from './../../../../core/models/log.model';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 as Renderer, AfterViewInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { Category } from 'src/app/core/models';
 import { selectCategories$, selectCategoryErrors$, selectCategoryLoading$ } from '../../../../store/category/category.selector';
 import { takeUntil, tap } from 'rxjs/operators';
+import { initConfigDatatables, BTN_TYPE } from 'src/app/core/models/datatable';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent implements OnInit, OnDestroy {
+export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
   readonly categoriesLoading$: Observable<boolean>;
   readonly categories$: Observable<Category[]>;
   readonly categoryLogs$: Observable<Log>;
@@ -32,10 +34,31 @@ export class CategoryListComponent implements OnInit, OnDestroy {
       link: '/admin/restaurant'
     }
   ];
+  readonly dtOptions = {
+    ...initConfigDatatables,
+    columns: [
+      {
+        title: 'Name',
+        data: 'name'
+      }, {
+        title: 'Actions',
+        data: 'id',
+        width: '140',
+        render(data, type, full) {
+          return `
+          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.VIEW + `">view</a>
+          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.EDIT + `">edit</a>
+          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.DELETE + `">delete</a>`;
+        }
+      }
+    ]
+  };
 
   constructor(
     private store: Store<any>,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private renderer: Renderer,
+    private router: Router
   ) {
     this.categoriesLoading$ = store.pipe(
       select(selectCategoryLoading$),
@@ -67,6 +90,33 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.unsubsscribe$.complete();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
+      return this.categories$.subscribe(
+        (data) => {
+          callback({
+            data
+          });
+      });
+    };
+  }
+
+  ngAfterViewInit(): void {
+    this.renderer.listen('document', 'click', (event) => {
+      if (event.target.getAttribute('business-id')) {
+        const businessId = event.target.getAttribute('business-id');
+        const btnType = event.target.getAttribute('btn-type');
+
+        if (btnType === BTN_TYPE.VIEW) {
+          console.log(BTN_TYPE.VIEW, businessId)
+          // this.router.navigate(['/admin/restaurants/' + businessId]);
+        } else if (btnType === BTN_TYPE.EDIT) {
+          console.log(BTN_TYPE.EDIT, businessId)
+        } else if (btnType === BTN_TYPE.DELETE) {
+          console.log(BTN_TYPE.DELETE, businessId)
+        }
+      }
+    });
+  }
 
 }
