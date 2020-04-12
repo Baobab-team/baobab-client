@@ -1,3 +1,4 @@
+import { RestaurantDetailsComponent } from './components/restaurant-details/restaurant-details.component';
 import { IsCategoriesLoadedGuard } from './../../core/guards/guards/is-categories-loaded.guard';
 import { IsBusinessesLoadedGuard } from '../../core/guards/guards/business/is-businesses-loaded.guard';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
     path: 'admin/restaurants',
     component: RestaurantListComponent,
     canActivate: [IsBusinessesLoadedGuard]
+  },
+  {
+    path: 'admin/restaurant/details',
+    component: RestaurantDetailsComponent,
   }
 ];
 

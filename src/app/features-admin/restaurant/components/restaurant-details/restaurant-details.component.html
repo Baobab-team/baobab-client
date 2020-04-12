@@ -1,0 +1,79 @@
+<div class="container pb-5">
+
+    <div class="business" *ngIf="(business$ | async) as business">
+        <app-admin-second-header [title]="business.name" [menus]="menuHeader">
+        </app-admin-second-header>
+
+        <div class="business__body">
+            <h3 class="mb-5 text-center business__body__title">Informations generales</h3>
+
+            <div class="business__body__infos1">
+                <ul class="list-inline">
+                    <li>email: {{business.email}} </li>
+                    <li>Site web: {{business.website}}</li>
+                    <li>Capacite: {{business.capacity}}</li>
+                </ul>
+                <p>{{business.description}}</p>
+                Tags:
+                <ul class="list-inline" *ngIf="business.tags.length > 0">
+                    <li *ngFor="let tag of business.tags" class="list-inline-item">
+                        <span class="badge badge-success">{{tag.name}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row business__body__infos2">
+                <div class="col business__body_infos2__address" *ngIf="business.addresses.length > 0">
+                    <h3 class="business__body__infos2">Adresse</h3>
+                    <ul class="list-group">
+                        <li *ngFor="let address of business.addresses" class="list-group-item">
+                            {{address.street_number}} {{address.street_type}} {{address.street_name}} <br> {{address.country}} {{address.city}} {{address.province}} {{address.zip_code}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col business__body_infos2__phones" *ngIf="business.phones.length > 0">
+                    <h3 class="business__body__infos2">Phones</h3>
+                    <ul class="list-group">
+                        <li *ngFor="let phone of business.phones" class="list-group-item">
+                            {{phone.type}}: <span *ngIf="phone.extension">({{phone.extension}})</span> {{phone.number}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col business__body_infos2__hours" *ngIf="business.business_hours.length > 0">
+                    <h3 class="business__body__infos2">Heures d'ouverture</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let business_hour of business.business_hours">
+                            {{business_hour.day}} - ({{business_hour.opening_time}} - {{business_hour.closing_time}})
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <hr>
+                <div class="business__footer-bar">
+                    <div class="col-md">
+                        <ul class="list-inline">
+                            <li *ngFor="let modePayment of business.payment_types" class="list-inline-item">{{modePayment}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md">
+                        <ul class="list-inline">
+                            <li *ngFor="let socialLink of business.social_links" class="list-inline-item">
+                                <a [href]="socialLink.link">{{socialLink.type}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center" *ngIf="(businessLoading$ | async)">Chargement de la donnee</div>
+    <div class="text-center" *ngIf="!(business$ | async)">
+        Ce business n'existe pas
+    </div>
+</div>
