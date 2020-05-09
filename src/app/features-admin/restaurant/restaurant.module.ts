@@ -12,12 +12,12 @@ import { RestaurantDetailsComponent } from './components/restaurant-details/rest
   declarations: [
     RestaurantCreateComponent,
     RestaurantListComponent,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RestaurantRoutingModule
+    RestaurantRoutingModule,
   ]
 })
 export class RestaurantModule { }

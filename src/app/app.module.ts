@@ -20,6 +20,7 @@ import { environment } from 'src/environments';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -64,7 +65,7 @@ import { ToastrModule } from 'ngx-toastr';
       useFactory: getReducers
     },
     IsBusinessesLoadedGuard,
-    IsCategoriesLoadedGuard
+    IsCategoriesLoadedGuard,
   ],
   bootstrap: [AppComponent]
 })

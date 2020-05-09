@@ -5,7 +5,7 @@ export class Modal {
 
   constructor(
     title?: string,
-    body: string,
+    body?: string,
     data?: any
   ) {
     this.title = title;

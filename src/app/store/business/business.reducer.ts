@@ -62,6 +62,18 @@ export function BusinessReducer(
           action.payload
         ]
       };
+    case BusinessModule.ActionTypes.LOAD_DELETE_BUSINESS:
+      return {
+        ...state,
+        loading: true,
+        businessId: action.payload
+      };
+    case BusinessModule.ActionTypes.SUCCESS_DELETE_BUSINESS:
+        return {
+          ...state,
+          loading: false,
+          loaded: true,
+        };
     case BusinessModule.ActionTypes.ERROR_BUSINESS_ACTION:
       return {
         ...state,

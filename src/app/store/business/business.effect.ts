@@ -33,6 +33,14 @@ export class BusinessEffects {
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 
+  @Effect() LoadDeleteBusiness$: Observable<BusinessModule.Actions> = this.actions$
+  .pipe(
+    ofType<BusinessModule.LoadDeleteBusiness>(BusinessModule.ActionTypes.LOAD_DELETE_BUSINESS),
+    switchMap((businessId: BusinessModule.LoadDeleteBusiness) => this.businessService.deleteBusiness(businessId.payload)),
+    map(business => new BusinessModule.SuccessDeleteBusiness()),
+    catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
+  );
+
   constructor(
     private businessService: BusinessService,
     private actions$: Actions
