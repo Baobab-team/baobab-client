@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {Search} from '../../../../core/models';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +15,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  search($event: Search) {
+  search($event: {
+    querySearch: string
+  }) {
     if ($event.querySearch) {
-      this.router.navigate(
-        ['search'],
-        {queryParams: $event}
-      );
+      this.router.navigate(['search'], {queryParams: $event});
     }
   }
 

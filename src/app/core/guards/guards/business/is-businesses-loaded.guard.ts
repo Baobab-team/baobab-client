@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { selectBusinessLoaded$ } from 'src/app/store/business/business.selector';
-import { BUSINESS_STATUSES } from '../../../models';
+import { BUSINESS_STATUSES, Search } from '../../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +25,7 @@ export class IsBusinessesLoadedGuard implements CanActivate {
       map(
         (isLoaded) => {
           if (!isLoaded) {
-            this.store.dispatch(new BusinessModule.LoadSearchBusiness({
-              querySearch: ''
-            }));
+            this.store.dispatch(new BusinessModule.LoadSearchBusiness(new Search()));
           }
           return true;
         })

@@ -37,14 +37,14 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getQueryString()));
+    this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams()));
   }
 
-  getQueryString(): Search {
-    return {
-      querySearch: this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
-      status: [BUSINESS_STATUSES.ACCEPTED]
-    };
+  getParams(): Search {
+    return new Search(
+        this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
+        [BUSINESS_STATUSES.ACCEPTED]
+      );
   }
 
   onSubmit(params: Search) {
@@ -57,8 +57,7 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
         this.store.dispatch(new BusinessModule.LoadSearchBusiness(params))
         // TODO: cette partie sera améliorée lors de la gestion des notifications
         :  console.error('une erreur est survenue lors de votre recherche');
-      }
-    );
+    });
   }
 
   selectBusiness(businessId: number) {

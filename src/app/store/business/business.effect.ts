@@ -12,7 +12,7 @@ export class BusinessEffects {
   @Effect() LoadSearchBusiness$: Observable<BusinessModule.Actions> = this.actions$
   .pipe(
     ofType<BusinessModule.LoadSearchBusiness>(BusinessModule.ActionTypes.LOAD_SEARCH_BUSINESS),
-    switchMap((querySearch: BusinessModule.LoadSearchBusiness) => this.businessService.getBusinesses(querySearch.payload)),
+    switchMap((loadSearchBusiness: BusinessModule.LoadSearchBusiness) => this.businessService.getBusinesses(loadSearchBusiness.payload)),
     map(businesses => new BusinessModule.SuccessSearchBusiness(businesses)),
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
