@@ -12,6 +12,8 @@
     },
     "private": true,
     "dependencies": {
+        "@angular/cli": "^8.3.21",
+        "@angular/compiler-cli": "~8.2.13",
         "@angular/animations": "8.0.0",
         "@angular/common": "^8.2.14",
         "@angular/compiler": "~8.2.13",
@@ -50,8 +52,6 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.803.21",
-        "@angular/cli": "^8.3.21",
-        "@angular/compiler-cli": "~8.2.13",
         "@angular/language-service": "~8.2.13",
         "@biesbjerg/ngx-translate-extract": "^2.3.4",
         "@types/datatables.net": "^1.10.18",
