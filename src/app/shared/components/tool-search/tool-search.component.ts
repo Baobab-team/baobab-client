@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {Search} from '../../../core/models';
+import {Search, BUSINESS_STATUSES} from '../../../core/models';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 
 
@@ -45,7 +45,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit {
     const querySearch = this.activateRoute.snapshot.queryParamMap.get('querySearch');
 
     this.searchForm = this.formBuilder.formGroup(
-      new Search(querySearch)
+      new Search(querySearch, [BUSINESS_STATUSES.ACCEPTED])
     );
   }
 

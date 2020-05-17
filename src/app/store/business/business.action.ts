@@ -14,6 +14,9 @@ export namespace BusinessModule {
     // create business
     LOAD_CREATE_BUSINESS = '[Business] Load Create Business',
     SUCCESS_CREATE_BUSINESS = '[Business] Success Create Business',
+    // delete business
+    LOAD_DELETE_BUSINESS = '[Business] Load Delete Business',
+    SUCCESS_DELETE_BUSINESS = '[Business] Success Delete Business',
     // Error action business
     ERROR_BUSINESS_ACTION = '[Business] ERROR Business action',
   }
@@ -69,6 +72,19 @@ export namespace BusinessModule {
     }
   }
 
+  // delete business
+  export class SuccessDeleteBusiness {
+    readonly type = ActionTypes.SUCCESS_DELETE_BUSINESS;
+  }
+
+  export class LoadDeleteBusiness {
+    readonly type = ActionTypes.LOAD_DELETE_BUSINESS;
+    payload: number;
+    constructor(payload: number) {
+      this.payload = payload;
+    }
+  }
+
   export class ErrorBusinessAction {
     readonly type = ActionTypes.ERROR_BUSINESS_ACTION;
     constructor(public payload: HttpErrorResponse) {}
@@ -80,5 +96,7 @@ export namespace BusinessModule {
                         | LoadDetailBusiness
                         | SuccessDetailBusiness
                         | SuccessCreateBusiness
-                        | LoadCreateBusiness;
+                        | LoadCreateBusiness
+                        | LoadDeleteBusiness
+                        | SuccessDeleteBusiness;
 }

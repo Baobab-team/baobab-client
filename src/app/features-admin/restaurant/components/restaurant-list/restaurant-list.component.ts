@@ -1,12 +1,17 @@
+import { BusinessModule } from 'src/app/store/business/business.action';
+import { ModalComponentComponent } from './../../../../shared/components/modal-component/modal-component.component';
 import { Business, Log, LOG_TYPES } from 'src/app/core/models';
 import { Store, select } from '@ngrx/store';
-import { Component, OnInit, OnDestroy, Renderer2 as Renderer, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Renderer2 as Renderer, ViewChild } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { selectBusinessLoading$, selectBusinesses$, selectBusinessErrors$ } from '../../../../store/business/business.selector';
 import { takeUntil, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { initConfigDatatables, BTN_TYPE } from 'src/app/core/models/datatable';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Modal } from 'src/app/core/models/modal.model';
+import { DataTableDirective } from 'angular-datatables';
 
 
 @Component({
@@ -15,7 +20,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./restaurant-list.component.scss']
 })
 export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit {
-  menuHeader = [
+  @ViewChild(DataTableDirective, {static: false})
+  datatableElement: DataTableDirective;
+  dtTrigger = new Subject();
+  readonly menuHeader = [
     {
       title: 'shared.menu-left-admin.link_list_restaurant',
       link: '/admin/restaurants'
@@ -25,67 +33,27 @@ export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit
       link: '/admin/restaurant'
     }
   ];
-  private unsubsscribe$ = new Subject<void>();
+  private unsubscribe$ = new Subject<void>();
   readonly businessesLoading$: Observable<boolean>;
   readonly businesses$: Observable<Business[]>;
   readonly businessLogs$: Observable<Log>;
-  readonly dtOptions = {
-    ...initConfigDatatables,
-    columns: [
-      {
-        title: 'Name',
-        data: 'name'
-      }, {
-        title: 'Categorie',
-        data: 'category',
-        render(data, type, row) {
-          return data.name;
-        }
-      }, {
-        title: 'Capacity',
-        data: 'capacity'
-      }, {
-        title: 'Email',
-        data: 'email'
-      }, {
-        title: 'Website',
-        data: 'website'
-      }, {
-        title: 'Status',
-        data: 'status'
-      }, {
-        title: 'Actions',
-        data: 'id',
-        width: '140',
-        render(data, type, full) {
-          return `
-          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.VIEW + `">view</a>
-          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.EDIT + `">edit</a>
-          <a class="btn btn-sm btn-link" business-id="` + data + `" btn-type="` + BTN_TYPE.DELETE + `">delete</a>`;
-        }
-      }
-    ],
-    dom: 'Bfrtip',
-    buttons: [
-      'columnsToggle'
-    ]
-  };
-
+  dtOptions: DataTables.Settings = {};
 
   constructor(
     private store: Store<any>,
     private toastr: ToastrService,
     private renderer: Renderer,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {
     this.businessesLoading$ = store.pipe(
       select(selectBusinessLoading$),
-      takeUntil(this.unsubsscribe$)
+      takeUntil(this.unsubscribe$)
     );
 
     this.businesses$ = store.pipe(
       select(selectBusinesses$),
-      takeUntil(this.unsubsscribe$)
+      takeUntil(this.unsubscribe$)
     );
 
     this.businessLogs$ = store.pipe(
@@ -98,29 +66,33 @@ export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit
           this.toastr.error(dialog.message);
         }
       }),
-      takeUntil(this.unsubsscribe$)
+      takeUntil(this.unsubscribe$)
     );
     this.businessLogs$.subscribe();
   }
 
   ngAfterViewInit(): void {
+    this.dtTrigger.next();
     this.renderer.listen('document', 'click', (event) => {
-      if (event.target.getAttribute('business-id')) {
-        const businessId = event.target.getAttribute('business-id');
-        const btnType = event.target.getAttribute('btn-type');
+      const businessId = event.target.getAttribute('data-business-id');
+      const businessName = event.target.getAttribute('data-business-name');
+      const btnType = event.target.getAttribute('btn-type');
+
+      if (businessId) {
 
         if (btnType === BTN_TYPE.VIEW) {
           this.router.navigate(['/admin/restaurant/details'], { queryParams: {id: businessId} });
         } else if (btnType === BTN_TYPE.EDIT) {
           console.log(BTN_TYPE.EDIT, businessId)
         } else if (btnType === BTN_TYPE.DELETE) {
-          console.log(BTN_TYPE.DELETE, businessId)
+          this.deleteRestaurant(+businessId, businessName);
         }
       }
     });
   }
 
   ngOnInit() {
+    this.getDatatableOption();
     this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
       return this.businesses$.subscribe(
         (data) => {
@@ -131,9 +103,85 @@ export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit
     };
   }
 
-  ngOnDestroy(): void {
-    this.unsubsscribe$.next();
-    this.unsubsscribe$.complete();
+  private deleteRestaurant(businessId: number, businessName: string) {
+    const modalRef = this.modalService.open(ModalComponentComponent);
+    modalRef.componentInstance.modal = new Modal('Confirmer', 'Voulez-vous vraiment supprimer ' + businessName + '?', null);
+    modalRef.result.then((result) => {
+      if (result) {
+        this.store.dispatch(new BusinessModule.LoadDeleteBusiness(businessId));
+        this.toastr.success('Actualisez la page pour mettre a jour votre tableau', 'Suppression reussie');
+        this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          // TODO: find how reload datatable after one delete
+          dtInstance.destroy();
+          // this.dtTrigger.next();
+          // dtInstance.draw();
+        });
+        // setTimeout(() => {
+        //     this.dtTrigger.next();
+        // });
+      }
+    });
   }
 
+  private getDatatableOption(): void {
+    this.dtOptions = {
+      destroy: true,
+      columns: [
+        {
+          title: 'Name',
+          data: 'name'
+        }, {
+          title: 'Categorie',
+          data: 'category',
+          render(data, type, row) {
+            return data.name;
+          }
+        }, {
+          title: 'Capacity',
+          data: 'capacity'
+        }, {
+          title: 'Email',
+          data: 'email'
+        }, {
+          title: 'Website',
+          data: 'website'
+        }, {
+          title: 'Status',
+          data: 'status'
+        }, {
+          title: 'Actions',
+          data: 'id',
+          width: '14%',
+          render(data, type, full) {
+            return `
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item mr-0">
+                  <a class="btn btn-sm btn-link"
+                    data-business-id="` + data + `" data-business-name="` + full.name + `" btn-type="` + BTN_TYPE.VIEW + `">view</a>
+                </li>
+                <li class="list-inline-item mr-0">
+                  <a class="btn btn-sm btn-link"
+                    data-business-id="` + data + `" data-business-name="` + full.name + `" btn-type="` + BTN_TYPE.EDIT + `">edit</a>
+                </li>
+                <li class="list-inline-item mr-0">
+                  <a class="btn btn-sm btn-link"
+                    data-business-id="` + data + `" data-business-name="` + full.name + `" btn-type="` + BTN_TYPE.DELETE + `">delete</a>
+                  </li>
+              <ul>
+            `;
+          }
+        }
+      ],
+      dom: 'Bfrtip',
+      buttons: [
+        'columnsToggle'
+      ]
+    };
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+    this.dtTrigger.unsubscribe();
+  }
 }

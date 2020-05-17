@@ -37,4 +37,10 @@ export class BusinessService extends CoreService {
       this.BASE_URL_API + '/' + environment.paths_api.businesses, business
     );
   }
+
+  public deleteBusiness(id: number): Observable<Business> {
+    return this.httpClient.delete<Business>(
+      this.BASE_URL_API + '/' + environment.paths_api.businesses + '/' + id,
+    );
+  }
 }

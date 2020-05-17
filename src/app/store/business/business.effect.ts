@@ -12,7 +12,7 @@ export class BusinessEffects {
   @Effect() LoadSearchBusiness$: Observable<BusinessModule.Actions> = this.actions$
   .pipe(
     ofType<BusinessModule.LoadSearchBusiness>(BusinessModule.ActionTypes.LOAD_SEARCH_BUSINESS),
-    switchMap((querySearch: BusinessModule.LoadSearchBusiness) => this.businessService.getBusinesses(querySearch.payload)),
+    switchMap((loadSearchBusiness: BusinessModule.LoadSearchBusiness) => this.businessService.getBusinesses(loadSearchBusiness.payload)),
     map(businesses => new BusinessModule.SuccessSearchBusiness(businesses)),
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
@@ -30,6 +30,14 @@ export class BusinessEffects {
     ofType<BusinessModule.LoadCreateBusiness>(BusinessModule.ActionTypes.LOAD_CREATE_BUSINESS),
     switchMap((businessId: BusinessModule.LoadCreateBusiness) => this.businessService.saveBusiness(businessId.payload)),
     map(business => new BusinessModule.SuccessCreateBusiness(business)),
+    catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
+  );
+
+  @Effect() LoadDeleteBusiness$: Observable<BusinessModule.Actions> = this.actions$
+  .pipe(
+    ofType<BusinessModule.LoadDeleteBusiness>(BusinessModule.ActionTypes.LOAD_DELETE_BUSINESS),
+    switchMap((businessId: BusinessModule.LoadDeleteBusiness) => this.businessService.deleteBusiness(businessId.payload)),
+    map(business => new BusinessModule.SuccessDeleteBusiness()),
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 

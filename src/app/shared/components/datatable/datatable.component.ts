@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
 
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.scss']
 })
-export class DatatableComponent implements OnInit {
+export class DatatableComponent implements OnInit, OnDestroy {
+
   @Input() dtOptions: DataTables.Settings = {};
 
   constructor() {}
 
   ngOnInit() {}
+
+  ngOnDestroy(): void {
+  }
 }
