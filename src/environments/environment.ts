@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'http://127.0.0.1:5000', // For connecting to server running elsewhere update the base API URL
+  baseApiUrl: 'https://baobab-api-staging.herokuapp.com', // For connecting to server running elsewhere update the base API URL
   apiProvider: '',
   apiVersion: 'api_v1',
   serverUrl: '',
