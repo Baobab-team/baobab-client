@@ -3,8 +3,8 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --aot",
-        "build": "ng build --prod",
+        "start": "webpack-dev-server --open --config webpack.dev.js",
+        "build": "webpack --config webpack.prod.js",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
@@ -12,12 +12,12 @@
     },
     "private": true,
     "dependencies": {
-        "@angular/cli": "^8.3.21",
-        "@angular/compiler-cli": "~8.2.13",
         "@angular-devkit/build-angular": "^0.803.21",
         "@angular/animations": "8.0.0",
+        "@angular/cli": "^8.3.21",
         "@angular/common": "^8.2.14",
         "@angular/compiler": "~8.2.13",
+        "@angular/compiler-cli": "~8.2.13",
         "@angular/core": "^8.2.14",
         "@angular/forms": "~8.2.13",
         "@angular/platform-browser": "~8.2.13",
@@ -33,12 +33,16 @@
         "admin-lte": "^3.0.1",
         "angular-datatables": "^9.0.1",
         "bootstrap": "^4.4.1",
+        "clean-webpack-plugin": "^3.0.0",
         "clear": "^0.1.0",
+        "css-loader": "^3.5.3",
         "datatables.net": "^1.10.20",
         "datatables.net-buttons": "^1.6.1",
         "datatables.net-buttons-dt": "^1.6.1",
         "datatables.net-dt": "^1.10.20",
         "eslint": "^6.7.2",
+        "file-loader": "^6.0.0",
+        "html-webpack-plugin": "^4.3.0",
         "jquery": "^3.4.1",
         "jszip": "^3.3.0",
         "messageformat": "^2.0.2",
@@ -48,7 +52,10 @@
         "rxjs": "~6.4.0",
         "save-dev": "0.0.1-security",
         "serialize-javascript": ">=2.1.1",
+        "style-loader": "^1.2.1",
+        "ts-loader": "^7.0.4",
         "tslib": "^1.10.0",
+        "webpack-merge": "^4.2.2",
         "zone.js": "~0.9.1"
     },
     "devDependencies": {
@@ -72,6 +79,7 @@
         "protractor": "~5.4.0",
         "ts-node": "~7.0.0",
         "tslint": "~5.15.0",
-        "typescript": "~3.5.3"
+        "typescript": "~3.5.3",
+        "webpack-cli": "^3.3.11"
     }
 }
