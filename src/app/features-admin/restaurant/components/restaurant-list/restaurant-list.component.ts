@@ -171,10 +171,6 @@ export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit
             `;
           }
         }
-      ],
-      dom: 'Bfrtip',
-      buttons: [
-        'columnsToggle'
       ]
     };
   }
