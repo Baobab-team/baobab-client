@@ -90,5 +90,9 @@
         "datatable": {
             "input-search": "filtrer"
         }
+    },
+    "search" : {
+        "no_result" : "Aucun resultat",
+        "loading" : "Chargement en cours"
     }
 }
