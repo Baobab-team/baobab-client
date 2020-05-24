@@ -1,13 +1,14 @@
 {
     "name": "baobab-client",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --aot",
+        "start": "node server.js",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
+        "postbuild": "ng build --aot --prod",
         "extract-i18n": "ngx-translate-extract --input ./src --output ./src/assets/i18n/fr.json --clean --format-indentation ' ' --sort --format namespaced-json"
     },
     "private": true,
@@ -31,11 +32,13 @@
         "angular-datatables": "^9.0.1",
         "bootstrap": "^4.4.1",
         "clear": "^0.1.0",
+        "compression": "^1.7.4",
         "datatables.net": "^1.10.20",
         "datatables.net-buttons": "^1.6.1",
         "datatables.net-buttons-dt": "^1.6.1",
         "datatables.net-dt": "^1.10.20",
         "eslint": "^6.7.2",
+        "express": "^4.17.1",
         "jquery": "^3.4.1",
         "jszip": "^3.3.0",
         "messageformat": "^2.0.2",
@@ -73,5 +76,9 @@
         "ts-node": "~7.0.0",
         "tslint": "~5.15.0",
         "typescript": "~3.5.3"
+    },
+    "engines": {
+        "node": "12.16.2",
+        "npm": "6.14.4"
     }
 }
