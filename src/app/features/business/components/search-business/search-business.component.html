@@ -8,25 +8,30 @@
     </div>
     <hr>
     <div *ngIf="(businessesloading$ | async)" class="container">
-        <div class="text-center">chargemetn en cours...</div>
+        <div class="text-center">{{'search.loading' | translate}}.</div>
     </div>
     <div class="container search__results" *ngIf="!(businessesloading$ | async)">
-        <ul>
-            <li *ngFor="let business of (businesses$ | async)" (click)="selectBusiness(business)">
-                <div class="search__results__group">
-                    <div class="search__results__group__title">
-                        <h4>
-                            <a routerLink="/detail" [queryParams]="{id: business.id}">{{business.name}}</a>
-                        </h4>
+        <div *ngIf="(businesses$ | async) as businesses">
+            <ul *ngIf="businesses.length; else noResult">
+                <li *ngFor="let business of businesses" (click)="selectBusiness(business)">
+                    <div class="search__results__group">
+                        <div class="search__results__group__title">
+                            <h4>
+                                <a routerLink="/detail" [queryParams]="{id: business.id}">{{business.name}}</a>
+                            </h4>
+                        </div>
+                        <div class="search__results__group__body">
+                            <p>{{business.description | truncate}}</p>
+                        </div>
+                        <div class="search__results__group__footer">
+                            {{business.createdAt}}
+                        </div>
                     </div>
-                    <div class="search__results__group__body">
-                        <p>{{business.description | truncate}}</p>
-                    </div>
-                    <div class="search__results__group__footer">
-                        {{business.createdAt}}
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>   
+            <ng-template #noResult style="text-align: center;"> 
+                <h1>{{'search.no_result' | translate}}</h1> 
+            </ng-template>
+        </div>    
     </div>
 </div>
