@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Baobab-team/baobab-client.svg?branch=develop)](https://travis-ci.org/Baobab-team/baobab-client)
+
 # BaobabClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
