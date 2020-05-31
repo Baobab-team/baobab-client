@@ -4,7 +4,7 @@
             {{'admin.business.message_errors.category_loading' | translate}}
         </div>
 
-        <div *ngIf="!(categoriesLoading$ | async)">
+        <div *ngIf="(categoriesLoading$ | async) != null">
             <app-admin-second-header [title]="'admin.restaurant.title_create_restaurant'" [menus]="menuHeader"></app-admin-second-header>
             <div><small>{{'admin.business.form_message_required_fields' | translate}}</small></div> <br>
             <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">

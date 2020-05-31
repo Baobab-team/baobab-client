@@ -9,7 +9,6 @@ import {Logger} from './logger.service';
 
 /** Other Imports */
 import { includes } from 'lodash';
-// import * as enUS from '../../assets/i18n/en';
 import * as frFR from '../../../assets/i18n/fr.json';
 
 /** Initialize Logger */
@@ -18,8 +17,6 @@ const log = new Logger('I18nService');
 /**
  * Pass-through function to mark a string for translation extraction.
  * Running `npm translations:extract` will include the given string by using this.
- * @param {string} s The string to extract for translation.
- * @return {string} The same string.
  */
 export function extract(s: string) {
   return s;
@@ -43,8 +40,6 @@ export class I18nService {
   /**
    * Initializes i18n for the application.
    * Loads language from local storage if present, or sets default language.
-   * @param {!string} defaultLanguage The default language to use.
-   * @param {Array.<String>} supportedLanguages The list of supported languages.
    */
   init(defaultLanguage: string, supportedLanguages: string[]) {
     this.defaultLanguage = defaultLanguage;
@@ -59,7 +54,6 @@ export class I18nService {
    * Sets the current language.
    * Note: The current language is saved to the local storage.
    * If no parameter is specified, the language is loaded from local storage (if present).
-   * @param {string} language The IETF language code to set.
    */
   set language(language: string) {
     language =
@@ -89,7 +83,6 @@ export class I18nService {
 
   /**
    * Gets the current language.
-   * @return {string} The current language code.
    */
   get language(): string {
     return this.translateService.currentLang;
