@@ -83,7 +83,7 @@
     </div>
 
     <div class="text-center" *ngIf="(businessLoading$ | async)">Chargement de la donnee</div>
-    <div class="text-center" *ngIf="!(business$ | async)">
+    <div class="text-center" *ngIf="(business$ | async) === null">
         Ce business n'existe pas
     </div>
 </div>

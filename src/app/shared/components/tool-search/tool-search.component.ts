@@ -22,6 +22,7 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 export class ToolSearchComponent implements OnInit, AfterViewInit {
   @Input() bigForm = true;
   @Input() optionsFields = false;
+  // tslint:disable-next-line: no-output-on-prefix
   @Output() onSearch = new EventEmitter<Search>();
   @ViewChild('querySearch', {static: false}) querySearch: ElementRef;
 

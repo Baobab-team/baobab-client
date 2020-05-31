@@ -49,7 +49,9 @@ export class BusinessHour {
   id?: number;
   businessId: number;
   day: BUSINESS_DAYS_WEEK;
+  // tslint:disable-next-line: variable-name
   closing_time: string;
+  // tslint:disable-next-line: variable-name
   opening_time: string;
 }
 

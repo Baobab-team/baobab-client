@@ -83,7 +83,7 @@ export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit
         if (btnType === BTN_TYPE.VIEW) {
           this.router.navigate(['/admin/restaurant/details'], { queryParams: {id: businessId} });
         } else if (btnType === BTN_TYPE.EDIT) {
-          console.log(BTN_TYPE.EDIT, businessId)
+          console.log(BTN_TYPE.EDIT, businessId);
         } else if (btnType === BTN_TYPE.DELETE) {
           this.deleteRestaurant(+businessId, businessName);
         }

@@ -6,8 +6,6 @@ export class CoreService {
 
   /**
    * convert object to HttpParams object
-   * @param {Object} obj
-   * @returns {HttpParams}
    */
   toHttpParams(obj: object): HttpParams {
     return Object.getOwnPropertyNames(obj).reduce(

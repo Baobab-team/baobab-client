@@ -108,12 +108,12 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
         const btnType = event.target.getAttribute('btn-type');
 
         if (btnType === BTN_TYPE.VIEW) {
-          console.log(BTN_TYPE.VIEW, categoryId)
+          console.log(BTN_TYPE.VIEW, categoryId);
           // this.router.navigate(['/admin/restaurants/' + businessId]);
         } else if (btnType === BTN_TYPE.EDIT) {
-          console.log(BTN_TYPE.EDIT, categoryId)
+          console.log(BTN_TYPE.EDIT, categoryId);
         } else if (btnType === BTN_TYPE.DELETE) {
-          console.log(BTN_TYPE.DELETE, categoryId)
+          console.log(BTN_TYPE.DELETE, categoryId);
         }
       }
     });
