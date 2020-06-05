@@ -2,6 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "paths": {
+      "@Models/*": ["app/core/models/*"],
+      "@Business_store/*": ["app/store/business/*"],
+      "@Category_store/*": ["app/store/category/*"],
+    },
     "types": [
       "jasmine",
       "node"

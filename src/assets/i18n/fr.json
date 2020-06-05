@@ -67,6 +67,12 @@
                 "success": "Restaurant crée",
                 "error": "Erreur lors de la création du restaurant"
             }
+        },
+        "category": {
+            "log": {
+                "create_success": "Catégorie enregistrée avec succès",
+                "create_error": "Enregistrement ratée"
+            }
         }
     },
     "shared": {
@@ -79,6 +85,7 @@
             "link_add_restaurant": "Ajouter restaurant",
             "link_category": "Categorie",
             "link_list_categories": "Liste categories",
+            "link_create_category": "Crée une catégorie",
             "link_home": "Accueil"
         },
         "tool-search": {
@@ -91,8 +98,8 @@
             "input-search": "filtrer"
         }
     },
-    "search" : {
-        "no_result" : "Aucun resultat",
-        "loading" : "Chargement en cours"
+    "search": {
+        "no_result": "Aucun resultat",
+        "loading": "Chargement en cours"
     }
 }

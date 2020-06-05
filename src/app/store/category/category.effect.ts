@@ -7,16 +7,26 @@ import { CategoryModule } from './category.action';
 
 @Injectable()
 export class CategoryEffects {
-  @Effect() Category$: Observable<CategoryModule.Actions> = this.actions
+  // list category
+  @Effect() Category$: Observable<CategoryModule.Actions> = this.actions$
   .pipe(
     ofType(CategoryModule.ActionTypes.LOAD_LIST_CATEGORY),
     switchMap(() => this.categoryService.getCategories()),
     map(categories => new CategoryModule.SuccessListCategory(categories)),
-    catchError((err) => of(new CategoryModule.ErrorBusinessCategory(err)))
+    catchError((err) => of(new CategoryModule.ErrorCategoryAction(err)))
+  );
+
+  // create category
+  @Effect() LoadCreateBusiness$: Observable<CategoryModule.Actions> = this.actions$
+  .pipe(
+    ofType<CategoryModule.LoadCreateCategory>(CategoryModule.ActionTypes.LOAD_CREATE_CATEGORY),
+    switchMap((category: CategoryModule.LoadCreateCategory) => this.categoryService.saveCategory(category.payload)),
+    map(category => new CategoryModule.SuccessCreateCategory(category)),
+    catchError((err) => of(new CategoryModule.ErrorCategoryAction(err)))
   );
 
   constructor(
     private categoryService: CategoryService,
-    private actions: Actions
+    private actions$: Actions
   ) {}
 }
