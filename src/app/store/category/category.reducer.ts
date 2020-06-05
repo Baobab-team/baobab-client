@@ -26,6 +26,24 @@ export function CategoryReducer(
         loading: false,
         loaded: true
       };
+    case CategoryModule.ActionTypes.LOAD_CREATE_CATEGORY:
+      return {
+        ...state,
+        loading: true
+      };
+    case CategoryModule.ActionTypes.SUCCESS_CREATE_CATEGORY:
+      return {
+        ...state,
+        loading: false,
+        log: {
+          type: LOG_TYPES.SUCCESS,
+          message: 'admin.category.form.log.success'
+        },
+        data: [
+          ...state.data,
+          action.payload
+        ]
+      };
     case CategoryModule.ActionTypes.ERROR_BUSINESS_CATEGORY:
       return {
         ...state,

@@ -1,0 +1,26 @@
+<div>
+    <div>
+        <app-admin-second-header [title]="'admin.category.form.title_create_category'" [menus]="menuHeader"></app-admin-second-header>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-4"><small>{{'admin.category.form.message_required_fields' | translate}}</small></div> <br>
+        <div class="col-md-5">
+            <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>{{'admin.category.form.label_name' | translate}}</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <div *ngIf="submitted && f.name.status==='INVALID'" class="invalid-feedback d-block">
+                        <div *ngIf="f.name.errors.required">
+                            {{'admin.category.form.label_name_error_required' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit" [disabled]="(categoryLoading$ | async)">
+              {{'admin.category.form.btn_name' | translate}}
+            </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

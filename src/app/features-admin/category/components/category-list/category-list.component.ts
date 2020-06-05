@@ -30,8 +30,8 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
       link: '/admin/categories'
     },
     {
-      title: 'shared.menu-left-admin.link_add_restaurant',
-      link: '/admin/restaurant'
+      title: 'shared.menu-left-admin.link_create_category',
+      link: '/admin/categories/create'
     }
   ];
   readonly dtOptions = {

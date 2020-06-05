@@ -22,7 +22,7 @@ export const environment = {
   apiVersion: 'api_v1',
   paths_api: {
     businesses: 'businesses',
-    list_category: 'categories',
+    categories: 'categories',
   },
   defaultLanguage: 'fr',
   supportedLanguages: ['fr', 'en'],

@@ -1,11 +1,11 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://baobab-api-staging.herokuapp.com',
+  baseApiUrl: 'http://localhost:5000',
   apiVersion: 'api_v1',
   paths_api: {
     businesses: 'businesses',
-    list_category: 'categories',
+    categories: 'categories',
   },
   defaultLanguage: 'fr',
   supportedLanguages: ['fr', 'en'],
