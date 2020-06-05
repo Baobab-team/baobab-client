@@ -1,4 +1,4 @@
-import { BUSINESS_STATUSES } from 'src/app/core/models';
+import { BUSINESS_STATUSES } from '@Models/business.model';
 import { prop, trim } from '@rxweb/reactive-form-validators';
 
 export class Search {
