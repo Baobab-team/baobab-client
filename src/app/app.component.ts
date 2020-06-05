@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from '../environments/environment';
-import {I18nService} from './core/services/i18n.service';
+import {I18nService} from '@Services/i18n.service';
 import {Logger} from './core/services/logger.service';
 import * as $ from 'jquery';
 
