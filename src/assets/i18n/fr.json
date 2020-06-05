@@ -69,6 +69,14 @@
             }
         },
         "category": {
+            "form": {
+                "title_create_category": "Crée une catégorie",
+                "message_required_fields": "(*) champs obligatoires",
+                "label_name": "Nom de votre catégorie",
+                "label_name_error_required": "Nom de votre catégorie requis",
+                "success_save": "Catégorie enregistrée",
+                "btn_name": "Envoyer"
+            },
             "log": {
                 "create_success": "Catégorie enregistrée avec succès",
                 "create_error": "Enregistrement ratée"

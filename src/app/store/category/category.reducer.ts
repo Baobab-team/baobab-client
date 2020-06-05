@@ -37,7 +37,7 @@ export function CategoryReducer(
         loading: false,
         log: {
           type: LOG_TYPES.SUCCESS,
-          message: 'admin.category.log.success'
+          message: 'admin.category.form.log.success'
         },
         data: [
           ...state.data,
