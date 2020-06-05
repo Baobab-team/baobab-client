@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { selectBusinessDetail$, selectBusinessLoading$ } from '../../../../store/business/business.selector';
-import { Business } from 'src/app/core/models';
+import { selectBusinessDetail$, selectBusinessLoading$ } from '@Store/business/business.selector';
+import { Business } from '@Models/business.model';
 import { Store, select } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
-import { BusinessModule } from 'src/app/store/business/business.action';
+import { BusinessModule } from '@Store/business/business.action';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

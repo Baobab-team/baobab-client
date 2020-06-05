@@ -1,4 +1,4 @@
-import { Business } from './business.model';
+import { Business } from '@Models/business.model';
 
 export interface Plate {
   id?: number;

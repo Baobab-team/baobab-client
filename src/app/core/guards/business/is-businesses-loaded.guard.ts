@@ -1,12 +1,12 @@
-import { BusinessModule } from 'src/app/store/business/business.action';
+import { BusinessModule } from '@Store/business/business.action';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { AppState } from 'src/app/store';
-import { selectBusinessLoaded$ } from 'src/app/store/business/business.selector';
-import { BUSINESS_STATUSES, Search } from '../../../models';
+import { AppState } from '@Store/index';
+import { selectBusinessLoaded$ } from '@Store/business/business.selector';
+import { BUSINESS_STATUSES, Search } from '../../models';
 
 @Injectable({
   providedIn: 'root'

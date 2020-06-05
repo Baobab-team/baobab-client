@@ -1,10 +1,10 @@
-import { BusinessState, CategoryState } from './../core/models/business.model';
-import { BusinessEffects } from './business/business.effect';
-import { BusinessReducer } from './business/business.reducer';
+import { BusinessState, CategoryState } from '@Models/business.model';
+import { BusinessEffects } from '@Store/business/business.effect';
+import { BusinessReducer } from '@Store/business/business.reducer';
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap } from '@ngrx/store';
-import { CategoryEffects } from './category/category.effect';
-import { CategoryReducer } from './category/category.reducer';
+import { CategoryEffects } from '@Store/category/category.effect';
+import { CategoryReducer } from '@Store/category/category.reducer';
 
 const reducers = {
   businesses: BusinessReducer,

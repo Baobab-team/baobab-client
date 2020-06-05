@@ -2,7 +2,8 @@ dist: trusty
 sudo: false
 
 addons:
-  chrome: stable
+  apt:
+    chrome: stable
 
 branches:
   only:

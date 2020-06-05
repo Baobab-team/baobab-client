@@ -1,11 +1,11 @@
-import { LOG_TYPES, Log } from './../../../../core/models/log.model';
+import { LOG_TYPES, Log } from '@Models/log.model';
 import { Component, OnInit, OnDestroy, Renderer2 as Renderer, AfterViewInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { Category } from 'src/app/core/models';
-import { selectCategories$, selectCategoryErrors$, selectCategoryLoading$ } from '../../../../store/category/category.selector';
+import { Category } from '@Models/business.model';
+import { selectCategories$, selectCategoryErrors$, selectCategoryLoading$ } from '@Store/category/category.selector';
 import { takeUntil, tap } from 'rxjs/operators';
-import { initConfigDatatables, BTN_TYPE } from 'src/app/core/models/datatable';
+import { initConfigDatatables, BTN_TYPE } from '@Models/datatable.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 

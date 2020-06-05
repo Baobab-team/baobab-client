@@ -1,6 +1,6 @@
 import { BusinessState } from './../../core/models/business.model';
 import { BusinessModule } from './business.action';
-import { LOG_TYPES } from 'src/app/core/models';
+import { LOG_TYPES } from '@Models/log.model';
 
 const restaurantInitialState: BusinessState = {
   data: [],

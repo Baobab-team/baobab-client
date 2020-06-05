@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { AppState } from 'src/app/store';
-import { CategoryModule } from 'src/app/store/category/category.action';
+import { AppState } from '@Store/index';
+import { CategoryModule } from '@Store/category/category.action';
 import { map } from 'rxjs/operators';
-import { selectCategoryLoaded$ } from 'src/app/store/category/category.selector';
+import { selectCategoryLoaded$ } from '@Store/category/category.selector';
 
 
 @Injectable({
