@@ -1,7 +1,15 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@Models/*": ["app/core/models/*"],
+      "@Services/*": ["app/core/services/*"],
+      "@Pipes/*": ["app/core/pipes/*"],
+      "@Guards/*": ["app/core/guards/*"],
+      "@Interceptors/*": ["app/core/interceptors/*"],
+      "@Store/*": ["app/store/*"],
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
