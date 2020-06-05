@@ -1,9 +1,9 @@
-import { CategoryService } from './category.service';
+import { CategoryService } from '@Store/category/category.service';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { CategoryModule } from './category.action';
+import { CategoryModule } from '@Store/category/category.action';
 
 @Injectable()
 export class CategoryEffects {

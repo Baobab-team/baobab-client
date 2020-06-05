@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { AppState } from './../index';
+import { AppState } from '@Store/index';
 
 
 export const selectCategoryState$ = (state: AppState) => state.category;
