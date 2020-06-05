@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Modal } from 'src/app/core/models/modal.model';
+import { Modal } from '@Models/modal.model';
 
 
 @Component({

@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {Search, BUSINESS_STATUSES} from '../../../core/models';
+import { BUSINESS_STATUSES } from '@Models/business.model';
+import { Search } from '@Models/search.model';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 
 
