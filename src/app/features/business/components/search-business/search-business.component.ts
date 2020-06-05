@@ -1,11 +1,12 @@
 import { takeUntil } from 'rxjs/operators';
-import { Search, Business, BUSINESS_STATUSES } from 'src/app/core/models';
-import { selectBusinessLoading$, selectBusinesses$ } from '../../../../store/business/business.selector';
+import { Business, BUSINESS_STATUSES } from '@Models/business.model';
+import { Search } from '@Models/search.model';
+import { selectBusinessLoading$, selectBusinesses$ } from '@Store/business/business.selector';
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
-import { BusinessModule } from 'src/app/store/business/business.action';
+import { BusinessModule } from '@Store/business/business.action';
 
 @Component({
   selector: 'app-search-business',

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, UrlSegment } from '@angular/router';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { Business } from 'src/app/core/models';
-import { BusinessModule } from 'src/app/store/business/business.action';
-import { selectBusinessLoading$, selectBusinessDetail$ } from 'src/app/store/business/business.selector';
+import { Business } from '@Models/business.model';
+import { BusinessModule } from '@Store/business/business.action';
+import { selectBusinessLoading$, selectBusinessDetail$ } from '@Store/business/business.selector';
 
 
 @Component({
