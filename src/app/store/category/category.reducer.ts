@@ -1,6 +1,6 @@
-import { LOG_TYPES, Log } from './../../core/models/log.model';
-import { CategoryState } from './../../core/models/business.model';
-import { CategoryModule } from './category.action';
+import { LOG_TYPES, Log } from '@Models/log.model';
+import { CategoryState } from '@Models/business.model';
+import { CategoryModule } from '@Store/category/category.action';
 
 const categoryInitialState: CategoryState = {
   data: [],

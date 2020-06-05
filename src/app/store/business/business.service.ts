@@ -1,4 +1,5 @@
-import { Search, Business } from 'src/app/core/models';
+import { Search } from '@Models/search.model';
+import { Business } from '@Models/business.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment} from '../../../environments';

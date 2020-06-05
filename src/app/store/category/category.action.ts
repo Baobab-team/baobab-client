@@ -1,4 +1,4 @@
-import { Category } from 'src/app/core/models';
+import { Category } from '@Models/business.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export namespace CategoryModule {

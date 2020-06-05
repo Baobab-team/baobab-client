@@ -1,4 +1,4 @@
-import { AppState } from '../index';
+import { AppState } from '@Store/index';
 import { createSelector } from '@ngrx/store';
 
 
