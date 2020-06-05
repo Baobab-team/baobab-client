@@ -1,4 +1,4 @@
-import { TruncatePipe } from './../core/pipes/truncate.pipe';
+import { TruncatePipe } from '@Pipes/truncate.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
