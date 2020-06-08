@@ -10,6 +10,7 @@ import { Log, LOG_TYPES } from '@Models/log.model';
 import { selectCategoryErrors$, selectCategoryLoading$ } from '@Store/category/category.selector';
 import { tap, takeUntil } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-category-create',
   templateUrl: './category-create.component.html',
@@ -19,7 +20,7 @@ export class CategoryCreateComponent implements OnInit, OnDestroy {
   categoryForm: FormGroup;
   submitted = false;
   public unsubsscribe$ = new Subject<void>();
-  readonly categoryLogs$: Observable<Log>;
+  categoryLogs$: Observable<Log>;
   readonly categoryLoading$: Observable<boolean>;
   readonly menuHeader = [
     {
@@ -41,7 +42,7 @@ export class CategoryCreateComponent implements OnInit, OnDestroy {
     this.categoryLogs$ = store.pipe(
       select(selectCategoryErrors$),
       tap((dialog) => {
-        if (!dialog) {
+        if (!dialog || !this.submitted) {
           return;
         }
         if (dialog.type === LOG_TYPES.ERROR) {
