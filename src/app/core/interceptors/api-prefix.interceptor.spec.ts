@@ -1,10 +1,10 @@
+import { environment } from 'environments';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
 import { inject, TestBed } from '@angular/core/testing';
-import { environment } from '@env/environment';
 import { ApiPrefixInterceptor } from './api-prefix.interceptor';
 
 describe('ApiPrefixInterceptor', () => {

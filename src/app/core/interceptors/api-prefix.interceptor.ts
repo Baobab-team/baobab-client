@@ -10,8 +10,6 @@ import {
 /** rxjs Imports */
 import { Observable } from 'rxjs';
 
-/** Environment Configuration */
-import { environment } from '../../../environments';
 // import {I18nService} from '../services/core/i18n.service';
 
 /**
