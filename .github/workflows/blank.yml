@@ -22,7 +22,19 @@ jobs:
     - name: Install dependances
       run: npm install
 
+    - name: Environment variables to Dotenv
+      uses: CallePuzzle/envvar-to-dotenv-action@0.1.0
+      with:
+        # Name of environment variable to append to a dotenv file
+        ENVIRONMENT: staging
+        # Comma separated names of environment variables to append to a dotenv file
+        PRODUCTION: true
+        # Regex to filter environment variables, all matching variables will be append to dotenv file
+        BASEAPIURL_DEV: http://localhost:5000
+        BASEAPIURL_STAGING: https://baobab-api-staging.herokuapp.com
+
     # Runs a set of commands using the runners shell
-    - name: control lint
+    - name: run lint and tests
       run: |
         npm run lint
+        npm run test
