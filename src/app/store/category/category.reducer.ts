@@ -35,9 +35,10 @@ export function CategoryReducer(
       return {
         ...state,
         loading: false,
+        loaded: true,
         log: {
           type: LOG_TYPES.SUCCESS,
-          message: 'admin.category.form.log.success'
+          message: 'admin.category.log.create_success'
         },
         data: [
           ...state.data,
@@ -51,7 +52,8 @@ export function CategoryReducer(
           type: LOG_TYPES.ERROR,
           message: (action.payload.error.message === undefined) ? action.payload.message : action.payload.error.message
         },
-        loading: false
+        loading: false,
+        loaded: true
       };
     default:
       return state;

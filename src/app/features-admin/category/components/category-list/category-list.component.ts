@@ -76,8 +76,6 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
         }
         if (dialog.type === LOG_TYPES.ERROR) {
           this.toastr.error(dialog.message);
-        } else {
-          this.toastr.success(dialog.message);
         }
       }),
       takeUntil(this.unsubsscribe$)
@@ -91,6 +89,7 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+
     this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
       return this.categories$.subscribe(
         (data) => {

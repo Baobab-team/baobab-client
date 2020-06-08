@@ -1,4 +1,4 @@
-import { CategoryModule } from 'src/app/store/category/category.action';
+import { CategoryModule } from '@Store/category/category.action';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
@@ -6,9 +6,10 @@ import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators'
 import { Store, select } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
-import { Log, LOG_TYPES } from 'src/app/core/models';
-import { selectCategoryErrors$, selectCategoryLoading$ } from 'src/app/store/category/category.selector';
+import { Log, LOG_TYPES } from '@Models/log.model';
+import { selectCategoryErrors$, selectCategoryLoading$ } from '@Store/category/category.selector';
 import { tap, takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-category-create',
@@ -19,7 +20,7 @@ export class CategoryCreateComponent implements OnInit, OnDestroy {
   categoryForm: FormGroup;
   submitted = false;
   public unsubsscribe$ = new Subject<void>();
-  readonly categoryLogs$: Observable<Log>;
+  categoryLogs$: Observable<Log>;
   readonly categoryLoading$: Observable<boolean>;
   readonly menuHeader = [
     {
@@ -41,7 +42,7 @@ export class CategoryCreateComponent implements OnInit, OnDestroy {
     this.categoryLogs$ = store.pipe(
       select(selectCategoryErrors$),
       tap((dialog) => {
-        if (!dialog) {
+        if (!dialog || !this.submitted) {
           return;
         }
         if (dialog.type === LOG_TYPES.ERROR) {
