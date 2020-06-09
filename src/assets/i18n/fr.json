@@ -67,7 +67,7 @@
                 "button_submit": "Envoyer"
             },
             "log": {
-                "success": "Votre asffaire est créee",
+                "success": "Votre affaire est créee",
                 "error": "Erreur lors de la création de votre affaire"
             }
         },
