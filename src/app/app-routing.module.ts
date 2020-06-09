@@ -61,8 +61,8 @@ const routes: Routes = [
       title: 'Restaurant'
     },
     loadChildren: () =>
-      import('./features-admin/restaurant/restaurant.module').then(
-        m => m.RestaurantModule
+      import('./features-admin/business/business.module').then(
+        m => m.BusinessModule
       ),
   },
   {

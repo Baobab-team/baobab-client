@@ -30,6 +30,11 @@
     },
     "admin": {
         "business": {
+            "title_business": "Affaires",
+            "title_create_business": "Ajouter une affaire",
+            "title_list_business": "Liste affaires",
+            "link_list_business": "Liste des affaires",
+            "link_add_business": "Ajouter une affaire",
             "name": "* Nom",
             "description": "Description",
             "note": "Note",
@@ -55,17 +60,15 @@
                 "note_alpha": "Note ne peut avoir de caracteres speciaux",
                 "description_alpha": "Description ne peut avoir de caracteres speciaux",
                 "category_loading": "Les catégories non pas été chargées. Veillez attendre quelques minutes avant de recommencer. Si cela persiste, veillez nous contacter."
-            }
-        },
-        "restaurant": {
-            "title_restaurant": "Restaurant",
-            "title_create_restaurant": "Crée un restaurant",
-            "title_list_restaurant": "Liste restaurants",
-            "title_list_category": "Liste catégories",
-            "button_submit": "Envoyer",
+            },
+            "form": {
+                "title": "Crée une affaire",
+                "title_list_category": "Liste catégories",
+                "button_submit": "Envoyer"
+            },
             "log": {
-                "success": "Restaurant crée",
-                "error": "Erreur lors de la création du restaurant"
+                "success": "Votre asffaire est créee",
+                "error": "Erreur lors de la création de votre affaire"
             }
         },
         "category": {
@@ -89,8 +92,6 @@
             "link_login": "Connectez-vous"
         },
         "menu-left-admin": {
-            "link_list_restaurant": "Liste restaurants",
-            "link_add_restaurant": "Ajouter restaurant",
             "link_category": "Categorie",
             "link_list_categories": "Liste categories",
             "link_create_category": "Crée une catégorie",

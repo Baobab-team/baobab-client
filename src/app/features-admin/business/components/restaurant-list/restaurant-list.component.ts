@@ -1,4 +1,4 @@
-import { ModalComponentComponent } from './../../../../shared/components/modal-component/modal-component.component';
+import { ModalComponentComponent } from '../../../../shared/components/modal-component/modal-component.component';
 import { BusinessModule } from '@Store/business/business.action';
 import { Log, LOG_TYPES } from '@Models/log.model';
 import { Business } from '@Models/business.model';

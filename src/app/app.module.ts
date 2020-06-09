@@ -50,7 +50,7 @@ import { ToastrModule } from 'ngx-toastr';
       }
     }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [
     Store,
