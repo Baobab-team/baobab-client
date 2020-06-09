@@ -1,7 +1,7 @@
 import { BusinessDetailsComponent } from './components/business-details/business-details.component';
 import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
 import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';
-import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
+import { BusinessListComponent } from './components/business-list/business-list.component';
 import { BusinessCreateComponent } from './components/business-create/business-create.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/businesses',
-    component: RestaurantListComponent,
+    component: BusinessListComponent,
     canActivate: [IsBusinessesLoadedGuard]
   },
   {
