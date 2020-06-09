@@ -47,7 +47,6 @@ export class Category {
 
 export class BusinessHour {
   id?: number;
-  businessId: number;
   day: BUSINESS_DAYS_WEEK;
   // tslint:disable-next-line: variable-name
   closing_time: string;
@@ -61,9 +60,27 @@ export interface SocialLink {
   type: BUSINESS_SOCIAL_LINKS;
 }
 
+export interface Tag {
+  readonly id: number;
+  name: string;
+}
+
+export interface Address {
+  readonly id: number;
+  street_number: string;
+    street_type: string;
+    street_name: string;
+    direction: string;
+    city: string;
+    zip_code: string;
+    province: string;
+    region: string;
+    country: string;
+}
+
 export interface Business {
   readonly id?: number;
-  phone?: Phone[];
+  phones?: Phone[];
   category: Category;
   name: string;
   description: string;
@@ -80,6 +97,10 @@ export interface Business {
   // paymentType: BUSINESS_PAYMENT_TYPES;
   status: BUSINESS_STATUSES;
   social_links: BUSINESS_SOCIAL_LINKS;
+  tags: Tag[];
+  addresses: Address[];
+  payment_types: string[];
+  business_hours: BusinessHour[];
 }
 
 export interface BusinessState {
