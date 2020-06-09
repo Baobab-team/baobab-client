@@ -10,21 +10,21 @@ import { selectBusinessLoading$, selectBusinessDetail$ } from '@Store/business/b
 
 @Component({
   selector: 'app-restaurant-details',
-  templateUrl: './restaurant-details.component.html',
-  styleUrls: ['./restaurant-details.component.scss']
+  templateUrl: './business-details.component.html',
+  styleUrls: ['./business-details.component.scss']
 })
-export class RestaurantDetailsComponent implements OnInit {
+export class BusinessDetailsComponent implements OnInit {
   public businessLoading$: Observable<boolean>;
   public business$: Observable<Business>;
   public unsubsscribe$ = new Subject<void>();
   menuHeader = [
     {
-      title: 'shared.menu-left-admin.link_list_restaurant',
-      link: '/admin/restaurants'
+      title: 'admin.business.link_list_business',
+      link: '/admin/businesses'
     },
     {
-      title: 'shared.menu-left-admin.link_add_restaurant',
-      link: '/admin/restaurant'
+      title: 'admin.business.link_add_business',
+      link: '/admin/business'
     }
   ];
   constructor(
