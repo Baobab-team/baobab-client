@@ -15,24 +15,24 @@ import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-restaurant-create',
-  templateUrl: './restaurant-create.component.html',
-  styleUrls: ['./restaurant-create.component.scss']
+  selector: 'app-business-create',
+  templateUrl: './business-create.component.html',
+  styleUrls: ['./business-create.component.scss']
 })
-export class RestaurantCreateComponent implements OnInit, OnDestroy {
-  restaurantForm: FormGroup;
+export class BusinessCreateComponent implements OnInit, OnDestroy {
+  businessForm: FormGroup;
   keys = Object.keys;
   paymentTypes = BUSINESS_PAYMENT_TYPES;
   languages = BUSINESS_LANGUAGE;
   submitted = false;
   menuHeader = [
     {
-      title: 'shared.menu-left-admin.link_add_restaurant',
-      link: '/admin/restaurant'
+      title: 'admin.business.link_add_business',
+      link: '/admin/business'
     },
     {
-      title: 'shared.menu-left-admin.link_list_restaurant',
-      link: '/admin/restaurants'
+      title: 'admin.business.link_list_business',
+      link: '/admin/businesses'
     }
   ];
 
@@ -83,12 +83,12 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
     this.businessLog$ = store.pipe(
       select(selectBusinessErrors$),
       tap((dialog) => {
-        if (!dialog) {
+        if (!dialog && !this.submitted) {
           return;
         }
         if (dialog.type === LOG_TYPES.ERROR) {
           this.toastr.error(dialog.message);
-        } else if (dialog.type === LOG_TYPES.SUCCESS) {
+        } else {
           this.toastr.success(this.translateService.instant(dialog.message));
         }
       }),
@@ -102,10 +102,10 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.restaurantForm.controls; }
+  get f() { return this.businessForm.controls; }
 
   ngOnInit() {
-    this.restaurantForm = this.formBuilder.group(
+    this.businessForm = this.formBuilder.group(
       {
         name: ['', [RxwebValidators.required({message: 'admin.business.message_errors.name_required'})]],
         description: [''],
@@ -129,10 +129,10 @@ export class RestaurantCreateComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.submitted = true;
 
-    if (this.restaurantForm.invalid) {
+    if (this.businessForm.invalid) {
       return;
     }
-    this.store.dispatch(new BusinessModule.LoadCreateBusiness(this.restaurantForm.getRawValue()));
-    this.restaurantForm.reset();
+    this.store.dispatch(new BusinessModule.LoadCreateBusiness(this.businessForm.getRawValue()));
+    this.businessForm.reset();
   }
 }

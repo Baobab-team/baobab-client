@@ -1,8 +1,8 @@
-import { BusinessState } from './../../core/models/business.model';
+import { BusinessState } from '@Models/business.model';
 import { BusinessModule } from './business.action';
 import { LOG_TYPES } from '@Models/log.model';
 
-const restaurantInitialState: BusinessState = {
+const businessInitialState: BusinessState = {
   data: [],
   search: undefined,
   businessId: NaN,
@@ -14,7 +14,7 @@ const restaurantInitialState: BusinessState = {
 
 
 export function BusinessReducer(
-  state: BusinessState = restaurantInitialState,
+  state: BusinessState = businessInitialState,
   action: BusinessModule.Actions
 ): BusinessState {
   switch (action.type) {
@@ -55,7 +55,7 @@ export function BusinessReducer(
         loading: false,
         log: {
           type: LOG_TYPES.SUCCESS,
-          message: 'admin.restaurant.log.success'
+          message: 'admin.business.log.success'
         },
         data: [
           ...state.data,

@@ -2,18 +2,21 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/admin" routerLinkActive="active">
+                <a class="nav-link" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">
                     <i class="fa fa-home"></i> {{'shared.menu-left-admin.link_home' | translate}}
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/admin/categories" routerLinkActive="active">
+                <a class="nav-link" routerLink="/admin/categories" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">
                     <i class="fa fa-file"></i> {{'shared.menu-left-admin.link_category' | translate}}
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/admin/restaurants" routerLinkActive="active">
-                    <span data-feather="shopping-cart"></span> {{'admin.restaurant.title_restaurant' | translate}}
+                <a class="nav-link" routerLink="/admin/businesses" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+true}">
+                    <i class="fa fa-building"></i> {{'admin.business.title_business' | translate}}
                 </a>
             </li>
         </ul>

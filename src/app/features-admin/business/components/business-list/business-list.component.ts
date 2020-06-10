@@ -1,4 +1,4 @@
-import { ModalComponentComponent } from './../../../../shared/components/modal-component/modal-component.component';
+import { ModalComponentComponent } from '../../../../shared/components/modal-component/modal-component.component';
 import { BusinessModule } from '@Store/business/business.action';
 import { Log, LOG_TYPES } from '@Models/log.model';
 import { Business } from '@Models/business.model';
@@ -16,22 +16,22 @@ import { DataTableDirective } from 'angular-datatables';
 
 
 @Component({
-  selector: 'app-restaurant-list',
-  templateUrl: './restaurant-list.component.html',
-  styleUrls: ['./restaurant-list.component.scss']
+  selector: 'app-business-list',
+  templateUrl: './business-list.component.html',
+  styleUrls: ['./business-list.component.scss']
 })
-export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit {
+export class BusinessListComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
   dtTrigger = new Subject();
   readonly menuHeader = [
     {
-      title: 'shared.menu-left-admin.link_list_restaurant',
-      link: '/admin/restaurants'
+      title: 'admin.business.link_list_business',
+      link: '/admin/businesses'
     },
     {
-      title: 'shared.menu-left-admin.link_add_restaurant',
-      link: '/admin/restaurant'
+      title: 'admin.business.link_add_business',
+      link: '/admin/business'
     }
   ];
   private unsubscribe$ = new Subject<void>();
@@ -82,11 +82,11 @@ export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit
       if (businessId) {
 
         if (btnType === BTN_TYPE.VIEW) {
-          this.router.navigate(['/admin/restaurant/details'], { queryParams: {id: businessId} });
+          this.router.navigate(['/admin/business/details'], { queryParams: {id: businessId} });
         } else if (btnType === BTN_TYPE.EDIT) {
           console.log(BTN_TYPE.EDIT, businessId);
         } else if (btnType === BTN_TYPE.DELETE) {
-          this.deleteRestaurant(+businessId, businessName);
+          this.deleteBusiness(+businessId, businessName);
         }
       }
     });
@@ -104,7 +104,7 @@ export class RestaurantListComponent implements OnInit, OnDestroy, AfterViewInit
     };
   }
 
-  private deleteRestaurant(businessId: number, businessName: string) {
+  private deleteBusiness(businessId: number, businessName: string) {
     const modalRef = this.modalService.open(ModalComponentComponent);
     modalRef.componentInstance.modal = new Modal('Confirmer', 'Voulez-vous vraiment supprimer ' + businessName + '?', null);
     modalRef.result.then((result) => {
