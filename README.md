@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/Baobab-team/baobab-client.svg?branch=develop)](https://travis-ci.org/Baobab-team/baobab-client)
+![Angular application](https://github.com/Baobab-team/baobab-client/workflows/Angular%20application/badge.svg?branch=master)
+![Angular application](https://github.com/Baobab-team/baobab-client/workflows/Angular%20application/badge.svg?branch=develop)
 
 # BaobabClient
 
