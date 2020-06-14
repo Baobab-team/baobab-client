@@ -6,6 +6,7 @@ import { BusinessRoutingModule } from './business-routing.module';
 import { BusinessCreateComponent } from './components/business-create/business-create.component';
 import { BusinessListComponent } from './components/business-list/business-list.component';
 import { BusinessDetailsComponent } from './components/business-details/business-details.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { BusinessDetailsComponent } from './components/business-details/business
     BusinessCreateComponent,
     BusinessListComponent,
     BusinessDetailsComponent,
+    UploadFileComponent,
   ],
   imports: [
     CommonModule,
