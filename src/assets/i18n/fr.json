@@ -29,6 +29,7 @@
         }
     },
     "admin": {
+        "title_home": "Bienvemue",
         "business": {
             "title_business": "Affaires",
             "title_create_business": "Ajouter une affaire",
@@ -63,7 +64,6 @@
             },
             "form": {
                 "title": "Crée une affaire",
-                "title_list_category": "Liste catégories",
                 "button_submit": "Envoyer"
             },
             "log": {
@@ -72,6 +72,8 @@
             }
         },
         "category": {
+            "title_category": "Categorie",
+            "title_list_category": "Liste catégories",
             "form": {
                 "title_create_category": "Crée une catégorie",
                 "message_required_fields": "(*) champs obligatoires",
