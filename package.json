@@ -5,7 +5,7 @@
         "config": "ts-node config-env.ts",
         "ng": "ng",
         "start": "node server.js",
-        "start:dev": "npm run config -- && ng serve --aot",
+        "start:dev": "npm run config -- && ng serve --aot --proxy-config proxy.conf.json",
         "build": "npm run config -- && ng build --aot",
         "build:heroku": "npm run config -- && ng build --aot --configuration=staging --prod",
         "test": "npm run config -- && ng test --code-coverage",

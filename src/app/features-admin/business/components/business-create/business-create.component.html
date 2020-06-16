@@ -1,3 +1,4 @@
+<app-admin-second-header [title]="'admin.business.title_create_business'" [menus]="menuHeader"></app-admin-second-header>
 <div class="row">
     <div class="col-md">
         <div *ngIf="(categoriesLoading$ | async)" class="alert alert-danger" role="alert">
@@ -5,7 +6,6 @@
         </div>
 
         <div *ngIf="(categoriesLoading$ | async) != null">
-            <app-admin-second-header [title]="'admin.business.title_create_business'" [menus]="menuHeader"></app-admin-second-header>
             <div><small>{{'admin.business.form_message_required_fields' | translate}}</small></div> <br>
             <form [formGroup]="businessForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
@@ -118,5 +118,7 @@
             </form>
         </div>
     </div>
-    <div class="col-md"></div>
+    <div class="col-md">
+        <app-upload-file></app-upload-file>
+    </div>
 </div>
