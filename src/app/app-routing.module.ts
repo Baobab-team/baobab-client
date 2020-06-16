@@ -36,7 +36,7 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     data: {
-      title: 'Bienvenue'
+      title: 'admin.title_home'
     },
     loadChildren: () =>
       import('./features-admin/home/home.module').then(
@@ -47,7 +47,7 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     data: {
-      title: 'Category'
+      title: 'admin.category.title_category'
     },
     loadChildren: () =>
       import('./features-admin/category/category.module').then(
@@ -58,7 +58,7 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     data: {
-      title: 'Restaurant'
+      title: 'admin.business.title_business'
     },
     loadChildren: () =>
       import('./features-admin/business/business.module').then(
@@ -75,4 +75,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor() {}
+ }

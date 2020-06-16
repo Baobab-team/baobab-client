@@ -27,12 +27,12 @@ export class BusinessCreateComponent implements OnInit, OnDestroy {
   submitted = false;
   menuHeader = [
     {
-      title: 'admin.business.link_add_business',
-      link: '/admin/business'
-    },
-    {
       title: 'admin.business.link_list_business',
       link: '/admin/businesses'
+    },
+    {
+      title: 'admin.business.link_add_business',
+      link: '/admin/business'
     }
   ];
 
