@@ -5,6 +5,7 @@ import { LOG_TYPES } from '@Models/log.model';
 const businessInitialState: BusinessState = {
   data: [],
   search: undefined,
+  autocompleteData: [],
   businessId: NaN,
   business: undefined,
   loading: false,
@@ -31,6 +32,19 @@ export function BusinessReducer(
         loaded: true,
         data: action.payload
       };
+      case BusinessModule.ActionTypes.LOAD_SEARCH_AUTOCOMPLETE_BUSINESS:
+        return {
+          ...state,
+          search: action.payload,
+          loading: true
+        };
+      case BusinessModule.ActionTypes.SUCCESS_SEARCH_AUTOCOMPLETE_BUSINESS:
+        return {
+          ...state,
+          loading: false,
+          loaded: true,
+          autocompleteData: action.payload
+        };
     case BusinessModule.ActionTypes.LOAD_DETAIL_BUSINESS:
       return {
         ...state,

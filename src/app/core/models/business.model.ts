@@ -106,6 +106,7 @@ export interface Business {
 export interface BusinessState {
   data?: Business[];
   search?: Search;
+  autocompleteData: string[];
   businessId: number;
   business: Business;
   loading: boolean;

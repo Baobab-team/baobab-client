@@ -9,6 +9,9 @@ export namespace BusinessModule {
     // search business
     LOAD_SEARCH_BUSINESS = '[Business] Load Search Business',
     SUCCESS_SEARCH_BUSINESS = '[Business] Success Search Business',
+    // search autocomplete business
+    LOAD_SEARCH_AUTOCOMPLETE_BUSINESS = '[Business] Load Autocomplete Search Business',
+    SUCCESS_SEARCH_AUTOCOMPLETE_BUSINESS = '[Business] Success Autocomplete Search Business',
     // detail business
     LOAD_DETAIL_BUSINESS = '[Business] Load Detail Business',
     SUCCESS_DETAIL_BUSINESS = '[Business] Success Detail Business',
@@ -35,6 +38,23 @@ export namespace BusinessModule {
     readonly type = ActionTypes.SUCCESS_SEARCH_BUSINESS;
     payload: Business[];
     constructor(payload: Business[]) {
+      this.payload = payload;
+    }
+  }
+
+    // search autocomplete business
+  export class LoadSearchAutocompleteBusiness {
+    readonly type = ActionTypes.LOAD_SEARCH_AUTOCOMPLETE_BUSINESS;
+    payload: Search;
+    constructor(payload: Search) {
+      this.payload = payload;
+    }
+  }
+
+  export class SuccessSearchAutocompleteBusiness {
+    readonly type = ActionTypes.SUCCESS_SEARCH_AUTOCOMPLETE_BUSINESS;
+    payload: string[];
+    constructor(payload: string[]) {
       this.payload = payload;
     }
   }
@@ -93,11 +113,13 @@ export namespace BusinessModule {
 
   export type Actions = LoadSearchBusiness
                         | SuccessSearchBusiness
-                        | ErrorBusinessAction
+                        | LoadSearchAutocompleteBusiness
+                        | SuccessSearchAutocompleteBusiness
                         | LoadDetailBusiness
                         | SuccessDetailBusiness
                         | SuccessCreateBusiness
                         | LoadCreateBusiness
                         | LoadDeleteBusiness
-                        | SuccessDeleteBusiness;
+                        | SuccessDeleteBusiness
+                        | ErrorBusinessAction;
 }

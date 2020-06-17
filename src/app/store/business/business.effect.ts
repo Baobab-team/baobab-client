@@ -16,6 +16,15 @@ export class BusinessEffects {
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 
+  @Effect() LoadSearchAutocompleteBusiness$: Observable<BusinessModule.Actions> = this.actions$
+  .pipe(
+    ofType<BusinessModule.LoadSearchAutocompleteBusiness>(BusinessModule.ActionTypes.LOAD_SEARCH_AUTOCOMPLETE_BUSINESS),
+    switchMap((LoadSearchAutocompleteBusiness: BusinessModule.LoadSearchAutocompleteBusiness) =>
+      this.businessService.getBusinessAutocomplete(LoadSearchAutocompleteBusiness.payload)),
+    map(businesses => new BusinessModule.SuccessSearchAutocompleteBusiness(businesses)),
+    catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
+  );
+
   @Effect() LoadDetailBusiness$: Observable<BusinessModule.Actions> = this.actions$
   .pipe(
     ofType<BusinessModule.LoadDetailBusiness>(BusinessModule.ActionTypes.LOAD_DETAIL_BUSINESS),
