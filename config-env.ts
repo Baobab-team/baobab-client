@@ -23,6 +23,7 @@ export const environment = {
   paths_api: {
     businesses: 'businesses',
     categories: 'categories',
+    autocomplete: 'autocomplete',
   },
   defaultLanguage: 'fr',
   supportedLanguages: ['fr', 'en'],

@@ -15,7 +15,7 @@ import { BusinessModule } from '@Store/business/business.action';
 })
 export class SearchBusinessComponent implements OnInit, OnDestroy {
   public businessesloading$: Observable<boolean>;
-  public businesses$: Observable<Business[]>;
+  public businesses$: Observable<(string | Business)[]>;
   public unsubsscribe$ = new Subject<void>();
 
   constructor(
