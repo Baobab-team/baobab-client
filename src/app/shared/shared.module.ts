@@ -17,6 +17,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { AdminSecondHeaderComponent } from './components/admin-second-header/admin-second-header.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ModalComponentComponent } from './components/modal-component/modal-component.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ModalComponentComponent } from './components/modal-component/modal-comp
     DatatableComponent,
     AdminSecondHeaderComponent,
     TruncatePipe,
-    ModalComponentComponent
+    ModalComponentComponent,
+    LoadingComponent
   ],
   imports: [
     SharedModule.MODULE_LIST,
@@ -46,6 +48,7 @@ import { ModalComponentComponent } from './components/modal-component/modal-comp
     HeaderPageAdminComponent,
     DatatableComponent,
     ModalComponentComponent,
+    LoadingComponent,
 
     TruncatePipe,
 
