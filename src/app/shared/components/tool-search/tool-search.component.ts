@@ -52,20 +52,19 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
           querySearch: searchText,
           exclude_deleted: true
         } as Search));
-
-        return this.businessesAutocomplete$;
+        if (searchText !== '') {
+          return this.businessesAutocomplete$;
+        }
+        return null;
       }),
       catchError(async (err) => console.log(err))
     )
-
-  formatter = (x: string) => x;
 
   constructor(
     private formBuilder: RxFormBuilder,
     private activateRoute: ActivatedRoute,
     config: NgbTypeaheadConfig,
     private store: Store<any>,
-    private businessService: BusinessService
   ) {
     // config.showHint = true;
 

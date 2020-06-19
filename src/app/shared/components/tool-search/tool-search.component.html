@@ -3,7 +3,7 @@
         <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
             <div class="form-row align-items-center">
                 <div class="mb-3 input-group" [ngClass]="(bigForm) ? 'input-group-lg' : ''">
-                    <input type="text" class="form-control search__form__input" placeholder="{{'shared.tool-search.form_label_search' | translate}}" formControlName="querySearch" [ngbTypeahead]="searchAutocomplete" [resultTemplate]="rt" [inputFormatter]="formatter" #querySearch>
+                    <input type="text" class="form-control search__form__input" placeholder="{{'shared.tool-search.form_label_search' | translate}}" formControlName="querySearch" [ngbTypeahead]="searchAutocomplete" [resultTemplate]="rt" #querySearch>
                     <div class="input-group-append">
                         <button [disabled]="!searchForm.valid" class="btn btn-primary" type="submit">
                           {{'shared.tool-search.form_btn_search' | translate}}
