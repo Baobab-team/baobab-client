@@ -11,22 +11,14 @@ if (environment === 'staging') {
   apiURL = process.env.BASEAPIURL_STAGING;
   targetPath = `./src/environments/environment.staging.ts`;
 } else if (environment === 'dev') {
- apiURL = process.env.BASEAPIURL_DEV;
- targetPath = `./src/environments/environment.ts`;
+  apiURL = process.env.BASEAPIURL_DEV;
+  targetPath = `./src/environments/environment.ts`;
 }
 
 const envConfigFile = `
 export const environment = {
   production: ${process.env.PRODUCTION},
   baseApiUrl: '${apiURL}',
-  apiVersion: 'api_v1',
-  paths_api: {
-    businesses: 'businesses',
-    categories: 'categories',
-    autocomplete: 'autocomplete',
-  },
-  defaultLanguage: 'fr',
-  supportedLanguages: ['fr', 'en'],
 };
 `;
 
