@@ -2,9 +2,9 @@ import { Search } from '@Models/search.model';
 import { Business } from '@Models/business.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment} from '../../../environments';
+import { environment} from 'environments';
 import {Observable} from 'rxjs';
-import { CoreService } from '../../core/services';
+import { CoreService } from '@Services/core.service';
 
 
 @Injectable({
