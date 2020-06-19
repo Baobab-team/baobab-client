@@ -27,6 +27,15 @@ export class BusinessService extends CoreService {
     );
   }
 
+  public getBusinessAutocomplete(params: Search): Observable<string[]>  {
+    return this.httpClient.get<string[]>(
+      this.BASE_URL_API + '/' + environment.paths_api.businesses + '/' + environment.paths_api.autocomplete,
+      {
+        params: this.toHttpParams(params)
+      }
+    );
+  }
+
   public getBusiness(id: number): Observable<Business> {
     return this.httpClient.get<Business>(
       this.BASE_URL_API + '/' + environment.paths_api.businesses + '/' + id,

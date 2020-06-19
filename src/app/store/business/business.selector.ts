@@ -18,6 +18,20 @@ export const selectBusinessLoaded$ = createSelector(
   (businesses) => businesses.loaded
 );
 
+// autocomplete business list
+export const selectAutocompleteBusinesses$ = createSelector(
+  selectBusinessState$,
+  (businesses) => businesses.autocompleteData
+);
+export const selectAutocompleteBusinessLoading$ = createSelector(
+  selectBusinessState$,
+  (businesses) => businesses.loading
+);
+export const selectAutocompleteBusinessLoaded$ = createSelector(
+  selectBusinessState$,
+  (businesses) => businesses.loaded
+);
+
 // select business detail
 export const selectBusinessDetail$ = createSelector(
   selectBusinessState$,

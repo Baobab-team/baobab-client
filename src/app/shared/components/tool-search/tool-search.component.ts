@@ -1,3 +1,4 @@
+import { BusinessModule } from '@Store/business/business.action';
 import {
   AfterViewInit,
   Component,
@@ -6,34 +7,80 @@ import {
   Input,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation,
+  OnDestroy
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BUSINESS_STATUSES } from '@Models/business.model';
+import { BUSINESS_STATUSES, Business } from '@Models/business.model';
 import { Search } from '@Models/search.model';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-
+import {debounceTime, switchMap, catchError, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { Observable, Subject, of } from 'rxjs';
+import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
+import { Store, select } from '@ngrx/store';
+import { selectAutocompleteBusinesses$, selectAutocompleteBusinessLoading$ } from '@Store/business/business.selector';
 
 @Component({
   selector: 'app-tool-search',
   templateUrl: './tool-search.component.html',
-  styleUrls: ['./tool-search.component.scss']
+  styleUrls: ['./tool-search.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  providers: [NgbTypeaheadConfig]
 })
-export class ToolSearchComponent implements OnInit, AfterViewInit {
+export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() bigForm = true;
   @Input() optionsFields = false;
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onSearch = new EventEmitter<Search>();
   @ViewChild('querySearch', {static: false}) querySearch: ElementRef;
 
+  businessesAutocomplete$: Observable<string[] | Business[]>;
+  businessesAutocompleteloading$: Observable<boolean>;
   searchForm: FormGroup;
-  // keys = Object.keys;
+  unsubsscribe$ = new Subject<void>();
+
+  searchAutocomplete = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      switchMap((searchText) =>  {
+        if (searchText !== null) {
+          this.store.dispatch(new BusinessModule.LoadSearchAutocompleteBusiness({
+            querySearch: searchText,
+            status: [BUSINESS_STATUSES.ACCEPTED],
+            exclude_deleted: true
+          } as Search));
+          return this.businessesAutocomplete$;
+        }
+        return of(null);
+      }),
+      catchError(async (err) => console.log(err))
+    )
 
   constructor(
     private formBuilder: RxFormBuilder,
-    private activateRoute: ActivatedRoute
-  ) { }
+    private activateRoute: ActivatedRoute,
+    config: NgbTypeaheadConfig,
+    private store: Store<any>,
+  ) {
+    // config.showHint = true;
+
+    this.businessesAutocompleteloading$ = store.pipe(
+      select(selectAutocompleteBusinessLoading$),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.businessesAutocomplete$ = store.pipe(
+      select(selectAutocompleteBusinesses$),
+      takeUntil(this.unsubsscribe$)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.unsubsscribe$.next();
+    this.unsubsscribe$.complete();
+  }
 
   ngOnInit() {
     this.initForm();
