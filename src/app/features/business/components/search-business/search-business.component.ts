@@ -7,6 +7,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import { BusinessModule } from '@Store/business/business.action';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-business',
@@ -41,23 +42,13 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
     this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams()));
   }
 
-  getParams(): Search {
-    return new Search(
-        this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
-        [BUSINESS_STATUSES.ACCEPTED]
-      );
-  }
-
   onSubmit(params: Search) {
     this.router.navigate(
       ['/search'],
       {queryParams: params}
     ).then(
-      (data) => {
-        (data) ?
-        this.store.dispatch(new BusinessModule.LoadSearchBusiness(params))
-        // TODO: cette partie sera améliorée lors de la gestion des notifications
-        :  console.error('une erreur est survenue lors de votre recherche');
+      () => {
+        this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams(params)));
     });
   }
 
@@ -65,6 +56,21 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
     // this.store.dispatch(new BusinessModule.LoadDetailBusiness(business));
     this.router.navigate(
       ['/detail', businessId],
+    );
+  }
+
+  private getParams(param?): Search {
+    if (param) {
+      return new Search({
+        ...param,
+        status: [BUSINESS_STATUSES.ACCEPTED],
+        exclude_deleted: true
+      });
+    }
+    return new Search(
+      this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
+      [BUSINESS_STATUSES.ACCEPTED],
+      true
     );
   }
 }

@@ -1,5 +1,4 @@
 import { BusinessModule } from '@Store/business/business.action';
-import { BusinessService } from '@Store/business/business.service';
 import {
   AfterViewInit,
   Component,
@@ -18,11 +17,10 @@ import { BUSINESS_STATUSES, Business } from '@Models/business.model';
 import { Search } from '@Models/search.model';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import {debounceTime, switchMap, catchError, distinctUntilChanged, takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Store, select } from '@ngrx/store';
 import { selectAutocompleteBusinesses$, selectAutocompleteBusinessLoading$ } from '@Store/business/business.selector';
-
 
 @Component({
   selector: 'app-tool-search',
@@ -48,14 +46,15 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
       debounceTime(200),
       distinctUntilChanged(),
       switchMap((searchText) =>  {
-        this.store.dispatch(new BusinessModule.LoadSearchAutocompleteBusiness({
-          querySearch: searchText,
-          exclude_deleted: true
-        } as Search));
-        if (searchText !== '') {
+        if (searchText !== null) {
+          this.store.dispatch(new BusinessModule.LoadSearchAutocompleteBusiness({
+            querySearch: searchText,
+            status: [BUSINESS_STATUSES.ACCEPTED],
+            exclude_deleted: true
+          } as Search));
           return this.businessesAutocomplete$;
         }
-        return null;
+        return of(null);
       }),
       catchError(async (err) => console.log(err))
     )
