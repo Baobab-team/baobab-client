@@ -68,7 +68,6 @@ export class SharedModule {
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    NgbModule,
     TranslateModule,
     RxReactiveFormsModule,
     DataTablesModule,
