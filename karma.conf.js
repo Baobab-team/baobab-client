@@ -27,7 +27,7 @@ module.exports = function(config) {
                 flags: ['--no-sandbox']
             }
         },
-        port: 4200,
+        port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
