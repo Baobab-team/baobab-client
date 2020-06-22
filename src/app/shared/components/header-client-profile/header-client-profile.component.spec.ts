@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderClientProfileComponent } from './header-client-profile.component';
 
+
 describe('HeaderClientProfileComponent', () => {
   let component: HeaderClientProfileComponent;
   let fixture: ComponentFixture<HeaderClientProfileComponent>;
