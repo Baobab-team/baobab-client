@@ -53,7 +53,6 @@ import { LoadingComponent } from './components/loading/loading.component';
     TruncatePipe,
 
     CommonModule,
-    NgbModule,
     TranslateModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,

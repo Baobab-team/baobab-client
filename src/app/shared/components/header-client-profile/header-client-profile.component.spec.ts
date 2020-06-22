@@ -8,7 +8,7 @@ describe('HeaderClientProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderClientProfileComponent ]
+      declarations: [ HeaderClientProfileComponent ],
     })
     .compileComponents();
   }));
