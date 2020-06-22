@@ -9,6 +9,8 @@
         "build": "npm run config -- && ng build --aot",
         "build:heroku": "npm run config -- && ng build --aot --configuration=staging --prod",
         "test": "npm run config -- && ng test --code-coverage",
+        "build:ci": "npm run config -- && ng build --aot --prod --sourceMap=false --base-href baobab-client",
+        "test:ci": "ng test --watch=false --code-coverage --source-map true",
         "lint": "ng lint",
         "e2e": "ng e2e",
         "postbuild": "npm run build:heroku",
