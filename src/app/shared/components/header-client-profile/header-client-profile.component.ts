@@ -15,7 +15,6 @@ export class HeaderClientProfileComponent implements OnInit {
   isAdmin = false;
 
   constructor(
-    private router: Router,
     config: NgbDropdownConfig
   ) {
     config.placement = 'bottom';

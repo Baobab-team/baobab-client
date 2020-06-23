@@ -10,7 +10,11 @@ module.exports = function(config) {
             require('karma-chrome-launcher'),
             require('karma-jasmine-html-reporter'),
             require('karma-coverage-istanbul-reporter'),
-            require('@angular-devkit/build-angular/plugins/karma')
+            require('@angular-devkit/build-angular/plugins/karma'),
+        ],
+        files: [
+            { pattern: './node_modules/jquery/dist/jquery.min.js', watched: false },
+            { pattern: './node_modules/datatables.net/js/jquery.dataTables.js', watched: false }
         ],
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -27,11 +31,11 @@ module.exports = function(config) {
                 flags: ['--no-sandbox']
             }
         },
-        port: 4200,
+        port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['Chrome'],
+        browsers: ['Chrome', 'ChromeHeadless'],
         singleRun: false,
         restartOnFileChange: true
     });

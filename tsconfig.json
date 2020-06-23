@@ -29,6 +29,7 @@
       "dom"
     ],
     "types": [
+      "jasmine",
       "node"
     ],
   },
