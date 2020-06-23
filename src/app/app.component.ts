@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from '../environments/environment';
-import { Const } from 'environments/const'
+import { Const } from 'environments/const';
 import {I18nService} from '@Services/i18n.service';
 import {Logger} from './core/services/logger.service';
-import * as $ from 'jquery';
 
+declare var $: any;
 
 /** Initialize Logger */
 const log = new Logger('app.component');
