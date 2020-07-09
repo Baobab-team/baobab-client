@@ -50,3 +50,7 @@ Thumbs.db
 
 # environement variables
 .env
+
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
+/src/environments/environment.staging.ts
