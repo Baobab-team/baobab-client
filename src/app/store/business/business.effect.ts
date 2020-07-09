@@ -8,6 +8,7 @@ import { BusinessService } from './business.service';
 
 @Injectable()
 export class BusinessEffects {
+  // search businesses
   @Effect() LoadSearchBusiness$: Observable<BusinessModule.Actions> = this.actions$
   .pipe(
     ofType<BusinessModule.LoadSearchBusiness>(BusinessModule.ActionTypes.LOAD_SEARCH_BUSINESS),
@@ -33,14 +34,25 @@ export class BusinessEffects {
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 
+  // save business
   @Effect() LoadCreateBusiness$: Observable<BusinessModule.Actions> = this.actions$
   .pipe(
     ofType<BusinessModule.LoadCreateBusiness>(BusinessModule.ActionTypes.LOAD_CREATE_BUSINESS),
-    switchMap((businessId: BusinessModule.LoadCreateBusiness) => this.businessService.saveBusiness(businessId.payload)),
+    switchMap((business: BusinessModule.LoadCreateBusiness) => this.businessService.saveBusiness(business.payload)),
     map(business => new BusinessModule.SuccessCreateBusiness(business)),
     catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
   );
 
+  // save csv business
+  @Effect() LoadCreateCsvBusiness$: Observable<BusinessModule.Actions> = this.actions$
+  .pipe(
+    ofType<BusinessModule.LoadCreateCsvBusiness>(BusinessModule.ActionTypes.LOAD_CREATE_CSV_BUSINESS),
+    switchMap((file: BusinessModule.LoadCreateCsvBusiness) => this.businessService.saveCsvBusiness(file.payload)),
+    map(business => new BusinessModule.SuccessCreateCsvBusiness(business)),
+    catchError((err) => of(new BusinessModule.ErrorBusinessAction(err)))
+  );
+
+  // delete business
   @Effect() LoadDeleteBusiness$: Observable<BusinessModule.Actions> = this.actions$
   .pipe(
     ofType<BusinessModule.LoadDeleteBusiness>(BusinessModule.ActionTypes.LOAD_DELETE_BUSINESS),

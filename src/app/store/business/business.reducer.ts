@@ -61,12 +61,33 @@ export function BusinessReducer(
     case BusinessModule.ActionTypes.LOAD_CREATE_BUSINESS:
       return {
         ...state,
-        loading: false
+        loading: true
       };
     case BusinessModule.ActionTypes.SUCCESS_CREATE_BUSINESS:
       return {
         ...state,
         loading: false,
+        loaded: true,
+        log: {
+          type: LOG_TYPES.SUCCESS,
+          message: 'admin.business.log.success'
+        },
+        data: [
+          ...state.data,
+          action.payload
+        ]
+      };
+
+    case BusinessModule.ActionTypes.LOAD_CREATE_CSV_BUSINESS:
+      return {
+        ...state,
+        loading: true
+      };
+    case BusinessModule.ActionTypes.SUCCESS_CREATE_CSV_BUSINESS:
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
         log: {
           type: LOG_TYPES.SUCCESS,
           message: 'admin.business.log.success'

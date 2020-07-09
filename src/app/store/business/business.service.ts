@@ -48,6 +48,12 @@ export class BusinessService extends CoreService {
     );
   }
 
+  public saveCsvBusiness(csv: FormData): Observable<any> {
+    return this.httpClient.post<Business>(
+      this.BASE_URL_API + '/' + environment.paths_api.businesses_upload, csv
+    );
+  }
+
   public deleteBusiness(id: number): Observable<Business> {
     return this.httpClient.delete<Business>(
       this.BASE_URL_API + '/' + Const.paths_api.businesses + '/' + id,
