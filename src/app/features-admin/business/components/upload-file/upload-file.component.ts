@@ -19,8 +19,6 @@ import { takeUntil, tap } from 'rxjs/operators';
 export class UploadFileComponent implements OnInit, OnDestroy {
   readonly business$: Observable<Business[]>;
   readonly businessLog$: Observable<Log>;
-
-  uploadBusinessForm: FormGroup;
   submitted = false;
   unsubsscribe$ = new Subject<void>();
   uploadedFiles: Array<File>;
@@ -41,10 +39,9 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     this.businessLog$ = store.pipe(
       select(selectBusinessErrors$),
       tap((dialog) => {
-        console.log(dialog)
-        // if (!dialog && !this.submitted) {
-        //   return;
-        // }
+        if (!dialog && !this.submitted) {
+          return;
+        }
         // if (dialog.type === LOG_TYPES.ERROR) {
         //   this.toastr.error(dialog.message);
         // } else {

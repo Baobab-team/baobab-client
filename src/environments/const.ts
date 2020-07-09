@@ -5,6 +5,7 @@ export const Const = {
   paths_api: {
     businesses: 'businesses',
     categories: 'categories',
-    autocomplete: 'autocomplete'
+    autocomplete: 'autocomplete',
+    businesses_upload: 'businesses/uploads',
   },
 };
