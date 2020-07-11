@@ -48,6 +48,16 @@ export const selectBusinessCreate$ = createSelector(
   (business) => business.data
 );
 
+// csv business create
+export const selectCsvBusinessCreateLoading$ = createSelector(
+  selectBusinessState$,
+  (business) => business.business
+);
+export const selectCsvBusinessCreate$ = createSelector(
+  selectBusinessState$,
+  (business) => business.data
+);
+
 // business error
 export const selectBusinessErrors$ = createSelector(
   selectBusinessState$,

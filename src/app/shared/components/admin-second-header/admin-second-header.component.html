@@ -1,10 +1,12 @@
-<div class="d-inline-flex mb-4 second-header">
-    <h3 class="second-header__title">
-        {{title | translate}}
-    </h3>
-    <ul class="pt-2 second-header__menus">
-        <li class="float-left pl-2  pr-2 second-header__menus__item" *ngFor="let menu of menus">
-            <a routerLink="{{menu.link}}" routerLinkActive="active">{{menu.title | translate}}</a>
-        </li>
-    </ul>
+<div class="row">
+    <div class="d-inline-flex mb-4 second-header">
+        <h3 class="second-header__title">
+            {{title | translate}}
+        </h3>
+        <ul class="pt-2 second-header__menus">
+            <li class="float-left pl-2  pr-2 second-header__menus__item" *ngFor="let menu of menus">
+                <a routerLink="{{menu.link}}" routerLinkActive="active">{{menu.title | translate}}</a>
+            </li>
+        </ul>
+    </div>
 </div>

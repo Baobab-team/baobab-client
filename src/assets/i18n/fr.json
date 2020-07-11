@@ -64,13 +64,20 @@
             },
             "form": {
                 "title": "Crée une affaire",
-                "button_submit": "Envoyer"
+                "title_list_category": "Liste catégories",
+                "button_submit": "Envoyer",
+                "upload-file": {
+                    "title": "Téléverser votre fichier CSV",
+                    "input-label": "Ajouter un fichier CSV",
+                    "submit": "Envoyer"
+                }
             },
             "log": {
                 "success": "Votre affaire est créee",
                 "error": "Erreur lors de la création de votre affaire"
             }
         },
+
         "category": {
             "title_category": "Categorie",
             "title_list_category": "Liste catégories",

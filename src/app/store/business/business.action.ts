@@ -18,6 +18,9 @@ export namespace BusinessModule {
     // create business
     LOAD_CREATE_BUSINESS = '[Business] Load Create Business',
     SUCCESS_CREATE_BUSINESS = '[Business] Success Create Business',
+    // create business with csv
+    LOAD_CREATE_CSV_BUSINESS = '[Business] Load Create csv Business',
+    SUCCESS_CREATE_CSV_BUSINESS = '[Business] Success Create csv Business',
     // delete business
     LOAD_DELETE_BUSINESS = '[Business] Load Delete Business',
     SUCCESS_DELETE_BUSINESS = '[Business] Success Delete Business',
@@ -93,6 +96,23 @@ export namespace BusinessModule {
     }
   }
 
+  // create csv business
+  export class SuccessCreateCsvBusiness {
+    readonly type = ActionTypes.SUCCESS_CREATE_CSV_BUSINESS;
+    payload: Business;
+    constructor(payload: Business) {
+      this.payload = payload;
+    }
+  }
+
+  export class LoadCreateCsvBusiness {
+    readonly type = ActionTypes.LOAD_CREATE_CSV_BUSINESS;
+    payload: FormData;
+    constructor(payload: FormData) {
+      this.payload = payload;
+    }
+  }
+
   // delete business
   export class SuccessDeleteBusiness {
     readonly type = ActionTypes.SUCCESS_DELETE_BUSINESS;
@@ -119,6 +139,8 @@ export namespace BusinessModule {
                         | SuccessDetailBusiness
                         | SuccessCreateBusiness
                         | LoadCreateBusiness
+                        | SuccessCreateCsvBusiness
+                        | LoadCreateCsvBusiness
                         | LoadDeleteBusiness
                         | SuccessDeleteBusiness
                         | ErrorBusinessAction;
