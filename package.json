@@ -37,6 +37,8 @@
         "@ngx-translate/http-loader": "^4.0.0",
         "@rxweb/reactive-form-validators": "^1.9.9-beta2",
         "admin-lte": "^3.0.1",
+        "ag-grid-angular": "^23.2.1",
+        "ag-grid-community": "^23.2.1",
         "bootstrap": "^4.4.1",
         "clear": "^0.1.0",
         "colors": "^1.4.0",
