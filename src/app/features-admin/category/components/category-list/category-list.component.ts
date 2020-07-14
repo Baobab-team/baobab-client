@@ -1,11 +1,10 @@
-import { LOG_TYPES, Log } from '@Models/log.model';
-import { Component, OnInit, OnDestroy, Renderer2 as Renderer, AfterViewInit } from '@angular/core';
+import { Log } from '@Models/log.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { Category } from '@Models/business.model';
 import { selectCategories$, selectCategoryErrors$, selectCategoryLoading$ } from '@Store/category/category.selector';
 import { takeUntil, tap } from 'rxjs/operators';
-import { initConfigDatatables, BTN_TYPE } from '@Models/datatable.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {Logger} from '@Services/logger.service';
@@ -17,15 +16,13 @@ const log = new Logger('category-list.component');
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CategoryListComponent implements OnInit, OnDestroy {
   readonly categoriesLoading$: Observable<boolean>;
   readonly categories$: Observable<Category[]>;
   readonly categoryLogs$: Observable<Log>;
   private unsubsscribe$ = new Subject<void>();
-  readonly columns = [
-    { prop: 'id', sortable: false },
-    { prop: 'name', name: 'Nom', sortable: true, dir: 'asc' },
-  ];
+  private gridApi;
+
   readonly menuHeader = [
     {
       title: 'shared.menu-left-admin.link_list_categories',
@@ -36,30 +33,22 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
       link: '/admin/categories/create'
     }
   ];
-  readonly dtOptions = {
-    ...initConfigDatatables,
-    columns: [
-      {
-        title: 'Name',
-        data: 'name'
-      }, {
-        title: 'Actions',
-        data: 'id',
-        width: '140',
-        render(data, type, full) {
-          return `
-          <a class="btn btn-sm btn-link" category-id="` + data + `" btn-type="` + BTN_TYPE.VIEW + `">view</a>
-          <a class="btn btn-sm btn-link" category-id="` + data + `" btn-type="` + BTN_TYPE.EDIT + `">edit</a>
-          <a class="btn btn-sm btn-link" category-id="` + data + `" btn-type="` + BTN_TYPE.DELETE + `">delete</a>`;
-        }
-      }
-    ]
+  readonly defaultColDef = {
+    flex: 1,
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
   };
+  columnDefs = [
+    {
+      headerName: 'Nom',
+      field: 'name'
+    }
+  ];
 
   constructor(
     private store: Store<any>,
     private toastr: ToastrService,
-    private renderer: Renderer,
     private router: Router
   ) {
     this.categoriesLoading$ = store.pipe(
@@ -76,9 +65,6 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
         if (!dialog) {
           return;
         }
-        if (dialog.type === LOG_TYPES.ERROR) {
-          this.toastr.error(dialog.message);
-        }
       }),
       takeUntil(this.unsubsscribe$)
     );
@@ -92,32 +78,10 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     log.debug('init');
-    this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
-      return this.categories$.subscribe(
-        (data) => {
-          callback({
-            data
-          });
-      });
-    };
   }
 
-  ngAfterViewInit(): void {
-    this.renderer.listen('document', 'click', (event) => {
-      if (event.target.getAttribute('category-id')) {
-        const categoryId = event.target.getAttribute('category-id');
-        const btnType = event.target.getAttribute('btn-type');
-
-        if (btnType === BTN_TYPE.VIEW) {
-          console.log(BTN_TYPE.VIEW, categoryId);
-          // this.router.navigate(['/admin/restaurants/' + businessId]);
-        } else if (btnType === BTN_TYPE.EDIT) {
-          console.log(BTN_TYPE.EDIT, categoryId);
-        } else if (btnType === BTN_TYPE.DELETE) {
-          console.log(BTN_TYPE.DELETE, categoryId);
-        }
-      }
-    });
+  onGridReady(params) {
+    this.gridApi = params.api;
   }
 
 }
