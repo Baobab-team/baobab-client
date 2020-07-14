@@ -1,8 +1,13 @@
-<div class="business-list">
-    <app-admin-second-header [title]="'admin.business.title_list_business'" [menus]="menuHeader"></app-admin-second-header>
-
-    <div class="table-responsive">
-        <table datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions" class="table table-striped table-bordered table-hover row-border">
-        </table>
-    </div>
+<div class="full-height business">
+  <app-admin-second-header [title]="'admin.business.title_list_business'" [menus]="menuHeader"></app-admin-second-header>
+  <div class="business__datatable">
+    <ag-grid-angular
+      class="ag-theme-alpine business__datatable__table"
+      [rowData]="businesses$ | async"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+  </div>
 </div>

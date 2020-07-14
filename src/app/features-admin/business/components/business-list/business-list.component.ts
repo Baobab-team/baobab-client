@@ -1,18 +1,16 @@
-import { ModalComponentComponent } from '../../../../shared/components/modal-component/modal-component.component';
+import { ModalComponentComponent } from '../../../../shared';
 import { BusinessModule } from '@Store/business/business.action';
 import { Log, LOG_TYPES } from '@Models/log.model';
 import { Business } from '@Models/business.model';
 import { Store, select } from '@ngrx/store';
-import { Component, OnInit, OnDestroy, AfterViewInit, Renderer2 as Renderer, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 as Renderer } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { selectBusinessLoading$, selectBusinesses$, selectBusinessErrors$ } from '@Store/business/business.selector';
 import { takeUntil, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { BTN_TYPE } from '@Models/datatable.model';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Modal } from '@Models/modal.model';
-import { DataTableDirective } from 'angular-datatables';
 import {Logger} from '@Services/logger.service';
 
 const log = new Logger('business-list.component');
@@ -22,10 +20,9 @@ const log = new Logger('business-list.component');
   templateUrl: './business-list.component.html',
   styleUrls: ['./business-list.component.scss']
 })
-export class BusinessListComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild(DataTableDirective, {static: false})
-  datatableElement: DataTableDirective;
-  dtTrigger = new Subject();
+export class BusinessListComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
+  private gridApi;
   readonly menuHeader = [
     {
       title: 'admin.business.link_list_business',
@@ -36,11 +33,42 @@ export class BusinessListComponent implements OnInit, OnDestroy, AfterViewInit {
       link: '/admin/business'
     }
   ];
-  private unsubscribe$ = new Subject<void>();
   readonly businessesLoading$: Observable<boolean>;
   readonly businesses$: Observable<Business[]>;
   readonly businessLogs$: Observable<Log>;
-  dtOptions: DataTables.Settings = {};
+  readonly defaultColDef = {
+    flex: 1,
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+  };
+  columnDefs = [
+    {
+      headerName: 'Nom',
+      field: 'name'
+    },
+    {
+      headerName: 'Categorie',
+      field: 'category',
+      valueFormatter: this.categoryFormater
+    },
+    {
+      headerName: 'capacite',
+      field: 'capacity',
+    },
+    {
+      headerName: 'Email',
+      field: 'email',
+    },
+    {
+      headerName: 'Site web',
+      field: 'website',
+    },
+    {
+      headerName: 'Status',
+      field: 'status',
+    }
+  ];
 
   constructor(
     private store: Store<any>,
@@ -75,37 +103,19 @@ export class BusinessListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.businessLogs$.subscribe();
   }
 
-  ngAfterViewInit(): void {
-    this.dtTrigger.next();
-    this.renderer.listen('document', 'click', (event) => {
-      const businessId = event.target.getAttribute('data-business-id');
-      const businessName = event.target.getAttribute('data-business-name');
-      const btnType = event.target.getAttribute('btn-type');
-
-      if (businessId) {
-
-        if (btnType === BTN_TYPE.VIEW) {
-          this.router.navigate(['/admin/business/details'], { queryParams: {id: businessId} });
-        } else if (btnType === BTN_TYPE.EDIT) {
-          console.log(BTN_TYPE.EDIT, businessId);
-        } else if (btnType === BTN_TYPE.DELETE) {
-          this.deleteBusiness(+businessId, businessName);
-        }
-      }
-    });
-  }
-
   ngOnInit() {
     log.debug('init');
-    this.getDatatableOption();
-    this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
-      return this.businesses$.subscribe(
-        (data) => {
-          callback({
-            data
-          });
-      });
-    };
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+  }
+
+  categoryFormater(param) {
+    if (param.value) {
+      return param.value.name;
+    }
+    return undefined;
   }
 
   private deleteBusiness(businessId: number, businessName: string) {
@@ -115,74 +125,12 @@ export class BusinessListComponent implements OnInit, OnDestroy, AfterViewInit {
       if (result) {
         this.store.dispatch(new BusinessModule.LoadDeleteBusiness(businessId));
         this.toastr.success('Actualisez la page pour mettre a jour votre tableau', 'Suppression reussie');
-        this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-          // TODO: find how reload datatable after one delete
-          dtInstance.destroy();
-          // this.dtTrigger.next();
-          // dtInstance.draw();
-        });
-        // setTimeout(() => {
-        //     this.dtTrigger.next();
-        // });
       }
     });
-  }
-
-  private getDatatableOption(): void {
-    this.dtOptions = {
-      destroy: true,
-      columns: [
-        {
-          title: 'Name',
-          data: 'name'
-        }, {
-          title: 'Categorie',
-          data: 'category',
-          render(data, type, row) {
-            return data.name;
-          }
-        }, {
-          title: 'Capacity',
-          data: 'capacity'
-        }, {
-          title: 'Email',
-          data: 'email'
-        }, {
-          title: 'Website',
-          data: 'website'
-        }, {
-          title: 'Status',
-          data: 'status'
-        }, {
-          title: 'Actions',
-          data: 'id',
-          width: '14%',
-          render(data, type, full) {
-            return `
-              <ul class="list-inline mb-0">
-                <li class="list-inline-item mr-0">
-                  <a class="btn btn-sm btn-link"
-                    data-business-id="` + data + `" data-business-name="` + full.name + `" btn-type="` + BTN_TYPE.VIEW + `">view</a>
-                </li>
-                <li class="list-inline-item mr-0">
-                  <a class="btn btn-sm btn-link"
-                    data-business-id="` + data + `" data-business-name="` + full.name + `" btn-type="` + BTN_TYPE.EDIT + `">edit</a>
-                </li>
-                <li class="list-inline-item mr-0">
-                  <a class="btn btn-sm btn-link"
-                    data-business-id="` + data + `" data-business-name="` + full.name + `" btn-type="` + BTN_TYPE.DELETE + `">delete</a>
-                  </li>
-              <ul>
-            `;
-          }
-        }
-      ]
-    };
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-    this.dtTrigger.unsubscribe();
   }
 }
