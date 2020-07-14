@@ -1,7 +1,5 @@
-import { from } from 'rxjs';
 
 export * from './components/admin-second-header/admin-second-header.component';
-export * from './components/datatable/datatable.component';
 export * from './components/footer/footer.component';
 export * from './components/header/header.component';
 export * from './components/header-admin/header-admin.component';

@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { LayoutsModule } from './layouts';
 import { TranslateLoader, TranslateModule, TranslateCompiler } from '@ngx-translate/core';
