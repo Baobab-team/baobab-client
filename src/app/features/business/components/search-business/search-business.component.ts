@@ -7,7 +7,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import { BusinessModule } from '@Store/business/business.action';
-import { TranslateService } from '@ngx-translate/core';
+import {Logger} from '@Services/logger.service';
+
+const log = new Logger('search-business.component');
 
 @Component({
   selector: 'app-search-business',
@@ -39,10 +41,12 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    log.debug('init');
     this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams()));
   }
 
   onSubmit(params: Search) {
+    log.debug('run search:', params.querySearch);
     this.router.navigate(
       ['/search'],
       {queryParams: params}
@@ -53,10 +57,7 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
   }
 
   selectBusiness(businessId: number) {
-    // this.store.dispatch(new BusinessModule.LoadDetailBusiness(business));
-    this.router.navigate(
-      ['/detail', businessId],
-    );
+    this.router.navigate(['/detail', businessId]);
   }
 
   private getParams(param?): Search {

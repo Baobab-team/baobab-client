@@ -9,7 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Log, LOG_TYPES } from '@Models/log.model';
 import { selectCategoryErrors$, selectCategoryLoading$ } from '@Store/category/category.selector';
 import { tap, takeUntil } from 'rxjs/operators';
+import {Logger} from '@Services/logger.service';
 
+const log = new Logger('category-create.component');
 
 @Component({
   selector: 'app-category-create',
@@ -45,6 +47,7 @@ export class CategoryCreateComponent implements OnInit, OnDestroy {
         if (!dialog || !this.submitted) {
           return;
         }
+        log.error(dialog.message);
         if (dialog.type === LOG_TYPES.ERROR) {
           this.toastr.error(this.translateService.instant(dialog.message));
         } else {
@@ -62,6 +65,7 @@ export class CategoryCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    log.debug('init');
     this.categoryForm = this.formBuilder.group(
       {
         name: ['', [RxwebValidators.required({message: 'admin.category.form.label_name_error_required'})]],

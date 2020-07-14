@@ -21,6 +21,9 @@ import { Observable, Subject, of } from 'rxjs';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Store, select } from '@ngrx/store';
 import { selectAutocompleteBusinesses$, selectAutocompleteBusinessLoading$ } from '@Store/business/business.selector';
+import {Logger} from '@Services/logger.service';
+
+const log = new Logger('tool-search.component');
 
 @Component({
   selector: 'app-tool-search',
@@ -46,6 +49,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
       debounceTime(200),
       distinctUntilChanged(),
       switchMap((searchText) =>  {
+        log.debug('autocomplete', searchText);
         if (searchText !== null) {
           this.store.dispatch(new BusinessModule.LoadSearchAutocompleteBusiness({
             querySearch: searchText,
@@ -83,6 +87,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    log.debug('init');
     this.initForm();
   }
 

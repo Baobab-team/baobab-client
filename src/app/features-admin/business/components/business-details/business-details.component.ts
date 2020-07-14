@@ -6,7 +6,9 @@ import { Observable, Subject } from 'rxjs';
 import { Business } from '@Models/business.model';
 import { BusinessModule } from '@Store/business/business.action';
 import { selectBusinessLoading$, selectBusinessDetail$ } from '@Store/business/business.selector';
+import {Logger} from '@Services/logger.service';
 
+const log = new Logger('business-details.component');
 
 @Component({
   selector: 'app-restaurant-details',
@@ -43,6 +45,7 @@ export class BusinessDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    log.debug('init');
     this.store.dispatch(new BusinessModule.LoadDetailBusiness(
       +this.actiavteRoute.snapshot.queryParamMap.get('id')
     ));
