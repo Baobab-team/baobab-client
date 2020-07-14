@@ -1,4 +1,17 @@
-<div class="category-list">
-    <app-admin-second-header [title]="'admin.category.title_list_category'" [menus]="menuHeader"></app-admin-second-header>
-    <app-datatable [dtOptions]="dtOptions"></app-datatable>
+<div class="category">
+  <app-admin-second-header
+    [title]="'admin.category.title_list_category'"
+    [menus]="menuHeader">
+
+  </app-admin-second-header>
+  <div class="category__datatable">
+    <ag-grid-angular
+      class="ag-theme-alpine category__datatable__table"
+      [rowData]="categories$ | async"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+  </div>
 </div>

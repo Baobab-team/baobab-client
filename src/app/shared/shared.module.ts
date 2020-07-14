@@ -12,10 +12,8 @@ import { MenuLeftAdminComponent } from './components/menu-left-admin/menu-left-a
 import { HeaderClientProfileComponent } from './components/header-client-profile/header-client-profile.component';
 import {NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderPageAdminComponent } from './components/header-page-admin/header-page-admin.component';
-import { DatatableComponent } from './components/datatable/datatable.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { AdminSecondHeaderComponent } from './components/admin-second-header/admin-second-header.component';
-import { DataTablesModule } from 'angular-datatables';
 import { ModalComponentComponent } from './components/modal-component/modal-component.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
@@ -28,7 +26,6 @@ import { LoadingComponent } from './components/loading/loading.component';
     MenuLeftAdminComponent,
     HeaderClientProfileComponent,
     HeaderPageAdminComponent,
-    DatatableComponent,
     AdminSecondHeaderComponent,
     TruncatePipe,
     ModalComponentComponent,
@@ -46,17 +43,13 @@ import { LoadingComponent } from './components/loading/loading.component';
     MenuLeftAdminComponent,
     AdminSecondHeaderComponent,
     HeaderPageAdminComponent,
-    DatatableComponent,
     ModalComponentComponent,
     LoadingComponent,
-
     TruncatePipe,
-
     CommonModule,
     TranslateModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
-    DataTablesModule,
     NgbModule
   ],
   providers: [NgbActiveModal],
@@ -70,7 +63,6 @@ export class SharedModule {
     RouterModule,
     TranslateModule,
     RxReactiveFormsModule,
-    DataTablesModule,
     NgbModule
   ];
 }
