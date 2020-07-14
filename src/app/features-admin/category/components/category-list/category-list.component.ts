@@ -8,7 +8,9 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { initConfigDatatables, BTN_TYPE } from '@Models/datatable.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import {Logger} from '@Services/logger.service';
 
+const log = new Logger('category-list.component');
 
 @Component({
   selector: 'app-category-list',
@@ -89,7 +91,7 @@ export class CategoryListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-
+    log.debug('init');
     this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
       return this.categories$.subscribe(
         (data) => {

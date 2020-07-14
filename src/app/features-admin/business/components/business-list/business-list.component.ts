@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Modal } from '@Models/modal.model';
 import { DataTableDirective } from 'angular-datatables';
+import {Logger} from '@Services/logger.service';
 
+const log = new Logger('business-list.component');
 
 @Component({
   selector: 'app-business-list',
@@ -63,6 +65,7 @@ export class BusinessListComponent implements OnInit, OnDestroy, AfterViewInit {
         if (!dialog) {
           return;
         }
+        log.error(dialog.message);
         if (dialog.type === LOG_TYPES.ERROR) {
           this.toastr.error(dialog.message);
         }
@@ -93,6 +96,7 @@ export class BusinessListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+    log.debug('init');
     this.getDatatableOption();
     this.dtOptions.ajax = (dataTablesParameters: any, callback) => {
       return this.businesses$.subscribe(

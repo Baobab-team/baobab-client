@@ -10,6 +10,9 @@ import { Business } from '@Models/business.model';
 import { Log, LOG_TYPES } from '@Models/log.model';
 import { selectCsvBusinessCreate$, selectBusinessErrors$ } from '@Store/business/business.selector';
 import { takeUntil, tap } from 'rxjs/operators';
+import {Logger} from '@Services/logger.service';
+
+const log = new Logger('upload-create.component');
 
 @Component({
   selector: 'app-upload-file',
@@ -42,6 +45,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
         if (!dialog && !this.submitted) {
           return;
         }
+        log.error(dialog.message);
         // if (dialog.type === LOG_TYPES.ERROR) {
         //   this.toastr.error(dialog.message);
         // } else {
@@ -66,6 +70,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   }
 
   upload() {
+    log.debug('upload start');
     const formData = new FormData();
     for (const uploadedFile of this.uploadedFiles) {
         formData.append('file', uploadedFile, uploadedFile.name);

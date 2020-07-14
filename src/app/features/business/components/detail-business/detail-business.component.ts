@@ -6,6 +6,9 @@ import { Store, select } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 import { BusinessModule } from '@Store/business/business.action';
 import { ActivatedRoute } from '@angular/router';
+import {Logger} from '@Services/logger.service';
+
+const log = new Logger('detail-business.component');
 
 @Component({
   selector: 'app-detail-business',
@@ -16,6 +19,7 @@ export class DetailBusinessComponent implements OnInit, OnDestroy {
   public businessLoading$: Observable<boolean>;
   public business$: Observable<Business>;
   public unsubsscribe$ = new Subject<void>();
+
   constructor(
     private store: Store<any>,
     private actiavteRoute: ActivatedRoute,

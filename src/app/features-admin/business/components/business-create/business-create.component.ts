@@ -12,7 +12,9 @@ import { Business } from '@Models/business.model';
 import { ToastrService } from 'ngx-toastr';
 import { BusinessModule } from '@Store/business/business.action';
 import {TranslateService} from '@ngx-translate/core';
+import {Logger} from '@Services/logger.service';
 
+const log = new Logger('business-create.component');
 
 @Component({
   selector: 'app-business-create',
@@ -22,8 +24,6 @@ import {TranslateService} from '@ngx-translate/core';
 export class BusinessCreateComponent implements OnInit, OnDestroy {
   businessForm: FormGroup;
   keys = Object.keys;
-  paymentTypes = BUSINESS_PAYMENT_TYPES;
-  languages = BUSINESS_LANGUAGE;
   submitted = false;
   menuHeader = [
     {
@@ -38,7 +38,6 @@ export class BusinessCreateComponent implements OnInit, OnDestroy {
 
   readonly categoriesLoading$: Observable<boolean>;
   readonly categories$: Observable<Category[]>;
-  readonly businessLoading$: Observable<boolean>;
   readonly business$: Observable<Business[]>;
   readonly categoryLogs$: Observable<Log>;
   readonly businessLog$: Observable<Log>;
@@ -67,6 +66,7 @@ export class BusinessCreateComponent implements OnInit, OnDestroy {
         if (!dialog) {
           return;
         }
+        log.error('categoryLogs error: ', dialog.message);
         this.toastr.error(dialog.message);
       }),
       takeUntil(this.unsubsscribe$)
@@ -87,8 +87,10 @@ export class BusinessCreateComponent implements OnInit, OnDestroy {
           return;
         }
         if (dialog.type === LOG_TYPES.ERROR) {
+          log.error(dialog.message);
           this.toastr.error(dialog.message);
         } else {
+          log.debug(dialog.message);
           this.toastr.success(this.translateService.instant(dialog.message));
         }
       }),
@@ -105,6 +107,7 @@ export class BusinessCreateComponent implements OnInit, OnDestroy {
   get f() { return this.businessForm.controls; }
 
   ngOnInit() {
+    log.debug('init');
     this.businessForm = this.formBuilder.group(
       {
         name: ['', [RxwebValidators.required({message: 'admin.business.message_errors.name_required'})]],
