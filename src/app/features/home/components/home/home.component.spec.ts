@@ -13,6 +13,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { Store, StoreModule } from '@ngrx/store';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { REDUCER_TOKEN, getReducers } from '@Store/index';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 
 describe('HomeComponent', () => {
@@ -29,6 +30,7 @@ describe('HomeComponent', () => {
         StoreModule.forRoot(REDUCER_TOKEN),
         HttpClientModule,
         ReactiveFormsModule,
+        HttpClientTestingModule,
         NgbModule,
         RouterTestingModule,
         RxReactiveFormsModule,

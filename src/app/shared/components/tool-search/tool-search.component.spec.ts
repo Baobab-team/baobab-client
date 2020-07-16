@@ -17,6 +17,7 @@ import { environment } from 'environments';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';
 import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 
 describe('ToolSearchComponent', () => {
@@ -31,6 +32,7 @@ describe('ToolSearchComponent', () => {
         RouterTestingModule,
         RouterModule,
         NgbModule,
+        HttpClientTestingModule,
         StoreModule.forRoot(REDUCER_TOKEN),
         StoreDevtoolsModule.instrument({
           maxAge: 25, // Retains last 25 states

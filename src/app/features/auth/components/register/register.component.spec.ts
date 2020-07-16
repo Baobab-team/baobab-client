@@ -7,6 +7,7 @@ import { HttpLoaderFactory } from 'app';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -18,6 +19,7 @@ describe('RegisterComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         HttpClientModule,
+        HttpClientTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

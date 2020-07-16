@@ -4,17 +4,17 @@ import { CategoryCreateComponent } from './category-create.component';
 import { StoreModule, Store } from '@ngrx/store';
 import { REDUCER_TOKEN, getReducers } from '@Store/index';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'app';
-import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
+import { TranslateModule } from '@ngx-translate/core';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';
 import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
 import { AdminSecondHeaderComponent } from 'app/shared';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import {UploadFileComponent} from '../../../business/components/upload-file/upload-file.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 
 describe('CategoryCreateComponent', () => {
@@ -25,7 +25,8 @@ describe('CategoryCreateComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CategoryCreateComponent,
-        AdminSecondHeaderComponent
+        AdminSecondHeaderComponent,
+        UploadFileComponent
       ],
       imports: [
         StoreModule.forRoot(REDUCER_TOKEN),
@@ -34,17 +35,8 @@ describe('CategoryCreateComponent', () => {
         HttpClientModule,
         RxReactiveFormsModule,
         RouterTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          },
-          compiler: {
-            provide: TranslateCompiler,
-            useClass: TranslateMessageFormatCompiler
-          }
-        }),
+        TranslateModule.forRoot(),
+        HttpClientTestingModule
       ],
       providers: [
         Store,

@@ -35,11 +35,12 @@ jobs:
           env-file: '.env.example'
 
       # Runs a set of commands using the runners shell
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm run test
       - name: Build
         run: npm run build:ci
-      - name: Lint and Test
-        run: |
-          npm run lint
 
       # - name: Archive build
       #   if: success()
