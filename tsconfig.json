@@ -8,7 +8,7 @@
       "@Pipes/*": ["app/core/pipes/*"],
       "@Guards/*": ["app/core/guards/*"],
       "@Interceptors/*": ["app/core/interceptors/*"],
-      "@Store/*": ["app/store/*"],
+      "@Store/*": ["app/store/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

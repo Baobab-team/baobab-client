@@ -14,7 +14,6 @@ module.exports = function(config) {
         ],
         files: [
             { pattern: './node_modules/jquery/dist/jquery.min.js', watched: false },
-            { pattern: './node_modules/datatables.net/js/jquery.dataTables.js', watched: false }
         ],
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -28,14 +27,16 @@ module.exports = function(config) {
         customLaunchers: {
             ChromeHeadlessNoSandbox: {
                 base: 'ChromeHeadless',
-                flags: ['--no-sandbox']
+                flags: [
+                  '--no-sandbox'
+                ]
             }
         },
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['Chrome', 'ChromeHeadless'],
+        browsers: ['ChromeHeadlessNoSandbox'],
         singleRun: false,
         restartOnFileChange: true
     });
