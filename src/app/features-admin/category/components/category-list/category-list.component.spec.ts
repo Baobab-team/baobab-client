@@ -1,4 +1,4 @@
-import { AdminSecondHeaderComponent } from './../../../../shared/components/admin-second-header/admin-second-header.component';
+import { AdminSecondHeaderComponent } from '../../../../shared';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CategoryListComponent } from './category-list.component';
@@ -12,9 +12,8 @@ import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-comp
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';
 import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
-import { DatatableComponent } from 'app/shared';
-import { DataTablesModule } from 'angular-datatables';
 import { ToastrModule } from 'ngx-toastr';
+import {AgGridModule} from 'ag-grid-angular';
 
 describe('CategoryListComponent', () => {
   let component: CategoryListComponent;
@@ -24,16 +23,15 @@ describe('CategoryListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CategoryListComponent,
-        DatatableComponent,
         AdminSecondHeaderComponent
       ],
       imports: [
-        DataTablesModule,
         StoreModule.forRoot(REDUCER_TOKEN),
         HttpClientModule,
         RouterTestingModule,
         ToastrModule.forRoot(),
         RouterTestingModule,
+        AgGridModule.withComponents([]),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

@@ -1,7 +1,6 @@
 import { REDUCER_TOKEN, getReducers } from '@Store/index';
-import { DatatableComponent } from './../../../../shared/components/datatable/datatable.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AdminSecondHeaderComponent } from './../../../../shared/components/admin-second-header/admin-second-header.component';
+import { AdminSecondHeaderComponent } from '../../../../shared';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BusinessListComponent } from './business-list.component';
@@ -9,12 +8,10 @@ import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-transl
 import { HttpLoaderFactory } from 'app';
 import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
-import { DataTablesModule } from 'angular-datatables';
 import { Store, StoreModule } from '@ngrx/store';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
-import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';
-import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
 import { ToastrModule } from 'ngx-toastr';
+import {AgGridModule} from 'ag-grid-angular';
 
 describe('BusinessListComponent', () => {
   let component: BusinessListComponent;
@@ -24,13 +21,12 @@ describe('BusinessListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AdminSecondHeaderComponent,
-        DatatableComponent,
         BusinessListComponent
       ],
       imports: [
-        DataTablesModule,
         StoreModule.forRoot(REDUCER_TOKEN),
         ToastrModule.forRoot(),
+        AgGridModule.withComponents([]),
         HttpClientModule,
         RouterTestingModule,
         TranslateModule.forRoot({

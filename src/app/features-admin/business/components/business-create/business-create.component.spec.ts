@@ -1,4 +1,4 @@
-import { AdminSecondHeaderComponent } from './../../../../shared/components/admin-second-header/admin-second-header.component';
+import { AdminSecondHeaderComponent } from '../../../../shared';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BusinessCreateComponent } from './business-create.component';
@@ -15,6 +15,7 @@ import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.g
 import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import {UploadFileComponent} from '../upload-file/upload-file.component';
 
 describe('BusinessCreateComponent', () => {
   let component: BusinessCreateComponent;
@@ -24,7 +25,8 @@ describe('BusinessCreateComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         BusinessCreateComponent,
-        AdminSecondHeaderComponent
+        AdminSecondHeaderComponent,
+        UploadFileComponent
       ],
       imports: [
         StoreModule.forRoot(REDUCER_TOKEN),
