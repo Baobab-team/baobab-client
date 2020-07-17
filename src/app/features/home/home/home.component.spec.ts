@@ -1,10 +1,10 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { ToolSearchComponent } from './../../../../shared/components/tool-search/tool-search.component';
+import { ToolSearchComponent } from '../../../shared/components/tool-search/tool-search.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'app';
+import { HttpLoaderFactory } from 'app/index';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 import { ReactiveFormsModule } from '@angular/forms';
