@@ -2,7 +2,7 @@
     <div class="search__form">
         <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
             <div class="form-row align-items-center">
-                <div class="mb-3 input-group" [ngClass]="(bigForm) ? 'input-group-lg' : ''">
+                <div class="input-group" [ngClass]="(bigForm) ? 'input-group-lg' : ''">
                     <input type="text" class="form-control search__form__input"
                            placeholder="{{'shared.tool-search.form_label_search' | translate}}"
                            formControlName="querySearch"

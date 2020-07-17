@@ -4,6 +4,13 @@ paragraph (p) or list (ul, ol)
 *****/
 @import "variables";
 
-.full-height {
-  min-height: 90vh;
+.app-container{
+  display:flex;
+  min-height:85vh;
+  flex-direction:column;
+  margin:0;
+}
+
+.text-color-principal {
+  color: $clrOrange1;
 }

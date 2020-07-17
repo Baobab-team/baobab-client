@@ -1,4 +1,50 @@
-.home {
-  text-align: center;
-  padding-top: 30vh;
+.home{
+  &__header {
+    padding: 35px 0;
+    &__logo {
+      width: 10%;
+    }
+    &__title {
+      font-size: 43px;
+      line-height: 1.19;
+    }
+  }
+
+  &__body {
+    padding: 53px 0;
+    color: #e07c57;
+    background-color: rgba(225, 124, 87, 0.14);
+  }
+
+  &__footer {
+    &__title {
+      font-size: 35px;
+      line-height: 1.2;
+    }
+    &__body {
+      img {
+        width: 100%;
+        border-radius: 61px;
+      }
+    }
+  }
+}
+
+.home-text {
+  font-weight: 900;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-style: normal;
+}
+
+.rectangle-9 {
+  width: 95%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  opacity: 0.38;
+  border-radius: 61px;
+  background: linear-gradient(195deg, #ffffff 68%, #fff9f7 68%, #fc5a25 24%, #ff8962 13%);
 }
