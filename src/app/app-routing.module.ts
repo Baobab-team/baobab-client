@@ -23,14 +23,14 @@ const routes: Routes = [
       ),
   },
   // auth layout
-  {
-    path: '',
-    component: AuthLayoutComponent,
-    loadChildren: () =>
-      import('./features/auth/auth.module').then(
-        m => m.AuthModule
-      ),
-  },
+  // {
+  //   path: '',
+  //   component: AuthLayoutComponent,
+  //   loadChildren: () =>
+  //     import('./features/auth/auth.module').then(
+  //       m => m.AuthModule
+  //     ),
+  // },
   // admin layout
   {
     path: '',
