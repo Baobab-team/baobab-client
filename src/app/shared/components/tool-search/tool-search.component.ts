@@ -53,8 +53,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
         if (searchText !== null) {
           this.store.dispatch(new BusinessModule.LoadSearchAutocompleteBusiness({
             querySearch: searchText,
-            status: [BUSINESS_STATUSES.ACCEPTED],
-            exclude_deleted: true
+            exclude_deleted: true,
           } as Search));
           return this.businessesAutocomplete$;
         }
@@ -99,7 +98,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
     const querySearch = this.activateRoute.snapshot.queryParamMap.get('querySearch');
 
     this.searchForm = this.formBuilder.formGroup(
-      new Search(querySearch, [BUSINESS_STATUSES.ACCEPTED])
+      new Search(querySearch, true)
     );
   }
 
