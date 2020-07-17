@@ -1,7 +1,7 @@
-import { DetailBusinessComponent } from './components/detail-business/detail-business.component';
+import { DetailBusinessComponent } from './detail-business/detail-business.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchBusinessComponent } from './components/search-business/search-business.component';
+import { SearchBusinessComponent } from './search-business/search-business.component';
 
 const routes: Routes = [
   {

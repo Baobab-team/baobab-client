@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchBusinessComponent } from './components/search-business/search-business.component';
+import { SearchBusinessComponent } from './search-business/search-business.component';
 import { SearchRoutingModule } from './business-routing.module';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared';
 import { LayoutsModule } from '../../layouts';
-import { DetailBusinessComponent } from './components/detail-business/detail-business.component';
+import { DetailBusinessComponent } from './detail-business/detail-business.component';
 
 
 @NgModule({

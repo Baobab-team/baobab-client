@@ -9,7 +9,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'app';
+import { HttpLoaderFactory } from 'app/index';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';

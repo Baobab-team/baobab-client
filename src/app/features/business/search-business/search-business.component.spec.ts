@@ -1,6 +1,6 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoadingComponent } from './../../../../shared/components/loading/loading.component';
-import { ToolSearchComponent } from './../../../../shared/components/tool-search/tool-search.component';
+import { LoadingComponent } from '../../../shared/components/loading/loading.component';
+import { ToolSearchComponent } from '../../../shared/components/tool-search/tool-search.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchBusinessComponent } from './search-business.component';
@@ -12,7 +12,7 @@ import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.g
 import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
 import { TruncatePipe } from '@Pipes/truncate.pipe';
 import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'app';
+import { HttpLoaderFactory } from 'app/index';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
