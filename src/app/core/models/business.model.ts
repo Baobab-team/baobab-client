@@ -68,14 +68,14 @@ export interface Tag {
 export interface Address {
   readonly id: number;
   street_number: string;
-    street_type: string;
-    street_name: string;
-    direction: string;
-    city: string;
-    zip_code: string;
-    province: string;
-    region: string;
-    country: string;
+  street_type: string;
+  street_name: string;
+  direction: string;
+  city: string;
+  zip_code: string;
+  province: string;
+  region: string;
+  country: string;
 }
 
 export interface Business {

@@ -61,17 +61,21 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
   }
 
   private getParams(param?): Search {
+    let paramNew = null;
     if (param) {
-      return new Search({
+      paramNew = new Search({
         ...param,
-        status: [BUSINESS_STATUSES.ACCEPTED],
-        exclude_deleted: true
+        exclude_deleted: true,
+        // status: [BUSINESS_STATUSES.ACCEPTED],
       });
+    } else {
+      paramNew = new Search(
+        this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
+        true,
+        // [BUSINESS_STATUSES.ACCEPTED],
+      );
     }
-    return new Search(
-      this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
-      [BUSINESS_STATUSES.ACCEPTED],
-      true
-    );
+    console.log(paramNew)
+    return paramNew;
   }
 }
