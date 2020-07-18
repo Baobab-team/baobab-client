@@ -71,7 +71,6 @@ export class BusinessCreateComponent implements OnInit, OnDestroy {
       }),
       takeUntil(this.unsubsscribe$)
     );
-    this.categoryLogs$.subscribe();
 
     // select business created
     this.business$ = store.pipe(

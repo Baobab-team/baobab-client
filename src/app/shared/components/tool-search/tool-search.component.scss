@@ -29,6 +29,9 @@
         border: none;
         border-radius: 0 !important;
       }
+      .background-result {
+        background-color: $clrOrange3;
+      }
       &__select-category {
         border-radius: 25px;
         -webkit-border-radius: 25px;

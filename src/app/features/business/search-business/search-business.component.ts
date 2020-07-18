@@ -75,7 +75,6 @@ export class SearchBusinessComponent implements OnInit, OnDestroy {
         // [BUSINESS_STATUSES.ACCEPTED],
       );
     }
-    console.log(paramNew)
     return paramNew;
   }
 }

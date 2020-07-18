@@ -1,4 +1,4 @@
-import { BUSINESS_STATUSES } from '@Models/business.model';
+import {BUSINESS_STATUSES, Category} from '@Models/business.model';
 import { prop, trim } from '@rxweb/reactive-form-validators';
 
 export class Search {
@@ -8,17 +8,22 @@ export class Search {
   // tslint:disable-next-line: variable-name
   exclude_deleted = true;
   status?: BUSINESS_STATUSES[];
+  category: Category;
 
   constructor(
     querySearch = '',
     // tslint:disable-next-line: variable-name
     exclude_deleted = true,
     status?: BUSINESS_STATUSES[],
+    category?: Category
   ) {
     this.querySearch = querySearch;
     this.exclude_deleted = exclude_deleted;
     if (status) {
       this.status = status;
+    }
+    if (category) {
+      this.category = category;
     }
   }
 }

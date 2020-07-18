@@ -13,15 +13,17 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BUSINESS_STATUSES, Business } from '@Models/business.model';
+import {Business, Category} from '@Models/business.model';
 import { Search } from '@Models/search.model';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import {debounceTime, switchMap, catchError, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import {debounceTime, switchMap, catchError, distinctUntilChanged, takeUntil, tap} from 'rxjs/operators';
 import { Observable, Subject, of } from 'rxjs';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Store, select } from '@ngrx/store';
 import { selectAutocompleteBusinesses$, selectAutocompleteBusinessLoading$ } from '@Store/business/business.selector';
 import {Logger} from '@Services/logger.service';
+import { selectCategories$, selectCategoryErrors$, selectCategoryLoading$ } from '@Store/category/category.selector';
+import {Log} from '@Models/log.model';
 
 const log = new Logger('tool-search.component');
 
@@ -37,11 +39,13 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onSearch = new EventEmitter<Search>();
   @ViewChild('querySearch', {static: false}) querySearch: ElementRef;
-
-  businessesAutocomplete$: Observable<string[] | Business[]>;
-  businessesAutocompleteloading$: Observable<boolean>;
+  readonly categoriesLoading$: Observable<boolean>;
+  readonly categories$: Observable<Category[]>;
+  readonly categoryLogs$: Observable<Log>;
+  readonly businessesAutocomplete$: Observable<string[] | Business[]>;
+  readonly businessesAutocompleteloading$: Observable<boolean>;
   searchForm: FormGroup;
-  unsubsscribe$ = new Subject<void>();
+  private unsubsscribe$ = new Subject<void>();
 
   searchAutocomplete = (text$: Observable<string>) =>
     text$.pipe(
@@ -67,8 +71,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
     config: NgbTypeaheadConfig,
     private store: Store<any>,
   ) {
-    // config.showHint = true;
-
+    // autocoplete
     this.businessesAutocompleteloading$ = store.pipe(
       select(selectAutocompleteBusinessLoading$),
       takeUntil(this.unsubsscribe$)
@@ -77,6 +80,25 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
       select(selectAutocompleteBusinesses$),
       takeUntil(this.unsubsscribe$)
     );
+
+    // load categories
+    this.categoriesLoading$ = store.pipe(
+      select(selectCategoryLoading$),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.categories$ = store.pipe(
+      select(selectCategories$),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.categoryLogs$ = store.pipe(
+      select(selectCategoryErrors$),
+      tap((dialog) => {
+        if (!dialog) { return; }
+        log.error('categoryLogs error: ', dialog.message);
+      }),
+      takeUntil(this.unsubsscribe$)
+    );
+    this.categoryLogs$.subscribe();
   }
 
   ngOnDestroy(): void {
