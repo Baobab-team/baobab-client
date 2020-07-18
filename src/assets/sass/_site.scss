@@ -21,6 +21,9 @@ paragraph (p) or list (ul, ol)
 .link-primary:hover{
   color: var(--dark);
 }
+.link-primary:active{
+  color: var(--dark);
+}
 
 .background-primary {
   background-color: $clrOrange1;
