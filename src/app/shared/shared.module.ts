@@ -16,6 +16,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { AdminSecondHeaderComponent } from './components/admin-second-header/admin-second-header.component';
 import { ModalComponentComponent } from './components/modal-component/modal-component.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     TranslateModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
+    FontAwesomeModule,
     NgbModule
   ],
   providers: [NgbActiveModal],
@@ -63,6 +66,7 @@ export class SharedModule {
     RouterModule,
     TranslateModule,
     RxReactiveFormsModule,
+    FontAwesomeModule,
     NgbModule
   ];
 }

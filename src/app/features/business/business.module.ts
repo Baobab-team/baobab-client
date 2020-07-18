@@ -5,18 +5,22 @@ import { SearchRoutingModule } from './business-routing.module';
 import { SharedModule } from '../../shared';
 import { LayoutsModule } from '../../layouts';
 import { DetailBusinessComponent } from './detail-business/detail-business.component';
+import { ResultItemComponent } from './components/result-item/result-item.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
   declarations: [
     SearchBusinessComponent,
-    DetailBusinessComponent
+    DetailBusinessComponent,
+    ResultItemComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     SearchRoutingModule,
-    LayoutsModule
+    LayoutsModule,
+    FontAwesomeModule
   ]
 })
 export class BusinessModule { }

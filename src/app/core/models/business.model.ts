@@ -17,11 +17,11 @@ export enum BUSINESS_PAYMENT_TYPES {
 }
 
 export enum BUSINESS_SOCIAL_LINKS {
-  FACEBOOK = 'facebook',
-  TWITTER = 'twitter',
-  INSTAGRAM = 'instagram',
-  LINKEDIN = 'linkedin',
-  SNAPCHAT = 'snapchat'
+  FACEBOOK = 'Facebook',
+  TWITTER = 'Twitter',
+  INSTAGRAM = 'Instagram',
+  LINKEDIN = 'Linkedin',
+  SNAPCHAT = 'Snapchat'
 }
 
 export enum BUSINESS_STATUSES {
@@ -96,7 +96,11 @@ export interface Business {
   deletedAt?: string;
   // paymentType: BUSINESS_PAYMENT_TYPES;
   status: BUSINESS_STATUSES;
-  social_links: BUSINESS_SOCIAL_LINKS;
+  social_links: {
+    id: number,
+    type: BUSINESS_SOCIAL_LINKS,
+    link: string
+  }[];
   tags: Tag[];
   addresses: Address[];
   payment_types: string[];

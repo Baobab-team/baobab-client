@@ -1,0 +1,30 @@
+<div class="result">
+  <div class="result__header">
+    <h4 class="result__header__title">
+      <ul class="list-inline">
+        <li class="list-inline-item list-inline-item-border">
+          <a class="list-item border-item result__header__title__link" routerLink="/detail" [queryParams]="{id: business.id}">
+            {{business.name | truncate}}
+          </a>
+        </li>
+        <li class="list-inline-item border-item" *ngIf="business.website">
+          <a [href]="business.website" class="result__header__title__fa">
+<!--            <fa-icon [size]="'xs'" [icon]="faGlobeAfrica"></fa-icon>-->
+            <i class="fa fa-globe-africa"></i>
+          </a>
+        </li>
+        <li class="list-inline-item border-item" *ngFor="let socialLinks of business.social_links">
+          <a href="{{socialLinks.link}}" class="result__header__title__fa">
+            <i [class]="getLogo(socialLinks.type)"></i>
+          </a>
+        </li>
+      </ul>
+    </h4>
+  </div>
+  <div class="result__body">
+    <p>{{business.description | truncate}}</p>
+  </div>
+  <div class="result__footer">
+    {{business.createdAt}}
+  </div>
+</div>

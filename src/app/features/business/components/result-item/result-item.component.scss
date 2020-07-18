@@ -1,0 +1,24 @@
+@import "~assets/sass/variables";
+
+.result {
+  &__header {
+    &__title {
+
+      &__link {
+        color: var(--dark);
+      }
+      &__link:hover {
+        color: $clrOrange1;
+        text-decoration: none;
+      }
+      &__fa{
+        font-size: .8em;
+        color: $clrOrange1;
+      }
+      &__fa:hover{
+        font-size: .8em;
+        color: var(--dark);
+      }
+    }
+  }
+}
