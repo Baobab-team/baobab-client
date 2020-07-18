@@ -14,3 +14,14 @@ paragraph (p) or list (ul, ol)
 .text-color-principal {
   color: $clrOrange1;
 }
+
+.link-primary{
+  color: $clrOrange1;
+}
+.link-primary:hover{
+  color: var(--dark);
+}
+
+.background-primary {
+  background-color: $clrOrange1;
+}

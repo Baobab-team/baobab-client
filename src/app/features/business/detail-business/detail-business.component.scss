@@ -1,0 +1,13 @@
+.badge-baobab:hover {
+  background-color: var(--gray);
+}
+
+.business {
+  &__footer {
+    &__social {
+      &__link {
+        font-size: 2em;
+      }
+    }
+  }
+}

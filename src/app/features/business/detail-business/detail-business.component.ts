@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { selectBusinessDetail$, selectBusinessLoading$ } from '@Store/business/business.selector';
-import { Business } from '@Models/business.model';
+import {Business, BUSINESS_SOCIAL_LINKS} from '@Models/business.model';
 import { Store, select } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 import { BusinessModule } from '@Store/business/business.action';
@@ -44,6 +44,31 @@ export class DetailBusinessComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubsscribe$.next();
     this.unsubsscribe$.complete();
+  }
+
+  getLogo(type: BUSINESS_SOCIAL_LINKS) {
+    const pathBase = 'fab ';
+    let socialLogo = null;
+
+    switch (type) {
+      case BUSINESS_SOCIAL_LINKS.FACEBOOK:
+        socialLogo = 'fa-facebook';
+        break;
+      case BUSINESS_SOCIAL_LINKS.INSTAGRAM:
+        socialLogo = 'fa-instagram';
+        break;
+      case BUSINESS_SOCIAL_LINKS.LINKEDIN:
+        socialLogo = 'fa-linkedin';
+        break;
+      case BUSINESS_SOCIAL_LINKS.SNAPCHAT:
+        socialLogo = 'fa-snapchat';
+        break;
+      case BUSINESS_SOCIAL_LINKS.TWITTER:
+        socialLogo = 'fa-twitter';
+        break;
+    }
+
+    return pathBase + socialLogo;
   }
 
 }

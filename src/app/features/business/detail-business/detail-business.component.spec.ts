@@ -14,6 +14,7 @@ import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-comp
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';
 import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
+import {LoadingComponent} from '../../../shared/components/loading/loading.component';
 
 describe('DetailBusinessComponent', () => {
   let component: DetailBusinessComponent;
@@ -21,7 +22,10 @@ describe('DetailBusinessComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailBusinessComponent ],
+      declarations: [
+        DetailBusinessComponent,
+        LoadingComponent
+      ],
       imports: [
         StoreModule.forRoot(REDUCER_TOKEN),
         ToastrModule.forRoot(),

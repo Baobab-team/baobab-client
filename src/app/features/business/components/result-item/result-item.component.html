@@ -11,12 +11,12 @@
           </a>
         </li>
         <li class="list-inline-item border-item" *ngIf="business.website">
-          <a [href]="business.website" class="result__header__title__fa">
+          <a [href]="business.website" class="link-primary result__header__title__fa">
             <i class="fa fa-globe-africa"></i>
           </a>
         </li>
         <li class="list-inline-item border-item" *ngFor="let socialLinks of business.social_links">
-          <a href="{{socialLinks.link}}" class="result__header__title__fa">
+          <a href="{{socialLinks.link}}" class="link-primary result__header__title__fa">
             <i [class]="getLogo(socialLinks.type)"></i>
           </a>
         </li>
