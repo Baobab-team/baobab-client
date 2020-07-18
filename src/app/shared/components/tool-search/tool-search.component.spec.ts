@@ -1,4 +1,4 @@
-import { REDUCER_TOKEN, getReducers } from './../../../store/index';
+import { REDUCER_TOKEN, getReducers } from '@Store/index';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolSearchComponent } from './tool-search.component';
@@ -8,7 +8,7 @@ import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { StoreModule, Store } from '@ngrx/store';
@@ -30,6 +30,8 @@ describe('ToolSearchComponent', () => {
         ReactiveFormsModule,
         HttpClientModule,
         RouterTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule,
         NgbModule,
         HttpClientTestingModule,
@@ -39,17 +41,7 @@ describe('ToolSearchComponent', () => {
           logOnly: environment.production, // Restrict extension to log-only mode
         }),
         RxReactiveFormsModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          },
-          compiler: {
-            provide: TranslateCompiler,
-            useClass: TranslateMessageFormatCompiler
-          }
-        })
+        TranslateModule.forRoot()
       ],
       declarations: [ ToolSearchComponent ],
       providers: [

@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultItemComponent } from './result-item.component';
+import {TruncatePipe} from '@Pipes/truncate.pipe';
+import {RouterTestingModule} from '@angular/router/testing';
+import {RouterModule} from '@angular/router';
 
 describe('ResultItemComponent', () => {
   let component: ResultItemComponent;
@@ -8,7 +11,15 @@ describe('ResultItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultItemComponent ]
+      imports: [
+        RouterTestingModule,
+        RouterModule
+      ],
+      declarations: [
+        ResultItemComponent,
+        TruncatePipe
+      ],
+      providers: [TruncatePipe]
     })
     .compileComponents();
   }));

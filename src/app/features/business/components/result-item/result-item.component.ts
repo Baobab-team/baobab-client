@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Business, BUSINESS_SOCIAL_LINKS} from '@Models/business.model';
-import { faGlobeAfrica } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-result-item',
@@ -9,7 +8,6 @@ import { faGlobeAfrica } from '@fortawesome/free-solid-svg-icons';
 })
 export class ResultItemComponent implements OnInit {
   @Input() business: Business;
-  faGlobeAfrica = faGlobeAfrica;
 
   constructor() { }
 

@@ -6,14 +6,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResultSearchComponent } from './result-search.component';
 import { StoreModule, Store } from '@ngrx/store';
 import { REDUCER_TOKEN, getReducers } from '@Store/index';
-import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
 import { TruncatePipe } from '@Pipes/truncate.pipe';
-import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-translate/core';
-import { HttpLoaderFactory } from 'app/index';
-import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
+import { TranslateModule } from '@ngx-translate/core';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ResultItemComponent} from '../components/result-item/result-item.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('ResultSearchComponent', () => {
   let component: ResultSearchComponent;
@@ -25,6 +25,7 @@ describe('ResultSearchComponent', () => {
         ResultSearchComponent,
         LoadingComponent,
         ToolSearchComponent,
+        ResultItemComponent,
         TruncatePipe
       ],
       imports: [
@@ -33,17 +34,9 @@ describe('ResultSearchComponent', () => {
         HttpClientModule,
         RxReactiveFormsModule,
         NgbModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          },
-          compiler: {
-            provide: TranslateCompiler,
-            useClass: TranslateMessageFormatCompiler
-          }
-        }),
+        TranslateModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule,
       ],
       providers: [
         Store,

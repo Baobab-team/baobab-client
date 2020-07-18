@@ -29,17 +29,7 @@ describe('DetailBusinessComponent', () => {
         RxReactiveFormsModule,
         HttpClientModule,
         RouterTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          },
-          compiler: {
-            provide: TranslateCompiler,
-            useClass: TranslateMessageFormatCompiler
-          }
-        }),
+        TranslateModule.forRoot(),
       ],
       providers: [
         Store,

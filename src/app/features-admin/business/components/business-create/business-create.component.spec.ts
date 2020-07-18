@@ -16,6 +16,8 @@ import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import {UploadFileComponent} from '../upload-file/upload-file.component';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../../../../../environments';
 
 describe('BusinessCreateComponent', () => {
   let component: BusinessCreateComponent;
@@ -30,22 +32,16 @@ describe('BusinessCreateComponent', () => {
       ],
       imports: [
         StoreModule.forRoot(REDUCER_TOKEN),
+        StoreDevtoolsModule.instrument({
+          maxAge: 25, // Retains last 25 states
+          logOnly: environment.production, // Restrict extension to log-only mode
+        }),
         ToastrModule.forRoot(),
         ReactiveFormsModule,
         RxReactiveFormsModule,
         HttpClientModule,
         RouterTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-          },
-          compiler: {
-            provide: TranslateCompiler,
-            useClass: TranslateMessageFormatCompiler
-          }
-        }),
+        TranslateModule.forRoot(),
       ],
       providers: [
         Store,
