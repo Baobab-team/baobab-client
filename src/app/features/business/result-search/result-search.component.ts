@@ -1,5 +1,5 @@
 import { takeUntil } from 'rxjs/operators';
-import { Business, BUSINESS_STATUSES } from '@Models/business.model';
+import { Business } from '@Models/business.model';
 import { Search } from '@Models/search.model';
 import { selectBusinessLoading$, selectBusinesses$ } from '@Store/business/business.selector';
 import { Store, select } from '@ngrx/store';
@@ -13,10 +13,10 @@ const log = new Logger('search-business.component');
 
 @Component({
   selector: 'app-search-business',
-  templateUrl: './search-business.component.html',
-  styleUrls: ['./search-business.component.scss']
+  templateUrl: './result-search.component.html',
+  styleUrls: ['./result-search.component.scss']
 })
-export class SearchBusinessComponent implements OnInit, OnDestroy {
+export class ResultSearchComponent implements OnInit, OnDestroy {
   public businessesloading$: Observable<boolean>;
   public businesses$: Observable<(string | Business)[]>;
   public unsubsscribe$ = new Subject<void>();

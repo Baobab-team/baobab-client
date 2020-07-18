@@ -1,15 +1,13 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
-import { ToolSearchComponent } from '../../../shared/components/tool-search/tool-search.component';
+import { ToolSearchComponent } from '../../../shared';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchBusinessComponent } from './search-business.component';
+import { ResultSearchComponent } from './result-search.component';
 import { StoreModule, Store } from '@ngrx/store';
 import { REDUCER_TOKEN, getReducers } from '@Store/index';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { ApiPrefixInterceptor } from '@Interceptors/api-prefix.interceptor';
-import { IsBusinessesLoadedGuard } from '@Guards/business/is-businesses-loaded.guard';
-import { IsCategoriesLoadedGuard } from '@Guards/is-categories-loaded.guard';
 import { TruncatePipe } from '@Pipes/truncate.pipe';
 import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'app/index';
@@ -17,14 +15,14 @@ import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-comp
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-describe('SearchBusinessComponent', () => {
-  let component: SearchBusinessComponent;
-  let fixture: ComponentFixture<SearchBusinessComponent>;
+describe('ResultSearchComponent', () => {
+  let component: ResultSearchComponent;
+  let fixture: ComponentFixture<ResultSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        SearchBusinessComponent,
+        ResultSearchComponent,
         LoadingComponent,
         ToolSearchComponent,
         TruncatePipe
@@ -64,7 +62,7 @@ describe('SearchBusinessComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchBusinessComponent);
+    fixture = TestBed.createComponent(ResultSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

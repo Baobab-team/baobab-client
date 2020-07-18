@@ -1,12 +1,12 @@
 import { DetailBusinessComponent } from './detail-business/detail-business.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchBusinessComponent } from './search-business/search-business.component';
+import {ResultSearchComponent} from './result-search/result-search.component';
 
 const routes: Routes = [
   {
     path: 'search',
-    component: SearchBusinessComponent
+    component: ResultSearchComponent
   },
   {
     path: 'detail',
