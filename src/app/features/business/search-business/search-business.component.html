@@ -1,35 +1,36 @@
-<div class="search">
-    <div class="container">
-        <div class="">
-            <div class="search__tool-search mt-3">
-                <app-tool-search [bigForm]="false" [optionsFields]="true" (onSearch)="onSubmit($event)" class="header__search__component"></app-tool-search>
+<div class="results">
+  <div class="d-flex justify-content-center mb-5 results__header">
+    <div class="w-50">
+      <app-tool-search
+        [optionsFields]="true"
+        (onSearch)="onSubmit($event)"
+      ></app-tool-search>
+    </div>
+  </div>
+
+  <div class="container search__results" *ngIf="(businessesloading$ | async) === false">
+    <div *ngIf="(businesses$ | async) as businesses">
+      <ul *ngIf="businesses.length; else noResult">
+        <li *ngFor="let business of businesses" (click)="selectBusiness(business)">
+          <div class="search__results__group">
+            <div class="search__results__group__title">
+              <h4>
+                  <a routerLink="/detail" [queryParams]="{id: business.id}">{{business.name}}</a>
+              </h4>
             </div>
-        </div>
+            <div class="search__results__group__body">
+              <p>{{business.description | truncate}}</p>
+            </div>
+            <div class="search__results__group__footer">
+                {{business.createdAt}}
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ng-template #noResult style="text-align: center;">
+          <h1>{{'search.no_result' | translate}}</h1>
+      </ng-template>
     </div>
-    <hr>
-    <app-loading [isLoading]="(businessesloading$ | async)"></app-loading>
-    <div class="container search__results" *ngIf="(businessesloading$ | async) === false">
-        <div *ngIf="(businesses$ | async) as businesses">
-            <ul *ngIf="businesses.length; else noResult">
-                <li *ngFor="let business of businesses" (click)="selectBusiness(business)">
-                    <div class="search__results__group">
-                        <div class="search__results__group__title">
-                            <h4>
-                                <a routerLink="/detail" [queryParams]="{id: business.id}">{{business.name}}</a>
-                            </h4>
-                        </div>
-                        <div class="search__results__group__body">
-                            <p>{{business.description | truncate}}</p>
-                        </div>
-                        <div class="search__results__group__footer">
-                            {{business.createdAt}}
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <ng-template #noResult style="text-align: center;">
-                <h1>{{'search.no_result' | translate}}</h1>
-            </ng-template>
-        </div>
-    </div>
+  </div>
 </div>
+<app-loading [isLoading]="(businessesloading$ | async)"></app-loading>

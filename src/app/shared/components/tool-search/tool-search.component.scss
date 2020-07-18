@@ -1,23 +1,17 @@
 @import "~assets/sass/variables";
 
 .search {
+  &__body {
     &__form {
-      &__input:focus {
-        outline: 0px !important;
+      .baobab-input {
+        border: 1px solid $clrOrange1;
+        padding: 0 10px;
+        height: 50px;
+      }
+      .input-focus {
+        outline: 0px;
         -webkit-appearance: none;
         border: 1px solid $clrOrange2;
-        border-right: none;
-        box-shadow: 8px 8px 12px 0 rgba(225, 124, 85, 0.16);
-      }
-      &__input {
-        border: 1px solid $clrOrange1;
-        border-right: none;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px 0 0 20px;
-        height: 50px;
-        width: 93%;
-        padding-left: 10px;
       }
       .dropdown-menu {
         width: 90%;
@@ -35,13 +29,36 @@
         border: none;
         border-radius: 0 !important;
       }
+      &__select-category {
+        border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        height: 50px;
+        width: 100%;
+        background-color: #c77456;
+        color: var(--white);
+      }
+
+      &__input {
+        border-right: none;
+        border-radius: 25px 0 0 25px;
+        width: 90%;
+      }
+
+      &__select-category:focus {
+        box-shadow: 8px 8px 12px 0 rgba(225, 124, 85, 0.16);
+      }
+      &__input:focus {
+        border-right: none;
+        box-shadow: 8px 8px 12px 0 rgba(225, 124, 85, 0.16);
+      }
 
       button {
         background-color: var(--white);
         color: $clrOrange1;
         border: 1px solid $clrOrange1;
         border-left: none;
-        border-radius: 0 20px 20px 0 !important;
+        border-radius: 0 25px 25px 0 !important;
       }
 
       button:hover {
@@ -51,4 +68,5 @@
         border-left: none;
       }
     }
+  }
 }

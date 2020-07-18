@@ -33,7 +33,6 @@ const log = new Logger('tool-search.component');
   providers: [NgbTypeaheadConfig]
 })
 export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input() bigForm = true;
   @Input() optionsFields = false;
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onSearch = new EventEmitter<Search>();
