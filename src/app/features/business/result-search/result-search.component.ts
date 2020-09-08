@@ -46,7 +46,7 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(params: Search) {
-    log.debug('run search:', params.querySearch);
+    log.debug('run search:', params.search);
     this.router.navigate(
       ['/search'],
       {queryParams: params}
@@ -66,7 +66,6 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
     } else {
       return new Search(
         this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
-        true,
       );
     }
   }
