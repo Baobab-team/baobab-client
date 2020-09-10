@@ -7,7 +7,7 @@ export const selectBusinessState$ = (state: AppState) => state.businesses;
 // business list
 export const selectBusinesses$ = createSelector(
   selectBusinessState$,
-  (businesses) => businesses.data
+  (businesses) => businesses.data.results
 );
 export const selectBusinessLoading$ = createSelector(
   selectBusinessState$,

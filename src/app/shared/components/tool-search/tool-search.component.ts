@@ -55,7 +55,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
         log.debug('autocomplete', searchText);
         if (searchText !== '') {
           this.store.dispatch(new BusinessModule.LoadSearchAutocompleteBusiness({
-            search: searchText,
+            querySearch: searchText,
           } as Search));
           return this.businessesAutocomplete$;
         }

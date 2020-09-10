@@ -46,7 +46,7 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(params: Search) {
-    log.debug('run search:', params.search);
+    log.debug('run search:', params.querySearch);
     this.router.navigate(
       ['/search'],
       {queryParams: params}
