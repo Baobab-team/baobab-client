@@ -30,16 +30,6 @@ export enum BUSINESS_STATUSES {
   REFUSED = 'refused'
 }
 
-export enum BUSINESS_DAYS_WEEK {
-  MONDAY = 'monday',
-  TUESDAY = 'tuesday',
-  WEDNESDAY = 'wednesday',
-  THURSDAY = 'thursday',
-  FRIDAY = 'friday',
-  SATURDAY = 'saturday',
-  SUNDAY = 'sunday'
-}
-
 export class Category {
   id?: number;
   name: string;
@@ -47,7 +37,7 @@ export class Category {
 
 export class BusinessHour {
   id?: number;
-  day: BUSINESS_DAYS_WEEK;
+  day: number;
   // tslint:disable-next-line: variable-name
   closing_time: string;
   // tslint:disable-next-line: variable-name
@@ -74,7 +64,6 @@ export interface Address {
   city: string;
   zip_code: string;
   province: string;
-  region: string;
   country: string;
 }
 
@@ -90,10 +79,10 @@ export interface Business {
   // slogan?: string;
   // language: BUSINESS_LANGUAGE;
   capacity?: number;
-  createdAt: string;
-  updatetedAt?: string;
-  acceptedAt: string;
-  deletedAt?: string;
+  created_at: string;
+  updateted_at?: string;
+  accepted_at: string;
+  deleted_at?: string;
   // paymentType: BUSINESS_PAYMENT_TYPES;
   status: BUSINESS_STATUSES;
   social_links: {
@@ -108,7 +97,7 @@ export interface Business {
 }
 
 export interface BusinessState {
-  data?: Business[];
+  data?: any;
   search?: Search;
   autocompleteData: string[];
   businessId: number;

@@ -66,7 +66,6 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
     } else {
       return new Search(
         this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
-        true,
       );
     }
   }

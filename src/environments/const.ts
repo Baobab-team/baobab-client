@@ -1,5 +1,5 @@
 export const Const = {
-  apiVersion: 'api_v1',
+  apiVersion: 'api/v1',
   defaultLanguage: 'fr',
   supportedLanguages: ['fr', 'en'],
   paths_api: {

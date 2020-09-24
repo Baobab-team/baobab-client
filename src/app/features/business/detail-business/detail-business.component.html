@@ -54,7 +54,7 @@
           <h3 class="business__body__infos2">Heures d'ouverture</h3>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let business_hour of business.business_hours">
-                {{business_hour.day}} - ({{business_hour.opening_time}} - {{business_hour.closing_time}})
+                {{getDay(business_hour.day) | translate}} - ({{business_hour.opening_time}} - {{business_hour.closing_time}})
             </li>
           </ul>
         </div>
