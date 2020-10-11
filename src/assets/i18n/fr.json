@@ -129,5 +129,6 @@
             "saturday":"samedi",
             "sunday":"dimanche"
         }
-    }
+    },
+    "closed":"Fermé"
 }
