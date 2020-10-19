@@ -24,7 +24,7 @@
 
       <div class="business__body__infos1">
         <p>{{business.description}}</p>
-        Tags:
+        <span *ngIf="business.tags.length > 0">Tags:</span>
         <ul class="list-inline">
           <li *ngFor="let tag of business.tags" class="list-inline-item">
               <a href="#" class="badge badge-light background-primary text-white badge-baobab">{{tag.name}}</a>
