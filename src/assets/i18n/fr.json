@@ -118,5 +118,17 @@
     "search": {
         "no_result": "Aucun resultat",
         "loading": "Chargement en cours"
-    }
+    },
+    "calendar":{
+        "days":{
+            "monday":"lundi",
+            "tuesday":"mardi",
+            "wednesday":"mercredi",
+            "thursday":"jeudi",
+            "friday":"vendredi",
+            "saturday":"samedi",
+            "sunday":"dimanche"
+        }
+    },
+    "closed":"Fermé"
 }

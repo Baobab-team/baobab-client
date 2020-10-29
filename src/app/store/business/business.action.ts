@@ -39,7 +39,7 @@ export namespace BusinessModule {
 
   export class SuccessSearchBusiness {
     readonly type = ActionTypes.SUCCESS_SEARCH_BUSINESS;
-    payload: Business[];
+    payload: any;
     constructor(payload: Business[]) {
       this.payload = payload;
     }

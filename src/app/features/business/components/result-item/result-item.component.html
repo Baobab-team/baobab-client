@@ -27,6 +27,6 @@
     <p>{{business.description | truncate}}</p>
   </div>
   <div class="result__footer">
-    {{business.createdAt}}
+    {{business.created_at | date:'yyyy-MM-dd'}}
   </div>
 </div>

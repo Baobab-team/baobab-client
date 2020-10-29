@@ -10,8 +10,8 @@
       <div class="col-md-12 text-center">
         <div class="business__header__link">
           <ul class="list-inline">
-            <li class="list-inline-item"><b class="text-color-principal">email:</b> {{business.email}} </li>
-            <li class="list-inline-item"><b class="text-color-principal">Site web:</b> {{business.website}}</li>
+            <li class="list-inline-item"><a class="text-color-principal" *ngIf="business.email;" href="mailo:{{business.email}}">{{business.email}}</a></li>
+            <li class="list-inline-item"><a class="text-color-principal" *ngIf="business.website;" href="mailo:{{business.website}}">{{business.website}}</a></li>
           </ul>
         </div>
       </div>
@@ -24,8 +24,7 @@
 
       <div class="business__body__infos1">
         <p>{{business.description}}</p>
-        <p>Capacite: {{business.capacity}}</p>
-        Tags:
+        <span *ngIf="business.tags.length > 0">Tags:</span>
         <ul class="list-inline">
           <li *ngFor="let tag of business.tags" class="list-inline-item">
               <a href="#" class="badge badge-light background-primary text-white badge-baobab">{{tag.name}}</a>
@@ -53,9 +52,18 @@
         <div class="col business__body_infos2__hours" *ngIf="business.business_hours.length > 0">
           <h3 class="business__body__infos2">Heures d'ouverture</h3>
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let business_hour of business.business_hours">
-                {{business_hour.day}} - ({{business_hour.opening_time}} - {{business_hour.closing_time}})
-            </li>
+            <ng-container *ngFor="let business_hour of business.business_hours">
+              <ng-container *ngIf="!business_hour.closed; else businessClosed">
+                <li class="list-group-item">
+                  {{getDay(business_hour.day) | translate}} - {{business_hour.opening_time}} - {{business_hour.closing_time}}
+                </li>
+              </ng-container>
+              <ng-template #businessClosed>
+                <li class="list-group-item">
+                  {{getDay(business_hour.day) | translate}} - <span style="color:red">{{"closed" | translate}}</span>
+                </li>
+              </ng-template>
+            </ng-container>
           </ul>
         </div>
       </div>

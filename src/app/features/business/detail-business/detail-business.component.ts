@@ -71,4 +71,34 @@ export class DetailBusinessComponent implements OnInit, OnDestroy {
     return pathBase + socialLogo;
   }
 
+  getDay(day) {
+    let aDay = null;
+
+    switch (day) {
+      case 1:
+        aDay = 'calendar.days.monday';
+        break;
+      case 2:
+        aDay = 'calendar.days.tuesday';
+        break;
+      case 3:
+        aDay = 'calendar.days.wednesday';
+        break;
+      case 4:
+        aDay = 'calendar.days.thursday';
+        break;
+      case 5:
+        aDay = 'calendar.days.friday';
+        break;
+      case 6:
+        aDay = 'calendar.days.saturday';
+        break;
+      case 7:
+        aDay = 'calendar.days.sunday';
+        break;
+    }
+
+    return aDay;
+  }
+
 }

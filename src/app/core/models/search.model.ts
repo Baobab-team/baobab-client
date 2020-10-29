@@ -4,21 +4,25 @@ import { prop, trim } from '@rxweb/reactive-form-validators';
 export class Search {
   @prop()
   @trim()
-  querySearch: string;
+  querySearch?: string;
   // tslint:disable-next-line: variable-name
   exclude_deleted = true;
   status?: BUSINESS_STATUSES[];
   category: Category;
 
   constructor(
-    querySearch = '',
+    querySearch?,
     // tslint:disable-next-line: variable-name
-    exclude_deleted = true,
+    exclude_deleted?,
     status?: BUSINESS_STATUSES[],
     category?: Category
   ) {
-    this.querySearch = querySearch;
-    this.exclude_deleted = exclude_deleted;
+    if (querySearch) {
+      this.querySearch = querySearch;
+    }
+    if (exclude_deleted) {
+      this.exclude_deleted = exclude_deleted;
+    }
     if (status) {
       this.status = status;
     }
