@@ -18,9 +18,8 @@
                        [class.background-result]="optionsFields"
                        placeholder="{{'shared.tool-search.form_label_search' | translate}}"
                        formControlName="querySearch"
-                       [ngbTypeahead]="searchAutocomplete"
                        style="padding: 4%;"
-                       [resultTemplate]="rt" #querySearch>
+                       #querySearch>
                 <div class="input-group-append">
                     <button
                       [disabled]="!searchForm.valid"
