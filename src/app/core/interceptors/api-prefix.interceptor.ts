@@ -6,6 +6,7 @@ import {
   HttpHandler,
   HttpRequest, HttpHeaders
 } from '@angular/common/http';
+import {environment} from 'environments';
 
 /** rxjs Imports */
 import { Observable } from 'rxjs';
@@ -31,7 +32,7 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    // const token = localStorage.getItem(environment.cookiesName.token);
+    const token = environment.tokenKey;
     let header = request.headers;
 
     if (request.headers.has('Content-Type')) {
@@ -40,9 +41,9 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
       });
     }
 
-    // if (token) {
-    //   header = header.append('Authorization', 'token ' + token);
-    // }
+    if (token) {
+      header = header.append('Authorization', 'Token ' + token);
+    }
 
     // const apiProvider = '/' + this.i18nService.language;
 
