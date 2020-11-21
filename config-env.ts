@@ -19,6 +19,7 @@ const envConfigFile = `
 export const environment = {
   production: ${process.env.PRODUCTION},
   baseApiUrl: '${apiURL}',
+  tokenKey: '${process.env.TOKEN_KEY}'
 };
 `;
 
