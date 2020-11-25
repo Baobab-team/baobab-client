@@ -1,0 +1,31 @@
+<div class="container" >
+    <h1>Contact us</h1>
+    <div class="row">
+        <div class="col">
+        <img src="../../../../assets/statics/contact-image.jpg" class="img-fluid rounded" width="550px" height="400px"/>
+
+    </div>
+    <div class="col">
+        <form [formGroup]="contactForm" onsubmit="onSubmit()" class="col">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <select class="custom-select">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Email" />
+                    </div>
+                    <div class="form-group">
+                    <textarea class="form-control" placeholder="Message" rows="10" ></textarea>
+                    </div>
+                <input class="btn btn-primary" type="submit"/>
+            </form>
+        </div>
+    </div>
+</div>

@@ -130,5 +130,13 @@
             "sunday":"dimanche"
         }
     },
-    "closed":"Fermé"
+    "closed":"Fermé",
+    "contact":{
+        "form" :{
+            "name":"Nom",
+            "courriel":"Courriel",
+            "subject":"Sujet",
+            "message":"Message"
+        }
+    }
 }
