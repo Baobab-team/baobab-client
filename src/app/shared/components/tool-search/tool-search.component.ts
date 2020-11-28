@@ -24,6 +24,7 @@ import { selectAutocompleteBusinesses$, selectAutocompleteBusinessLoading$ } fro
 import {Logger} from '@Services/logger.service';
 import { selectCategories$, selectCategoryErrors$, selectCategoryLoading$ } from '@Store/category/category.selector';
 import {Log} from '@Models/log.model';
+import { CategoryModule } from '@Store/category/category.action';
 
 const log = new Logger('tool-search.component');
 
@@ -107,6 +108,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     log.debug('init');
+    this.store.dispatch(new CategoryModule.LoadListCategory());
     this.initForm();
   }
 
@@ -115,16 +117,19 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initForm() {
-    const querySearch = this.activateRoute.snapshot.queryParamMap.get('querySearch');
-
     this.searchForm = this.formBuilder.formGroup(
-      new Search(querySearch)
+      new Search(
+        this.activateRoute.snapshot.queryParamMap.get('querySearch'),
+        this.activateRoute.snapshot.queryParamMap.get('category')
+      )
     );
   }
 
   onSubmit() {
-    const formValues = this.searchForm.value as Search;
-
+    const formValues = new Search(
+      this.searchForm.value.querySearch,
+      this.searchForm.value.category
+    )
     if (formValues) {
       this.onSearch.emit(formValues);
     }

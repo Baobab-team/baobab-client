@@ -12,16 +12,19 @@
     </div>
   </div>
   <div class="container home__footer">
-    <h4 class="text-color-principal home-text home__footer__title">En vedette</h4>
-    <div class="row home__footer__body">
-      <div class="col">
-        <img src="../../../../assets/statics/img1.jpg" alt="">
-        <div class="rectangle-9"></div>
-      </div>
-      <div class="col">
-        <img src="../../../../assets/statics/img1.jpg" alt="">
-        <div class="rectangle-9"></div>
-      </div>
+    <h4 class="text-color-principal home-text home__footer__title">Categories</h4>
+    <div class="row">
+        <div class="col-sm-4" *ngFor="let category of (categories$ | async) as categories">
+        <div class="card bg-dark text-white" 
+        (click)="selectCategory(category.name);">
+          <img src="../../../../assets/statics/placeholders/baobab_placeholder.png" width="500px" height="200px" class="card-img" alt="...">
+          <div class="card-img-overlay">
+            <h5 class="card-title">
+              {{category.name}}
+            </h5>
+          </div>  
+        </div>
+        </div>
     </div>
   </div>
 </div>

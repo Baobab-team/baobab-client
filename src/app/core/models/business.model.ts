@@ -17,11 +17,11 @@ export enum BUSINESS_PAYMENT_TYPES {
 }
 
 export enum BUSINESS_SOCIAL_LINKS {
-  FACEBOOK = 'Facebook',
-  TWITTER = 'Twitter',
-  INSTAGRAM = 'Instagram',
-  LINKEDIN = 'Linkedin',
-  SNAPCHAT = 'Snapchat'
+  FACEBOOK = 'facebook',
+  TWITTER = 'twitter',
+  INSTAGRAM = 'instagram',
+  LINKEDIN = 'linkedin',
+  SNAPCHAT = 'snapchat'
 }
 
 export enum BUSINESS_STATUSES {
@@ -33,6 +33,7 @@ export enum BUSINESS_STATUSES {
 export class Category {
   id?: number;
   name: string;
+  children: Category[];
 }
 
 export class BusinessHour {
