@@ -50,5 +50,3 @@ Thumbs.db
 
 # environement variables
 .env
-
-/src/environments/environment.ts
