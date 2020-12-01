@@ -3,12 +3,12 @@
     <form class="form-inline search__body__form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <div *ngIf="optionsFields" class="form-group w-25">
           <select
-            *ngIf="(categoriesLoading$ | async)"
+            #category
             formControlName="category"
             class="mr-3 input-focus baobab-input search__body__form__select-category">
             <option selected>Categorie</option>
-            <option *ngFor="let category of (categories$ | async)" [ngValue]="category">
-              {{category.name | lowercase}}
+            <option *ngFor="let category of (categories$ | async)" [ngValue]="category.name">
+              {{category.name}}
             </option>
           </select>
         </div>
