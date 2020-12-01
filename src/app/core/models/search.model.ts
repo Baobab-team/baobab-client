@@ -6,16 +6,17 @@ export class Search {
   @trim()
   querySearch?: string;
   // tslint:disable-next-line: variable-name
-  exclude_deleted = true;
+  exclude_deleted? = true;
   status?: BUSINESS_STATUSES[];
-  category: Category;
+  @prop()
+  category?: string;
 
   constructor(
     querySearch?,
+    category?: string,
     // tslint:disable-next-line: variable-name
     exclude_deleted?,
     status?: BUSINESS_STATUSES[],
-    category?: Category
   ) {
     if (querySearch) {
       this.querySearch = querySearch;

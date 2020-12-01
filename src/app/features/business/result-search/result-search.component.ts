@@ -23,7 +23,7 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private actiavteRoute: ActivatedRoute,
+    private activateRoute: ActivatedRoute,
     private store: Store<any>
   ) {
     this.businessesloading$ = store.pipe(
@@ -65,8 +65,9 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
       return param;
     } else {
       return new Search(
-        this.actiavteRoute.snapshot.queryParamMap.get('querySearch'),
-      );
+        this.activateRoute.snapshot.queryParamMap.get('querySearch'),
+        this.activateRoute.snapshot.queryParamMap.get('category')
+       );
     }
   }
 }
