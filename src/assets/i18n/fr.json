@@ -109,7 +109,6 @@
         "tool-search": {
             "form_btn_search": "Rechercher",
             "form_label_search": "Trouver votre business",
-            "form_label_select_default": "Selectionner une categorie",
             "form_label_option_category": "Categories"
         },
         "datatable": {
