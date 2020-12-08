@@ -1,12 +1,14 @@
 import { LOG_TYPES, Log } from '@Models/log.model';
 import { CategoryState } from '@Models/business.model';
 import { CategoryModule } from '@Store/category/category.action';
+import { CategoryFilters } from '@Models/search.model';
 
 const categoryInitialState: CategoryState = {
   data: [],
   loading: false,
   loaded: false,
-  log: null
+  log: null,
+  filters: undefined
 };
 
 export function CategoryReducer(
@@ -17,7 +19,8 @@ export function CategoryReducer(
     case CategoryModule.ActionTypes.LOAD_LIST_CATEGORY:
       return {
         ...state,
-        loading: true
+        loading: true,
+        filters: action.filters
       };
     case CategoryModule.ActionTypes.SUCCESS_LIST_CATEGORY:
       return {

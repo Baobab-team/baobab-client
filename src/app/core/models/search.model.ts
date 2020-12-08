@@ -32,3 +32,15 @@ export class Search {
     }
   }
 }
+
+export class CategoryFilters{
+  only_root : boolean;
+
+  constructor(
+    only_root?:boolean
+  ) {
+    if (only_root) {
+      this.only_root = only_root;
+    }
+  }
+}

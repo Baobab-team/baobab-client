@@ -4,6 +4,7 @@ import { CoreService } from '@Services/core.service';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '@Models/business.model';
 import { Observable } from 'rxjs';
+import { CategoryFilters } from '@Models/search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,12 @@ export class CategoryService extends CoreService  {
     super();
    }
 
-   public getCategories(): Observable<Category[]>  {
+   public getCategories(filters: CategoryFilters): Observable<Category[]>  {
      return this.httpClient.get<Category[]>(
-      this.BASE_URL_API + '/' + Const.paths_api.categories
+      this.BASE_URL_API + '/' + Const.paths_api.categories,
+      {
+        params: this.toHttpParams(filters)
+      }
      );
    }
 

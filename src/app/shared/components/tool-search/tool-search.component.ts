@@ -14,7 +14,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {Business, Category} from '@Models/business.model';
-import { Search } from '@Models/search.model';
+import { CategoryFilters, Search } from '@Models/search.model';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import {debounceTime, switchMap, catchError, distinctUntilChanged, takeUntil, tap} from 'rxjs/operators';
 import { Observable, Subject, of } from 'rxjs';
@@ -108,7 +108,7 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     log.debug('init');
-    this.store.dispatch(new CategoryModule.LoadListCategory());
+    this.store.dispatch(new CategoryModule.LoadListCategory(this.getCategoryFilters()));
     this.initForm();
   }
 
@@ -134,5 +134,9 @@ export class ToolSearchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.onSearch.emit(formValues);
     }
     return;
+  }
+
+  private getCategoryFilters() {
+    return new CategoryFilters();
   }
 }

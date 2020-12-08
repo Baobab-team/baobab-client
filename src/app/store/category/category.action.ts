@@ -1,5 +1,6 @@
 import { Category } from '@Models/business.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CategoryFilters } from '@Models/search.model';
 
 export namespace CategoryModule {
 
@@ -17,6 +18,10 @@ export namespace CategoryModule {
   // list category
   export class LoadListCategory {
     readonly type = ActionTypes.LOAD_LIST_CATEGORY;
+    filters: CategoryFilters;
+    constructor(filters: CategoryFilters) {
+      this.filters = filters;
+    }
   }
 
   export class SuccessListCategory {
