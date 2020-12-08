@@ -11,7 +11,7 @@ export class CategoryEffects {
   @Effect() Category$: Observable<CategoryModule.Actions> = this.actions$
   .pipe(
     ofType(CategoryModule.ActionTypes.LOAD_LIST_CATEGORY),
-    switchMap(() => this.categoryService.getCategories()),
+    switchMap((loadListCategory: CategoryModule.LoadListCategory) => this.categoryService.getCategories(loadListCategory.filters)),
     map(categories => new CategoryModule.SuccessListCategory(categories)),
     catchError((err) => of(new CategoryModule.ErrorCategoryAction(err)))
   );

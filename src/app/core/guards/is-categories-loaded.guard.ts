@@ -6,6 +6,7 @@ import { AppState } from '@Store/index';
 import { CategoryModule } from '@Store/category/category.action';
 import { map } from 'rxjs/operators';
 import { selectCategoryLoaded$ } from '@Store/category/category.selector';
+import { CategoryFilters } from '@Models/search.model';
 
 
 @Injectable({
@@ -25,7 +26,7 @@ export class IsCategoriesLoadedGuard implements CanActivate {
         map(
           (isLoaded) => {
             if (!isLoaded) {
-              this.store.dispatch(new CategoryModule.LoadListCategory());
+              this.store.dispatch(new CategoryModule.LoadListCategory(new CategoryFilters()));
             }
             return true;
           })

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { CategoryFilters } from '@Models/search.model';
 import { Category } from '@Models/business.model';
 import { select, Store } from '@ngrx/store';
 import {Logger} from '@Services/logger.service';
+import { CategoryModule } from '@Store/category/category.action';
 import { selectCategories$, selectCategoryLoading$ } from '@Store/category/category.selector';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -21,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    store: Store<any>
+    private store: Store<any>
   ) { 
     this.categoriesLoading$ = store.pipe(
       select(selectCategoryLoading$),
@@ -35,6 +37,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     log.debug('init');
+    this.store.dispatch(new CategoryModule.LoadListCategory(this.getFilters()));
   }
 
   search($event: {
@@ -56,5 +59,9 @@ export class HomeComponent implements OnInit {
   ngOnDestroy(): void {
     this.unsubsscribe$.next();
     this.unsubsscribe$.complete();
+  }
+
+  private getFilters(){
+    return new CategoryFilters(true);
   }
 }

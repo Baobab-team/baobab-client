@@ -1,6 +1,6 @@
 import { Log } from './log.model';
 import { Phone } from './phone.model';
-import { Search } from './search.model';
+import { CategoryFilters, Search } from './search.model';
 
 export enum BUSINESS_LANGUAGE {
   FRENCH = 'francais',
@@ -113,4 +113,5 @@ export interface CategoryState {
   loading: boolean;
   loaded: boolean;
   log: Log;
+  filters: CategoryFilters;
 }
