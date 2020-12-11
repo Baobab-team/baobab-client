@@ -1,5 +1,14 @@
+@import "~assets/sass/variables";
+
 .footer {
   &__line {
     text-align: center;
+    background-color: $clrOrange1;
+    color: white;
+  }
+
+  ul.social_link li {
+    display:inline;
+    padding: 5px;
   }
 }
