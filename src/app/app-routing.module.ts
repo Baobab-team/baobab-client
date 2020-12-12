@@ -32,39 +32,39 @@ const routes: Routes = [
   //     ),
   // },
   // admin layout
-  {
-    path: '',
-    component: AdminLayoutComponent,
-    data: {
-      title: 'admin.title_home'
-    },
-    loadChildren: () =>
-      import('./features-admin/home/home.module').then(
-        m => m.HomeModule
-      ),
-  },
-  {
-    path: '',
-    component: AdminLayoutComponent,
-    data: {
-      title: 'admin.category.title_category'
-    },
-    loadChildren: () =>
-      import('./features-admin/category/category.module').then(
-        m => m.CategoryModule
-      ),
-  },
-  {
-    path: '',
-    component: AdminLayoutComponent,
-    data: {
-      title: 'admin.business.title_business'
-    },
-    loadChildren: () =>
-      import('./features-admin/business/business.module').then(
-        m => m.BusinessModule
-      ),
-  },
+  // {
+  //   path: '',
+  //   component: AdminLayoutComponent,
+  //   data: {
+  //     title: 'admin.title_home'
+  //   },
+  //   loadChildren: () =>
+  //     import('./features-admin/home/home.module').then(
+  //       m => m.HomeModule
+  //     ),
+  // },
+  // {
+  //   path: '',
+  //   component: AdminLayoutComponent,
+  //   data: {
+  //     title: 'admin.category.title_category'
+  //   },
+  //   loadChildren: () =>
+  //     import('./features-admin/category/category.module').then(
+  //       m => m.CategoryModule
+  //     ),
+  // },
+  // {
+  //   path: '',
+  //   component: AdminLayoutComponent,
+  //   data: {
+  //     title: 'admin.business.title_business'
+  //   },
+  //   loadChildren: () =>
+  //     import('./features-admin/business/business.module').then(
+  //       m => m.BusinessModule
+  //     ),
+  // },
   {
     path: '**',
     redirectTo: '/',
