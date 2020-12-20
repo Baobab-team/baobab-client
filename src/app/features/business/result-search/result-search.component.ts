@@ -1,6 +1,6 @@
 import { takeUntil } from 'rxjs/operators';
 import { Business } from '@Models/business.model';
-import { Search } from '@Models/search.model';
+import { Pagination, Search } from '@Models/search.model';
 import { selectBusinessLoading$, selectBusinesses$ } from '@Store/business/business.selector';
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -18,8 +18,9 @@ const log = new Logger('search-business.component');
 })
 export class ResultSearchComponent implements OnInit, OnDestroy {
   public businessesloading$: Observable<boolean>;
-  public businesses$: Observable<(string | Business)[]>;
+  public businesses$: Observable<(Pagination<Business>)>;
   public unsubsscribe$ = new Subject<void>();
+  public currentPage: number;
 
   constructor(
     private router: Router,
@@ -34,6 +35,7 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
       select(selectBusinesses$),
       takeUntil(this.unsubsscribe$)
     );
+    this.currentPage = 1;
   }
   ngOnDestroy(): void {
     this.unsubsscribe$.next();
@@ -47,13 +49,7 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
 
   onSubmit(params: Search) {
     log.debug('run search:', params.querySearch);
-    this.router.navigate(
-      ['/search'],
-      {queryParams: params}
-    ).then(
-      () => {
-        this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams(params)));
-    });
+    this.updateSearch();
   }
 
   selectBusiness(businessId: number) {
@@ -69,5 +65,48 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
         this.activateRoute.snapshot.queryParamMap.get('category')
        );
     }
+  }
+
+  range(start, stop, step=1) {
+    var a = [start], b = start;
+    while (b < stop) {
+        a.push(b += step || 1);
+    }
+    return a;
+  }
+  
+  onSelectPage(page: number){
+    this.currentPage = page;
+    console.log(this.currentPage);
+    this.updateSearch(true);
+  }
+
+  nextPage(){
+    this.currentPage++;
+    this.updateSearch(true);
+  }
+
+  previousPage(){
+    this.currentPage--;
+    this.updateSearch(true);
+  }
+
+  private updateSearch(pageUpdated=false){
+    const page = !pageUpdated ? 
+    this.activateRoute.snapshot.queryParamMap.get('page') : 
+    this.currentPage
+    const params = new Search(
+      this.activateRoute.snapshot.queryParamMap.get('querySearch'),
+      this.activateRoute.snapshot.queryParamMap.get('category'),
+      page as number
+    );
+
+    this.router.navigate(
+      ['/search'],
+      {queryParams: params}
+    ).then(
+      () => {
+        this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams(params)));
+    });
   }
 }

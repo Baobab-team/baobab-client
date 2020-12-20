@@ -1,5 +1,5 @@
 import { Business } from '@Models/business.model';
-import { Search} from '@Models/search.model';
+import { Pagination, Search} from '@Models/search.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
@@ -40,7 +40,7 @@ export namespace BusinessModule {
   export class SuccessSearchBusiness {
     readonly type = ActionTypes.SUCCESS_SEARCH_BUSINESS;
     payload: any;
-    constructor(payload: Business[]) {
+    constructor(payload: Pagination<Business>) {
       this.payload = payload;
     }
   }
