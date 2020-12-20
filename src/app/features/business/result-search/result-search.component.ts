@@ -77,9 +77,8 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
   
   onSelectPage(page: number){
     this.currentPage = page;
-    console.log(this.currentPage);
     this.updateSearch(true);
-  }
+  } 
 
   nextPage(){
     this.currentPage++;
