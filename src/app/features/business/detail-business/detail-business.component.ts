@@ -7,7 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { BusinessModule } from '@Store/business/business.action';
 import { ActivatedRoute } from '@angular/router';
 import {Logger} from '@Services/logger.service';
-
+import {getDayText, getLogoIcon} from '@Store/business/business.helper'
 const log = new Logger('detail-business.component');
 
 @Component({
@@ -47,37 +47,11 @@ export class DetailBusinessComponent implements OnInit, OnDestroy {
   }
 
   getLogo(type: BUSINESS_SOCIAL_LINKS) {
-    return 'fab '+ 'fa-'+type;
+    return getLogoIcon(type);
   }
 
   getDay(day) {
-    let aDay = null;
-
-    switch (day) {
-      case 1:
-        aDay = 'calendar.days.monday';
-        break;
-      case 2:
-        aDay = 'calendar.days.tuesday';
-        break;
-      case 3:
-        aDay = 'calendar.days.wednesday';
-        break;
-      case 4:
-        aDay = 'calendar.days.thursday';
-        break;
-      case 5:
-        aDay = 'calendar.days.friday';
-        break;
-      case 6:
-        aDay = 'calendar.days.saturday';
-        break;
-      case 7:
-        aDay = 'calendar.days.sunday';
-        break;
-    }
-
-    return aDay;
+   return getDayText(day);
   }
 
 }

@@ -116,8 +116,11 @@
         }
     },
     "search": {
-        "no_result": "Aucun resultat",
-        "loading": "Chargement en cours"
+        "no_result": "Aucun résultat",
+        "results": "Résultat(s)",
+        "loading": "Chargement en cours",
+        "next": "Suivant",
+        "previous": "Précedent"
     },
     "calendar":{
         "days":{

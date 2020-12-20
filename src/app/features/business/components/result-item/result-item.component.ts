@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Business, BUSINESS_SOCIAL_LINKS} from '@Models/business.model';
+import { getLogoIcon } from '@Store/business/business.helper';
 
 @Component({
   selector: 'app-result-item',
@@ -14,6 +15,6 @@ export class ResultItemComponent implements OnInit {
   ngOnInit() { }
 
   getLogo(type: BUSINESS_SOCIAL_LINKS) {
-    return 'fab '+ 'fa-'+type;
+    return getLogoIcon(type);
   }
 }
