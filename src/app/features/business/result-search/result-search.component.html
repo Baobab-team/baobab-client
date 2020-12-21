@@ -10,7 +10,7 @@
 
   <div class="container search__results" *ngIf="(businessesloading$ | async) === false">
     <div *ngIf="(businesses$ | async) as businesses">
-      <div *ngIf="businesses.items_count;" class="result_count h3">
+      <div *ngIf="businesses.items_count;" class="result_count h6">
         {{ businesses.items_count  }} {{'search.results' | translate}}
       </div>
       <ul class="list-group list-group-flush" *ngIf="businesses.items_count; else noResult">
