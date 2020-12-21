@@ -6,14 +6,17 @@ export class Search {
   @trim()
   querySearch?: string;
   // tslint:disable-next-line: variable-name
-  exclude_deleted? = true;
+  exclude_deleted?: boolean;
   status?: BUSINESS_STATUSES[];
   @prop()
   category?: string;
+  page?: number;
+
 
   constructor(
     querySearch?,
     category?: string,
+    page?: number,
     // tslint:disable-next-line: variable-name
     exclude_deleted?,
     status?: BUSINESS_STATUSES[],
@@ -30,5 +33,16 @@ export class Search {
     if (category) {
       this.category = category;
     }
+    if (page) {
+      this.page = page;
+    }
   }
+}
+
+export class Pagination<T>{
+  items: T[]
+  next: string
+  previous: string
+  items_count: number
+  total_pages: number
 }

@@ -1,4 +1,4 @@
-import { Search } from '@Models/search.model';
+import { Pagination, Search } from '@Models/search.model';
 import { Business } from '@Models/business.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -18,8 +18,8 @@ export class BusinessService extends CoreService {
     super();
   }
 
-  public getBusinesses(params: Search): Observable<Business[]> {
-    return this.httpClient.get<Business[]>(
+  public getBusinesses(params: Search): Observable<Pagination<Business>> {
+    return this.httpClient.get<Pagination<Business>>(
       this.BASE_URL_API + '/' + Const.paths_api.businesses,
       {
         params: this.toHttpParams(params)

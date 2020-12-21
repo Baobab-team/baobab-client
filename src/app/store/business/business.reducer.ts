@@ -1,9 +1,10 @@
 import { BusinessState } from '@Models/business.model';
 import { BusinessModule } from './business.action';
 import { LOG_TYPES } from '@Models/log.model';
+import { Pagination } from '@Models/search.model';
 
 const businessInitialState: BusinessState = {
-  data: [],
+  data: Pagination,
   search: undefined,
   autocompleteData: [],
   businessId: NaN,

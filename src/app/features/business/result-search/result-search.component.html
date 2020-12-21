@@ -10,14 +10,37 @@
 
   <div class="container search__results" *ngIf="(businessesloading$ | async) === false">
     <div *ngIf="(businesses$ | async) as businesses">
-      <ul class="list-group list-group-flush" *ngIf="businesses.length; else noResult">
-        <li class="list-group-item" *ngFor="let business of businesses" (click)="selectBusiness(business)">
+      <div *ngIf="businesses.items_count;" class="result_count h6">
+        {{ businesses.items_count  }} {{'search.results' | translate}}
+      </div>
+      <ul class="list-group list-group-flush" *ngIf="businesses.items_count; else noResult">
+        <li class="list-group-item" *ngFor="let business of businesses.items" (click)="selectBusiness(business)">
           <app-result-item [business]="business"></app-result-item>
         </li>
       </ul>
       <ng-template #noResult>
           <h1 class="text-center">{{'search.no_result' | translate}}</h1>
       </ng-template>
+      <nav aria-label="Page navigation example"  *ngIf="businesses.items_count;">
+        <ul class="pagination justify-content-center" >
+          <li class="page-item" 
+            [ngClass]="{'disabled' : currentPage == 1}" 
+            (click)="currentPage > 1 && previousPage()">
+            <a class="page-link">{{'search.previous' | translate}}</a>
+          </li>
+          <li class="page-item" 
+          *ngFor="let i of range(1, businesses.total_pages)" 
+          [ngClass]="{'active' : currentPage == i}" 
+          (click)="onSelectPage(i)">
+              <a class="page-link">{{ i }}</a>
+          </li>
+          <li class="page-item" 
+            (click)="currentPage < businesses.total_pages && nextPage()"
+            [ngClass]="{'disabled' : currentPage >= businesses.total_pages}">
+              <a class="page-link">{{'search.next' | translate}}</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

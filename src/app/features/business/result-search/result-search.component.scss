@@ -6,3 +6,17 @@
     padding: 20px 0;
   }
 }
+
+.result_count{
+  color: $clrOrange1;
+}
+
+li.page-item {
+  color: $clrOrange1;
+}
+
+.page-item.active .page-link {
+  background-color: $clrOrange1 !important;
+  border-color: $clrOrange1 !important;
+  color: white !important;
+}

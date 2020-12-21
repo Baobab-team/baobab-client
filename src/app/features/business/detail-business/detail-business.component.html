@@ -82,7 +82,7 @@
           <div class="col-md business__footer__social">
             <ul class="list-inline">
               <li *ngFor="let socialLink of business.social_links" class="list-inline-item">
-                <a href="{{socialLink.link}}" class="link-primary social-link business__footer__social__link">
+                <a href="{{socialLink.link}}" title="{{socialLink.type}}" class="link-primary social-link business__footer__social__link">
                   <i [class]="getLogo(socialLink.type)" class="fa-3x"></i>
                 </a>
               </li>
