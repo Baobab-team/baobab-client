@@ -73,6 +73,7 @@ export interface Business {
   phones?: Phone[];
   category: Category;
   name: string;
+  slug: string;
   description: string;
   notes: string;
   website: string;

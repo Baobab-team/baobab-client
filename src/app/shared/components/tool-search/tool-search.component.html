@@ -6,8 +6,8 @@
             #category
             formControlName="category"
             class="mr-3 input-focus baobab-input search__body__form__select-category">
-            <option selected>Categorie</option>
-            <option *ngFor="let category of (categories$ | async)" [ngValue]="category.name">
+            <option selected>Categories</option>
+            <option *ngFor="let category of (categories$ | async)" [ngValue]="category.slug">
               {{category.name}}
             </option>
           </select>

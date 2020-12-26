@@ -21,6 +21,7 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
   public businesses$: Observable<(Pagination<Business>)>;
   public unsubsscribe$ = new Subject<void>();
   public currentPage: number;
+  public currentSearch: Search;
 
   constructor(
     private router: Router,
@@ -44,12 +45,13 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     log.debug('init');
-    this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams()));
+    this.currentSearch = this.getParams();
+    this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.currentSearch));
   }
 
   onSubmit(params: Search) {
     log.debug('run search:', params.querySearch);
-    this.updateSearch();
+    this.updateSearch(params);
   }
 
   selectBusiness(businessId: number) {
@@ -77,28 +79,26 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
   
   onSelectPage(page: number){
     this.currentPage = page;
-    this.updateSearch(true);
+    this.updateSearch();
   } 
 
   nextPage(){
     this.currentPage++;
-    this.updateSearch(true);
+    this.updateSearch();
   }
 
   previousPage(){
     this.currentPage--;
-    this.updateSearch(true);
+    this.updateSearch();
   }
 
-  private updateSearch(pageUpdated=false){
-    const page = !pageUpdated ? 
-    this.activateRoute.snapshot.queryParamMap.get('page') : 
-    this.currentPage
-    const params = new Search(
-      this.activateRoute.snapshot.queryParamMap.get('querySearch'),
-      this.activateRoute.snapshot.queryParamMap.get('category'),
-      page as number
-    );
+  private updateSearch(params?: Search){
+    if(!params){
+      params = this.currentSearch;
+    }
+    if(this.currentPage > 1){
+      params = Object.assign({page: this.currentPage}, params)
+    }
 
     this.router.navigate(
       ['/search'],
@@ -107,5 +107,6 @@ export class ResultSearchComponent implements OnInit, OnDestroy {
       () => {
         this.store.dispatch(new BusinessModule.LoadSearchBusiness(this.getParams(params)));
     });
+    this.currentSearch = params;
   }
 }
