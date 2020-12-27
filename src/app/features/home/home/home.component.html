@@ -14,16 +14,11 @@
   <div class="container home__footer">
     <h4 class="text-color-principal home-text home__footer__title">{{'shared.tool-search.form_label_option_category' | translate }}</h4>
     <div class="row">
-        <div class="col-sm-4" *ngFor="let category of (categories$ | async) as categories">
-        <div class="card bg-dark text-white mx-2 my-2" 
+        <div class="col-sm-3" *ngFor="let category of (categories$ | async) as categories">
+        <button type="button" class="btn btn-lg btn-link"
         (click)="selectCategory(category.slug);">
-          <img src="../../../../assets/statics/placeholders/baobab_placeholder.png" width="500px" height="200px" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title">
-              {{category.name}}
-            </h5>
-          </div>  
-        </div>
+        <span class="badge  badge-warning">{{category.businesses_count}}</span> {{category.name}} 
+        </button>
         </div>
     </div>
   </div>

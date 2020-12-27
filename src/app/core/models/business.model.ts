@@ -34,6 +34,7 @@ export class Category {
   id?: number;
   name: string;
   children: Category[];
+  businesses_count: number;
 }
 
 export class BusinessHour {
