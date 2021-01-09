@@ -1,3 +1,4 @@
+import { propObject, required } from '@rxweb/reactive-form-validators';
 import { Log } from './log.model';
 import { Phone } from './phone.model';
 import { Search } from './search.model';
@@ -56,8 +57,9 @@ export interface Tag {
   name: string;
 }
 
-export interface Address {
+export class Address {
   readonly id: number;
+  app_office_number: number;
   street_number: string;
   street_type: string;
   street_name: string;
@@ -66,12 +68,15 @@ export interface Address {
   zip_code: string;
   province: string;
   country: string;
+
+  constructor(){}
 }
 
-export interface Business {
+export class Business {
   readonly id?: number;
   phones?: Phone[];
   category: Category;
+  @required()
   name: string;
   slug: string;
   description: string;
@@ -96,6 +101,23 @@ export interface Business {
   addresses: Address[];
   payment_types: string[];
   business_hours: BusinessHour[];
+
+  constructor(){
+    this.addresses = [new Address()]
+  }
+}
+
+
+export class BusinessSuggestion {
+  email: string;
+  name: string;
+  business : Business;
+
+  constructor(name: string, email: string, business: Business){
+    this.email = email;
+    this.name = name;
+    this.business = business;
+  }
 }
 
 export interface BusinessState {
@@ -111,6 +133,13 @@ export interface BusinessState {
 
 export interface CategoryState {
   data: Category[];
+  loading: boolean;
+  loaded: boolean;
+  log: Log;
+}
+
+export interface BusinessSuggestionState {
+  data: BusinessSuggestion[];
   loading: boolean;
   loaded: boolean;
   log: Log;

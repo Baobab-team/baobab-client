@@ -1,4 +1,4 @@
-import { BusinessState, CategoryState } from '@Models/business.model';
+import { BusinessState, CategoryState, BusinessSuggestionState } from '@Models/business.model';
 import { BusinessEffects } from '@Store/business/business.effect';
 import { BusinessReducer } from '@Store/business/business.reducer';
 import { InjectionToken } from '@angular/core';
@@ -19,6 +19,7 @@ export const appEffects =  [
 export interface AppState {
   businesses: BusinessState;
   category: CategoryState;
+  business_suggestions: BusinessSuggestionState;
 }
 
 export function getReducers() {

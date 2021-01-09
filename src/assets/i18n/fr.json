@@ -133,5 +133,32 @@
             "sunday":"dimanche"
         }
     },
-    "closed":"Fermé"
+    "business-suggestion": {
+        "title": "Faire une suggestion",
+        "suggester_title": "Vos informations",
+        "suggester_help_text": "Votre nom pour qu'on puisse vous contacter au cas-ou"
+    },
+    "address" :{
+        "address": "Addresse",
+        "street_number": "# de rue",
+        "street_name": "Nom de rue",
+        "zip_code": "Code Postal",
+        "appartment": "App #",
+        "city": "Ville",
+        "country": "Pays"        
+    },
+    "suggestion.form.phone.error" : "Veuiller entrer un numero de telephone valide",
+    "suggestion.form.email.error" : "Veuiller entrer un courriel valide",
+    "suggestion.form.website.error" : "Veuiller entrer un website valide",
+    "suggestion.form.category.error" : "Veuiller selectionner un catégorie",
+    "suggestion.form.suggester.name.required" : "Nom requis",
+    "suggestion.form.name.required" : "Nom requis",
+    "closed": "Fermé",
+    "phone": "Telephone",
+    "name": "Nom",
+    "description": "Description",
+    "website": "Site web",
+    "email": "Addresse courriel",
+    "submit": "Soumettre",
+    "informations": "Informations"
 }

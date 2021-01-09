@@ -1,0 +1,137 @@
+<div class="suggestion">
+    <div class="d-flex justify-content-center">
+        <form [formGroup]="suggestionForm" (ngSubmit)="onSubmit()" class="suggestion__form ">
+            <h3 class="text-center">{{'business-suggestion.title' | translate}}</h3>
+            <div class="row">
+                <div class="col-md-6" >
+                    <h5>{{ 'informations' | translate }}</h5>
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            formControlName="business_name" 
+                            placeholder="{{ 'name' | translate }}"
+                        />
+                        <small class="form-text text-danger" *ngIf="suggestionForm.controls.name.errors">{{suggestionForm.controls.name["message"]}}<br/></small>
+                    </div>
+                    <div class="form-group">
+                        <select
+                            formControlName="category"
+                            class="form-control">
+                            <option selected>Categories</option>
+                            <option *ngFor="let category of (categories$ | async)" [ngValue]="category">
+                            {{category.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" 
+                            class="form-control"
+                            formControlName="business_email"
+                            placeholder="{{ 'email' | translate }}">
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            formControlName="business_website"
+                            placeholder="{{ 'website' | translate }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" 
+                            class="form-control" 
+                            formControlName="business_phone" 
+                            placeholder="{{ 'phone' | translate }}">
+                    </div>
+                    <div class="form-group">
+                        <textarea 
+                            formControlName="business_description"
+                            placeholder="{{ 'description' | translate }}"
+                            class="form-control"
+                            rows="3"
+                        ></textarea>
+                    </div>                        
+                </div>
+                <div class="col-md-6">
+                    <h5>{{ 'address.address' | translate }}</h5>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            formControlName="address_street_number"
+                            placeholder="{{ 'address.street_number' | translate }}"
+                        >
+                        </div>
+                        <div class="form-group col-md-3">
+                          <input 
+                            type="text" 
+                            class="form-control" 
+                            formControlName="address_app"
+                            placeholder="{{ 'address.appartment' | translate }}"
+                        >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            formControlName="address_street_name" 
+                            placeholder="{{ 'address.street_name' | translate }}"
+                        >
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                formControlName="address_city"
+                                placeholder="{{ 'address.city' | translate }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="address_zip_code" 
+                                placeholder="{{ 'address.zip_code' | translate }}">
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                value="Canada" 
+                                formControlName="address_country"
+                                placeholder="{{ 'address.country' | translate }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <h3>{{ 'business-suggestion.suggester_title' | translate}}</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        formControlName="name" 
+                        placeholder="{{ 'name' | translate }}"
+                    >
+                </div>
+                <div class="form-group col-md-6">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        formControlName="email" 
+                        placeholder="{{ 'email' | translate}}"
+                    >
+                </div>
+                <small class="form-text text-muted">{{ "business-suggestion.suggester_help_text" | translate}}</small>
+            </div>
+
+            <button class="btn btn-primary" type="submit">{{'submit' | translate}}</button>
+            
+        </form>
+
+    </div>
+</div>
