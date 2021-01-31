@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Const } from 'environments/const';
 import { CoreService } from '@Services/core.service';
 import { HttpClient } from '@angular/common/http';
-import { Category, BusinessSuggestion } from '@Models/business.model';
+import { BusinessSuggestion } from '@Models/business.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

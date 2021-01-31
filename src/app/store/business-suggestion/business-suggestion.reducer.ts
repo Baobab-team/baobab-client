@@ -1,5 +1,5 @@
 import { BusinessState } from '@Models/business.model';
-import { BusinessModule } from './business-suggestion.action';
+import { BusinessSuggestionModule } from './business-suggestion.action';
 import { LOG_TYPES } from '@Models/log.model';
 import { Pagination } from '@Models/search.model';
 
@@ -17,54 +17,15 @@ const businessInitialState: BusinessState = {
 
 export function BusinessReducer(
   state: BusinessState = businessInitialState,
-  action: BusinessModule.Actions
+  action: BusinessSuggestionModule.Actions
 ): BusinessState {
   switch (action.type) {
-    case BusinessModule.ActionTypes.LOAD_SEARCH_BUSINESS:
-      return {
-        ...state,
-        search: action.payload,
-        loading: true
-      };
-    case BusinessModule.ActionTypes.SUCCESS_SEARCH_BUSINESS:
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        data: action.payload
-      };
-      case BusinessModule.ActionTypes.LOAD_SEARCH_AUTOCOMPLETE_BUSINESS:
-        return {
-          ...state,
-          search: action.payload,
-          loading: true
-        };
-      case BusinessModule.ActionTypes.SUCCESS_SEARCH_AUTOCOMPLETE_BUSINESS:
-        return {
-          ...state,
-          loading: false,
-          loaded: true,
-          autocompleteData: action.payload
-        };
-    case BusinessModule.ActionTypes.LOAD_DETAIL_BUSINESS:
-      return {
-        ...state,
-        loading: true,
-        businessId: action.payload
-      };
-    case BusinessModule.ActionTypes.SUCCESS_DETAIL_BUSINESS:
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        business: action.payload
-      };
-    case BusinessModule.ActionTypes.LOAD_CREATE_BUSINESS:
+    case BusinessSuggestionModule.ActionTypes.LOAD_CREATE_BUSINESS_SUGGESTION:
       return {
         ...state,
         loading: true
       };
-    case BusinessModule.ActionTypes.SUCCESS_CREATE_BUSINESS:
+    case BusinessSuggestionModule.ActionTypes.SUCCESS_CREATE_BUSINESS_SUGGESTION:
       return {
         ...state,
         loading: false,
@@ -78,39 +39,7 @@ export function BusinessReducer(
           action.payload
         ]
       };
-
-    case BusinessModule.ActionTypes.LOAD_CREATE_CSV_BUSINESS:
-      return {
-        ...state,
-        loading: true
-      };
-    case BusinessModule.ActionTypes.SUCCESS_CREATE_CSV_BUSINESS:
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        log: {
-          type: LOG_TYPES.SUCCESS,
-          message: 'admin.business.log.success'
-        },
-        data: [
-          ...state.data,
-          action.payload
-        ]
-      };
-    case BusinessModule.ActionTypes.LOAD_DELETE_BUSINESS:
-      return {
-        ...state,
-        loading: true,
-        businessId: action.payload
-      };
-    case BusinessModule.ActionTypes.SUCCESS_DELETE_BUSINESS:
-        return {
-          ...state,
-          loading: false,
-          loaded: true,
-        };
-    case BusinessModule.ActionTypes.ERROR_BUSINESS_ACTION:
+    case BusinessSuggestionModule.ActionTypes.ERROR_BUSINESS_SUGGESTION_ACTION:
       return {
         ...state,
         log: {
