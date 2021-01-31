@@ -1,19 +1,10 @@
 <div class="suggestion">
     <div class="d-flex justify-content-center">
-        <form [formGroup]="suggestionForm" (ngSubmit)="onSubmit()" class="suggestion__form ">
+        <form [formGroup]="bsf" (ngSubmit)="onSubmit()" class="suggestion__form ">
             <h3 class="text-center">{{'business-suggestion.title' | translate}}</h3>
-            <div class="row">
-                <div class="col-md-6" >
+            <div class="row" >
+                <div class="col-md-6" formGroupName="business">
                     <h5>{{ 'informations' | translate }}</h5>
-                    <div class="form-group">
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            formControlName="business_name" 
-                            placeholder="{{ 'name' | translate }}"
-                        />
-                        <small class="form-text text-danger" *ngIf="suggestionForm.controls.name.errors">{{suggestionForm.controls.name["message"]}}<br/></small>
-                    </div>
                     <div class="form-group">
                         <select
                             formControlName="category"
@@ -24,59 +15,86 @@
                             </option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" [ngClass]="displayFieldCss('business.name')">
                         <input type="text" 
                             class="form-control"
-                            formControlName="business_email"
-                            placeholder="{{ 'email' | translate }}">
+                            formControlName="name" 
+                            id="name"
+                            placeholder="{{ 'name' | translate }}"
+                        />
+                        <app-field-error-display [displayError]="isFieldValid('name')" [errorMessages]=bsf.controls.business.controls.name['errorMessages']""></app-field-error-display>
+                        <small class="form-text" 
+                            [ngClass]="{'text-danger': isFieldValid('business.name')}"
+                                *ngFor="let message of bsf.controls.business.controls.name['errorMessages']"
+                            >{{ message | translate}}<br/>
+                        </small>
+                    </div>  
+                    <div class="form-group">
+                        <input type="email" 
+                            class="form-control"
+                            formControlName="email"
+                            placeholder="{{ 'email' | translate }}"
+                        />
+                        <small class="form-text" 
+                            [ngClass]="{'text-danger': (bsf.controls.business.email.errors.required || bsf.controls.business.email.errors.email) && 
+                                bsf.get('business').get('email').touched}"
+                                *ngFor="let message of bsf.controls.business.controls.email['errorMessages']"
+                            >{{ message | translate}}<br/>
+                        </small>
                     </div>
                     <div class="form-group">
                         <input 
                             type="text" 
                             class="form-control"
-                            formControlName="business_website"
-                            placeholder="{{ 'website' | translate }}">
+                            formControlName="website"
+                            placeholder="{{ 'website' | translate }}"/>
+                        <small class="form-text" 
+                            [ngClass]="{'text-danger':  
+                                bsf.get('business').get('url').touched}"
+                                *ngFor="let message of bsf.controls.business.controls.website['errorMessages']"
+                            >{{ message | translate}}<br/>
+                        </small>
                     </div>
                     <div class="form-group">
                         <input type="text" 
                             class="form-control" 
-                            formControlName="business_phone" 
+                            formControlName="phone" 
                             placeholder="{{ 'phone' | translate }}">
                     </div>
                     <div class="form-group">
                         <textarea 
-                            formControlName="business_description"
+                            formControlName="description"
                             placeholder="{{ 'description' | translate }}"
                             class="form-control"
                             rows="3"
                         ></textarea>
                     </div>                        
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-md-6" formGroupName="address">
                     <h5>{{ 'address.address' | translate }}</h5>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                          <input 
+                        <input 
                             type="text" 
                             class="form-control" 
-                            formControlName="address_street_number"
+                            formControlName="street_number"
                             placeholder="{{ 'address.street_number' | translate }}"
                         >
                         </div>
                         <div class="form-group col-md-3">
-                          <input 
+                        <input 
                             type="text" 
                             class="form-control" 
-                            formControlName="address_app"
-                            placeholder="{{ 'address.appartment' | translate }}"
-                        >
+                            formControlName="app_office_number"
+                            placeholder="{{ 'address.appartment' | translate }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <input 
                             type="text" 
                             class="form-control"
-                            formControlName="address_street_name" 
+                            formControlName="street_name" 
                             placeholder="{{ 'address.street_name' | translate }}"
                         >
                     </div>
@@ -85,27 +103,27 @@
                             <input 
                                 type="text" 
                                 class="form-control" 
-                                formControlName="address_city"
+                                formControlName="city"
                                 placeholder="{{ 'address.city' | translate }}">
                         </div>
                         <div class="form-group col-md-6">
                             <input 
                                 type="text" 
                                 class="form-control"
-                                formControlName="address_zip_code" 
+                                formControlName="zip_code" 
                                 placeholder="{{ 'address.zip_code' | translate }}">
                         </div>
                         <div class="form-group">
                             <input 
                                 type="text" 
                                 class="form-control" 
-                                value="Canada" 
-                                formControlName="address_country"
+                                formControlName="country"
                                 placeholder="{{ 'address.country' | translate }}">
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>               
+    
             <hr>
 
             <h3>{{ 'business-suggestion.suggester_title' | translate}}</h3>
@@ -117,6 +135,12 @@
                         formControlName="name" 
                         placeholder="{{ 'name' | translate }}"
                     >
+                    <small class="form-text text-danger"
+                    [ngClass]="{'text-danger': bsf.controls.name.errors.required && 
+                    bsf.get('name').touched}"
+                        *ngFor="let message of bsf.controls.name['errorMessages']"
+                        >{{ message | translate}}<br/>
+                    </small>
                 </div>
                 <div class="form-group col-md-6">
                     <input 
@@ -125,12 +149,18 @@
                         formControlName="email" 
                         placeholder="{{ 'email' | translate}}"
                     >
+                    <small class="form-text" 
+                        [ngClass]="{'text-danger': (bsf.controls.email.errors.required || bsf.controls.email.errors.email) && 
+                        bsf.get('email').touched}"
+                        *ngFor="let message of bsf.controls.email['errorMessages']"
+                        >{{ message | translate}}<br/>
+                    </small>
                 </div>
                 <small class="form-text text-muted">{{ "business-suggestion.suggester_help_text" | translate}}</small>
             </div>
 
             <button class="btn btn-primary" type="submit">{{'submit' | translate}}</button>
-            
+            {{ bsf.value}}
         </form>
 
     </div>

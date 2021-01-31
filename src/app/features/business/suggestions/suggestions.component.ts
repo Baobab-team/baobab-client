@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address, Category, BusinessSuggestion, Business } from '@Models/business.model';
 import { select, Store } from '@ngrx/store';
 import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Logger } from '@Services/logger.service';
-import { BusinessModule } from '@Store/business/business.action';
 import { CategoryModule } from '@Store/category/category.action';
 import { selectCategories$, selectCategoryLoading$ } from '@Store/category/category.selector';
+import { BusinessSuggestionModule } from '@Store/business-suggestion/business-suggestion.action';
 
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class SuggestionsComponent implements OnInit {
   public categoriesLoading$: Observable<boolean>;
   public categories$: Observable<(string | Category)[]>;
   public unsubsscribe$ = new Subject<void>();
-  businessSuggestionForm: FormGroup;
+  bsf: FormGroup;
   suggestion: BusinessSuggestion;
 
   constructor(
@@ -47,38 +47,67 @@ export class SuggestionsComponent implements OnInit {
   }
 
   initForm() {
-    this.businessSuggestionForm = this.formBuilder.group(
+    this.bsf = this.formBuilder.group(
       {
-        name: ['', [RxwebValidators.required({message: 'suggestion.form.suggester.name.required'})]],
-        email: ['', [RxwebValidators.required({message: 'suggestion.form.suggester.email.required'})]],
-        business_name: ['', [RxwebValidators.required({message: 'suggestion.form.suggester.name.required'})]],
-        business_description: [''],
-        business_website: ['', [RxwebValidators.url({message: 'suggestion.form.website.error'})]],
-        business_phone: [''],
-        business_email: ['', [
-          RxwebValidators.email({message: 'suggestion.form.email.error'})
-        ]],
-        category: ['', []],
-        address_street_number: [''],
-        address_app: [''],
-        address_street_name: [''],
-        address_city: [''],
-        address_zip_code: [''],
-        address_province: [''],
-        address_country: [''],
+        name: [null, [RxwebValidators.required]],
+        email: [null, [RxwebValidators.required]],      
+        business: this.formBuilder.group({
+          category: ['Categories', []],
+          name: [null, [RxwebValidators.required]],
+          description: [null],
+          website: [null, []],
+          phone: [null],
+          email: [null, []],
+          address: this.formBuilder.group({
+            street_number: [null],
+            street_type: [null],
+            app_office_number: [null],
+            street_name: [null],
+            city: [null],
+            zip_code: [null],
+            province: ['Québec'],
+            country: ['Canada'],
+          }),
+        }),
       });
   }
 
   onSubmit(){
-    if(this.businessSuggestionForm.value){
-        this.suggestion = new BusinessSuggestion(
-          this.businessSuggestionForm.value.name,
-          this.businessSuggestionForm.value.email,
-          this.businessSuggestionForm.value.business,
-        );
+    if (this.bsf.invalid){
+      console.log("Invalid");
+      console.log(this.bsf.value);
+      return;
+    }else{
+      this.validateAllFormFields(this.bsf)
     }
+    console.log("Valid");
+
+    this.store.dispatch(new BusinessSuggestionModule.LoadCreateBusinessSuggestion(this.suggestion));
+    this.bsf.reset();
+
   }
 
+  isFieldValid(field: string) {
+    return !this.bsf.get(field).valid && this.bsf.get(field).touched;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+  Object.keys(formGroup.controls).forEach(field => {  //{2}
+    const control = formGroup.get(field);             //{3}
+    if (control instanceof FormControl) {             //{4}
+      control.markAsTouched({ onlySelf: true });
+    } else if (control instanceof FormGroup) {        //{5}
+      this.validateAllFormFields(control);            //{6}
+    }
+  });
+}
   ngOnDestroy(): void {
     this.unsubsscribe$.next();
     this.unsubsscribe$.complete();

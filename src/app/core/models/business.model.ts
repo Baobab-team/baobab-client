@@ -139,7 +139,8 @@ export interface CategoryState {
 }
 
 export interface BusinessSuggestionState {
-  data: BusinessSuggestion[];
+  data: any;
+  businessSuggestion: BusinessSuggestion
   loading: boolean;
   loaded: boolean;
   log: Log;
