@@ -1,0 +1,7 @@
+<div *ngIf="displayError" >
+    <small 
+        class="form-text text-danger" 
+        *ngFor="let message of field['errorMessages']">
+        {{ message | translate}}<br/>
+    </small>    
+</div>
