@@ -1,4 +1,4 @@
-import { propObject, required } from '@rxweb/reactive-form-validators';
+import { prop, propObject, required, url, email,propArray } from '@rxweb/reactive-form-validators';
 import { Log } from './log.model';
 import { Phone } from './phone.model';
 import { Search } from './search.model';
@@ -32,9 +32,12 @@ export enum BUSINESS_STATUSES {
 }
 
 export class Category {
+  @prop()
   id?: number;
+  @prop()
   name: string;
-  children: Category[];
+  @prop()
+  slug: string;
 }
 
 export class BusinessHour {
@@ -59,14 +62,23 @@ export interface Tag {
 
 export class Address {
   readonly id: number;
+  @prop()
   app_office_number: number;
+  @prop()
   street_number: string;
+  @prop()
   street_type: string;
+  @prop()
   street_name: string;
+  @prop()
   direction: string;
+  @prop()
   city: string;
+  @prop()
   zip_code: string;
+  @prop()
   province: string;
+  @prop()
   country: string;
 
   constructor(){}
@@ -74,14 +86,20 @@ export class Address {
 
 export class Business {
   readonly id?: number;
-  phones?: Phone[];
+  @propArray(Phone)
+  phones: Phone[];
+  @propObject(Category)
   category: Category;
+  @prop()
   @required()
   name: string;
   slug: string;
+  @prop()
   description: string;
   notes: string;
+  @url()
   website: string;
+  @email()
   email: string;
   // slogan?: string;
   // language: BUSINESS_LANGUAGE;
@@ -98,26 +116,24 @@ export class Business {
     link: string
   }[];
   tags: Tag[];
+  @propArray(Address)
   addresses: Address[];
   payment_types: string[];
   business_hours: BusinessHour[];
-
-  constructor(){
-    this.addresses = [new Address()]
-  }
 }
 
 
 export class BusinessSuggestion {
+  @email()
+  @prop()
+  @required()
   email: string;
+  @prop()
+  @required()
   name: string;
+  @propObject(Business)
   business : Business;
 
-  constructor(name: string, email: string, business: Business){
-    this.email = email;
-    this.name = name;
-    this.business = business;
-  }
 }
 
 export interface BusinessState {

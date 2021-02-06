@@ -10,7 +10,7 @@ import { BusinessSuggestionService } from './business-suggestion.service';
 export class BusinessSuggestionEffects {
 
   // save business
-  @Effect() LoadCreateBusiness$: Observable<BusinessSuggestionModule.Actions> = this.actions$
+  @Effect() LoadCreateBusinessSuggestion$: Observable<BusinessSuggestionModule.Actions> = this.actions$
   .pipe(
     ofType<BusinessSuggestionModule.LoadCreateBusinessSuggestion>(BusinessSuggestionModule.ActionTypes.LOAD_CREATE_BUSINESS_SUGGESTION),
     switchMap((businessSuggestion: BusinessSuggestionModule.LoadCreateBusinessSuggestion) => this.businessSuggestionService.saveBusinessSuggestions(businessSuggestion.payload)),

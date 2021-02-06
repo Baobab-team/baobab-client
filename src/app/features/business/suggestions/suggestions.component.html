@@ -10,24 +10,19 @@
                             formControlName="category"
                             class="form-control">
                             <option selected>Categories</option>
-                            <option *ngFor="let category of (categories$ | async)" [ngValue]="category">
+                            <option *ngFor="let category of (categories$ | async)" [ngValue]="category" >
                             {{category.name}}
                             </option>
                         </select>
                     </div>
-                    <div class="form-group" [ngClass]="displayFieldCss('business.name')">
+                    <div class="form-group" >
                         <input type="text" 
                             class="form-control"
                             formControlName="name" 
                             id="name"
                             placeholder="{{ 'name' | translate }}"
                         />
-                        <app-field-error-display [displayError]="isFieldValid('name')" [errorMessages]=bsf.controls.business.controls.name['errorMessages']""></app-field-error-display>
-                        <small class="form-text" 
-                            [ngClass]="{'text-danger': isFieldValid('business.name')}"
-                                *ngFor="let message of bsf.controls.business.controls.name['errorMessages']"
-                            >{{ message | translate}}<br/>
-                        </small>
+                        <!-- <app-field-error-display [field]="bsf.controls.business.controls.name"></app-field-error-display> -->
                     </div>  
                     <div class="form-group">
                         <input type="email" 
@@ -35,12 +30,6 @@
                             formControlName="email"
                             placeholder="{{ 'email' | translate }}"
                         />
-                        <small class="form-text" 
-                            [ngClass]="{'text-danger': (bsf.controls.business.email.errors.required || bsf.controls.business.email.errors.email) && 
-                                bsf.get('business').get('email').touched}"
-                                *ngFor="let message of bsf.controls.business.controls.email['errorMessages']"
-                            >{{ message | translate}}<br/>
-                        </small>
                     </div>
                     <div class="form-group">
                         <input 
@@ -48,18 +37,6 @@
                             class="form-control"
                             formControlName="website"
                             placeholder="{{ 'website' | translate }}"/>
-                        <small class="form-text" 
-                            [ngClass]="{'text-danger':  
-                                bsf.get('business').get('url').touched}"
-                                *ngFor="let message of bsf.controls.business.controls.website['errorMessages']"
-                            >{{ message | translate}}<br/>
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" 
-                            class="form-control" 
-                            formControlName="phone" 
-                            placeholder="{{ 'phone' | translate }}">
                     </div>
                     <div class="form-group">
                         <textarea 
@@ -68,7 +45,30 @@
                             class="form-control"
                             rows="3"
                         ></textarea>
-                    </div>                        
+                    </div>      
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="addPhone()">
+                            {{'suggestion.form.button.add_phone' | translate}}
+                            <i class="fa fa-phone"></i>
+                        </button><br/>
+                    </div> 
+                    <div [formGroup]="phone" *ngFor="let phone of bsf.controls.business.controls.phones.controls; index as i"> 
+                        <div class="form-group">
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            formControlName="number" 
+                            placeholder="{{ 'suggestion.form.phone.exemple' | translate }}">
+                        </div>
+                        <div class="form-group">
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            formControlName="extension" 
+                            placeholder="{{ 'extension' | translate }}">
+                        </div>
+                      
+                    </div>             
                 </div>
 
                 <div class="col-md-6" formGroupName="address">
@@ -135,12 +135,6 @@
                         formControlName="name" 
                         placeholder="{{ 'name' | translate }}"
                     >
-                    <small class="form-text text-danger"
-                    [ngClass]="{'text-danger': bsf.controls.name.errors.required && 
-                    bsf.get('name').touched}"
-                        *ngFor="let message of bsf.controls.name['errorMessages']"
-                        >{{ message | translate}}<br/>
-                    </small>
                 </div>
                 <div class="form-group col-md-6">
                     <input 
@@ -149,18 +143,12 @@
                         formControlName="email" 
                         placeholder="{{ 'email' | translate}}"
                     >
-                    <small class="form-text" 
-                        [ngClass]="{'text-danger': (bsf.controls.email.errors.required || bsf.controls.email.errors.email) && 
-                        bsf.get('email').touched}"
-                        *ngFor="let message of bsf.controls.email['errorMessages']"
-                        >{{ message | translate}}<br/>
-                    </small>
                 </div>
-                <small class="form-text text-muted">{{ "business-suggestion.suggester_help_text" | translate}}</small>
             </div>
 
             <button class="btn btn-primary" type="submit">{{'submit' | translate}}</button>
-            {{ bsf.value}}
+            <pre>{{bsf.value | json }}</pre> 
+            <pre>{{suggestion | json }}</pre> 
         </form>
 
     </div>

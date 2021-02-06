@@ -147,6 +147,7 @@
         "city": "Ville",
         "country": "Pays"        
     },
+    "suggestion.form.phone.exemple" : "(514)-123-4567",
     "suggestion.form.phone.error" : "Veuiller entrer un numero de telephone valide",
     "suggestion.form.email.error" : "Veuiller entrer un courriel valide",
     "suggestion.form.website.error" : "Veuiller entrer un website valide",
@@ -155,6 +156,8 @@
     "suggestion.form.suggester.email.required" : "Courriel requis",
     "suggestion.form.suggester.email.invalid" : "Courriel invalide",
     "suggestion.form.business.name.required" : "Nom requis",
+    "suggestion.form.button.add_phone" : "Ajouter un numero",
+    "suggestion.form.button.remove_phone" : "Retirer",
     "closed": "Fermé",
     "phone": "Telephone",
     "name": "Nom",
@@ -162,5 +165,10 @@
     "website": "Site web",
     "email": "Addresse courriel",
     "submit": "Soumettre",
-    "informations": "Informations"
+    "informations": "Informations",
+    "telephone": "Telephone",
+    "extension": "Extension",
+    "error.message.required" : "Champs requis",
+    "error.message.url" : "URL invalide",
+    "error.message.email" : "Courriel invalide"
 }

@@ -5,15 +5,19 @@ import { InjectionToken } from '@angular/core';
 import { ActionReducerMap } from '@ngrx/store';
 import { CategoryEffects } from '@Store/category/category.effect';
 import { CategoryReducer } from '@Store/category/category.reducer';
+import { BusinessSuggestionReducer } from '@Store/business-suggestion/business-suggestion.reducer';
+import { BusinessSuggestionEffects } from '@Store/business-suggestion/business-suggestion.effect';
 
 const reducers = {
   businesses: BusinessReducer,
-  category: CategoryReducer
+  category: CategoryReducer,
+  business_suggestions: BusinessSuggestionReducer,
 };
 
 export const appEffects =  [
   BusinessEffects,
-  CategoryEffects
+  CategoryEffects,
+  BusinessSuggestionEffects
 ];
 
 export interface AppState {

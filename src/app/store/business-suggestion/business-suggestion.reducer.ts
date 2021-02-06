@@ -1,24 +1,20 @@
-import { BusinessState } from '@Models/business.model';
+import { BusinessSuggestionState } from '@Models/business.model';
 import { BusinessSuggestionModule } from './business-suggestion.action';
 import { LOG_TYPES } from '@Models/log.model';
-import { Pagination } from '@Models/search.model';
 
-const businessInitialState: BusinessState = {
-  data: Pagination,
-  search: undefined,
-  autocompleteData: [],
-  businessId: NaN,
-  business: undefined,
+const businessSuggestionInitialState: BusinessSuggestionState = {
+  data: undefined,
+  businessSuggestion: undefined,
   loading: false,
   loaded: false,
   log: undefined
 };
 
 
-export function BusinessReducer(
-  state: BusinessState = businessInitialState,
+export function BusinessSuggestionReducer(
+  state: BusinessSuggestionState = businessSuggestionInitialState,
   action: BusinessSuggestionModule.Actions
-): BusinessState {
+): BusinessSuggestionState {
   switch (action.type) {
     case BusinessSuggestionModule.ActionTypes.LOAD_CREATE_BUSINESS_SUGGESTION:
       return {
@@ -32,7 +28,7 @@ export function BusinessReducer(
         loaded: true,
         log: {
           type: LOG_TYPES.SUCCESS,
-          message: 'admin.business.log.success'
+          message: 'admin.business.suggestion.log.success'
         },
         data: [
           ...state.data,

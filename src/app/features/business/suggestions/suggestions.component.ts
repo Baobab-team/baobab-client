@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address, Category, BusinessSuggestion, Business } from '@Models/business.model';
 import { select, Store } from '@ngrx/store';
@@ -11,6 +11,7 @@ import { BusinessSuggestionModule } from '@Store/business-suggestion/business-su
 
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Phone } from '@Models/phone.model';
 
 const log = new Logger('suggestion.component');
 
@@ -43,33 +44,39 @@ export class SuggestionsComponent implements OnInit {
   ngOnInit() {
     log.debug('init');
     this.store.dispatch(new CategoryModule.LoadListCategory());
+    this.suggestion = new BusinessSuggestion();
+    this.suggestion.business = new Business();
+    this.suggestion.business.phones = new Array<Phone>();
+    this.suggestion.business.phones.push(new Phone());
     this.initForm();
   }
 
   initForm() {
-    this.bsf = this.formBuilder.group(
-      {
-        name: [null, [RxwebValidators.required]],
-        email: [null, [RxwebValidators.required]],      
-        business: this.formBuilder.group({
-          category: ['Categories', []],
-          name: [null, [RxwebValidators.required]],
-          description: [null],
-          website: [null, []],
-          phone: [null],
-          email: [null, []],
-          address: this.formBuilder.group({
-            street_number: [null],
-            street_type: [null],
-            app_office_number: [null],
-            street_name: [null],
-            city: [null],
-            zip_code: [null],
-            province: ['Québec'],
-            country: ['Canada'],
-          }),
-        }),
-      });
+    
+    this.bsf = this.formBuilder.formGroup(this.suggestion);
+    // this.bsf = this.formBuilder.group(
+    //   {
+    //     name: [null, [RxwebValidators.required]],
+    //     email: [null, [RxwebValidators.required]],      
+    //     business: this.formBuilder.group({
+    //       category: ['Categories', []],
+    //       name: [null, [RxwebValidators.required]],
+    //       description: [null],
+    //       website: [null, []],
+    //       phones: this.formBuilder.array([this.getPhoneFormGroup()]),
+    //       email: [null, []],
+    //       address: this.formBuilder.group({
+    //         street_number: [null],
+    //         street_type: [null],
+    //         app_office_number: [null],
+    //         street_name: [null],
+    //         city: [null],
+    //         zip_code: [null],
+    //         province: ['Québec'],
+    //         country: ['Canada'],
+    //       }),
+    //     }),
+    //   });
   }
 
   onSubmit(){
@@ -77,37 +84,26 @@ export class SuggestionsComponent implements OnInit {
       console.log("Invalid");
       console.log(this.bsf.value);
       return;
-    }else{
-      this.validateAllFormFields(this.bsf)
     }
-    console.log("Valid");
+    
+    console.log("Valid"+ this.bsf.valid);
+    // var i;
+    // for (i = 0; i < this.telephones.length; i++) {
+    //   let tel = new Phone(this.telephones[i].value.number,this.telephones[i].value.number);
+    //   this.suggestion.business.phones.push(tel);
+    // }
+    console.log("Valid"+ this.bsf.value);
 
-    this.store.dispatch(new BusinessSuggestionModule.LoadCreateBusinessSuggestion(this.suggestion));
-    this.bsf.reset();
-
+    this.store.dispatch(new BusinessSuggestionModule.LoadCreateBusinessSuggestion(this.suggestion as BusinessSuggestion));
   }
 
-  isFieldValid(field: string) {
-    return !this.bsf.get(field).valid && this.bsf.get(field).touched;
+  addPhone(){
+    this.suggestion.business.phones.push(new Phone());
+    console.log("addPhone");
+    console.log(this.suggestion.business.phones.length);
+    console.log(this.bsf.get("business.phones") as FormControl);
   }
 
-  displayFieldCss(field: string) {
-    return {
-      'has-error': this.isFieldValid(field),
-      'has-feedback': this.isFieldValid(field)
-    };
-  }
-
-  validateAllFormFields(formGroup: FormGroup) {         //{1}
-  Object.keys(formGroup.controls).forEach(field => {  //{2}
-    const control = formGroup.get(field);             //{3}
-    if (control instanceof FormControl) {             //{4}
-      control.markAsTouched({ onlySelf: true });
-    } else if (control instanceof FormGroup) {        //{5}
-      this.validateAllFormFields(control);            //{6}
-    }
-  });
-}
   ngOnDestroy(): void {
     this.unsubsscribe$.next();
     this.unsubsscribe$.complete();
