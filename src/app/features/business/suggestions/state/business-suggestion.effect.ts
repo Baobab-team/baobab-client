@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { BusinessSuggestionModule } from '@Store/business-suggestion/business-suggestion.action';
-import { BusinessSuggestionService } from './business-suggestion.service';
+import { BusinessSuggestionModule } from './business-suggestion.action';
+import { BusinessSuggestionService } from '../business-suggestion.service';
 
 
 @Injectable()

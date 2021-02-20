@@ -18,7 +18,7 @@ export class BusinessSuggestionService extends CoreService  {
 
    public getBusinessSuggestions(): Observable<BusinessSuggestion[]>  {
      return this.httpClient.get<BusinessSuggestion[]>(
-      this.BASE_URL_API + '/' + Const.paths_api.business_suggestions
+      this.BASE_URL_API + '/' + Const.paths_api.business_suggestions + '/'
      );
    }
 

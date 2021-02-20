@@ -1,6 +1,7 @@
 import { BusinessSuggestion } from '@Models/business.model';
 import { Pagination, Search} from '@Models/search.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { createAction, props } from '@ngrx/store';
 
 
 export namespace BusinessSuggestionModule {
@@ -18,6 +19,7 @@ export namespace BusinessSuggestionModule {
     // Error action business suggestion
     ERROR_BUSINESS_SUGGESTION_ACTION = '[BusinessSuggestion] ERROR Business Suggestion action',
   }
+
 
   // create business
   export class SuccessCreateBusinessSuggestion {
@@ -46,3 +48,8 @@ export namespace BusinessSuggestionModule {
                         | SuccessCreateBusinessSuggestion
                         | ErrorBusinessSuggestionAction;
 }
+
+export const createBusinessSuggestion = createAction(
+  '[BusinessSuggestion] Success Create Business Suggestion',
+  props<{ payload: BusinessSuggestion }>()
+)

@@ -7,11 +7,12 @@
                     <h5>{{ 'informations' | translate }}</h5>
                     <div class="form-group">
                         <select
-                            formControlName="category"
+                            formGroupName="category" 
+                            (change)="onSelectCategory($event.target.value)"
                             class="form-control">
-                            <option selected>Categories</option>
-                            <option *ngFor="let category of (categories$ | async)" [ngValue]="category" >
-                            {{category.name}}
+                            <option disabled>Categories</option>
+                            <option *ngFor="let c of (categories$ | async)" [value]="c.id" >
+                            {{c.name}}
                             </option>
                         </select>
                     </div>
@@ -22,7 +23,6 @@
                             id="name"
                             placeholder="{{ 'name' | translate }}"
                         />
-                        <!-- <app-field-error-display [field]="bsf.controls.business.controls.name"></app-field-error-display> -->
                     </div>  
                     <div class="form-group">
                         <input type="email" 
@@ -46,13 +46,13 @@
                             rows="3"
                         ></textarea>
                     </div>      
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <button class="btn btn-primary btn-sm" type="button" (click)="addPhone()">
                             {{'suggestion.form.button.add_phone' | translate}}
                             <i class="fa fa-phone"></i>
                         </button><br/>
-                    </div> 
-                    <div [formGroup]="phone" *ngFor="let phone of bsf.controls.business.controls.phones.controls; index as i"> 
+                    </div>  -->
+                    <!-- <div [formGroup]="phone" *ngFor="let phone of bsf.controls.business.controls.phones.controls; index as i"> 
                         <div class="form-group">
                             <input 
                             type="text" 
@@ -68,60 +68,60 @@
                             placeholder="{{ 'extension' | translate }}">
                         </div>
                       
-                    </div>             
-                </div>
-
-                <div class="col-md-6" formGroupName="address">
-                    <h5>{{ 'address.address' | translate }}</h5>
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            formControlName="street_number"
-                            placeholder="{{ 'address.street_number' | translate }}"
-                        >
-                        </div>
-                        <div class="form-group col-md-3">
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            formControlName="app_office_number"
-                            placeholder="{{ 'address.appartment' | translate }}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            formControlName="street_name" 
-                            placeholder="{{ 'address.street_name' | translate }}"
-                        >
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                    </div>               -->
+                    <!-- <div class="col-md-6" formGroupName="address">
+                        <h5>{{ 'address.address' | translate }}</h5>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
                             <input 
                                 type="text" 
                                 class="form-control" 
-                                formControlName="city"
-                                placeholder="{{ 'address.city' | translate }}">
-                        </div>
-                        <div class="form-group col-md-6">
+                                formControlName="street_number"
+                                placeholder="{{ 'address.street_number' | translate }}"
+                            >
+                            </div>
+                            <div class="form-group col-md-3">
                             <input 
                                 type="text" 
-                                class="form-control"
-                                formControlName="zip_code" 
-                                placeholder="{{ 'address.zip_code' | translate }}">
+                                class="form-control" 
+                                formControlName="app_office_number"
+                                placeholder="{{ 'address.appartment' | translate }}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <input 
                                 type="text" 
-                                class="form-control" 
-                                formControlName="country"
-                                placeholder="{{ 'address.country' | translate }}">
+                                class="form-control"
+                                formControlName="street_name" 
+                                placeholder="{{ 'address.street_name' | translate }}"
+                            >
                         </div>
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    formControlName="city"
+                                    placeholder="{{ 'address.city' | translate }}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input 
+                                    type="text" 
+                                    class="form-control"
+                                    formControlName="zip_code" 
+                                    placeholder="{{ 'address.zip_code' | translate }}">
+                            </div>
+                            <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    formControlName="country"
+                                    placeholder="{{ 'address.country' | translate }}">
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
+                
             </div>               
     
             <hr>
@@ -145,8 +145,15 @@
                     >
                 </div>
             </div>
-
+            <div *ngIf="errors$ | async as error ">
+                <div *ngFor="let errorMsg of error.error">
+                    <div class="alert alert-danger" role="alert">
+                        {{errorMsg}}
+                    </div>
+                </div>
+            </div>
             <button class="btn btn-primary" type="submit">{{'submit' | translate}}</button>
+            <pre>Selected category{{selectedCategory | json }}</pre> 
             <pre>{{bsf.value | json }}</pre> 
             <pre>{{suggestion | json }}</pre> 
         </form>

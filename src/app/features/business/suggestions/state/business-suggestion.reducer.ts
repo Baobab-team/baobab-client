@@ -1,18 +1,29 @@
-import { BusinessSuggestionState } from '@Models/business.model';
 import { BusinessSuggestionModule } from './business-suggestion.action';
-import { LOG_TYPES } from '@Models/log.model';
+import { Log, LOG_TYPES } from '@Models/log.model';
+import { BusinessSuggestion } from '@Models/business.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
-const businessSuggestionInitialState: BusinessSuggestionState = {
+export interface BusinessSuggestionState {
+  data: any;
+  businessSuggestion: BusinessSuggestion
+  loading: boolean;
+  loaded: boolean;
+  log: Log;
+  error: HttpErrorResponse;
+}
+
+const initialState: BusinessSuggestionState = {
   data: undefined,
   businessSuggestion: undefined,
   loading: false,
   loaded: false,
-  log: undefined
+  log: undefined,
+  error: undefined
 };
 
 
 export function BusinessSuggestionReducer(
-  state: BusinessSuggestionState = businessSuggestionInitialState,
+  state: BusinessSuggestionState = initialState,
   action: BusinessSuggestionModule.Actions
 ): BusinessSuggestionState {
   switch (action.type) {
@@ -33,7 +44,8 @@ export function BusinessSuggestionReducer(
         data: [
           ...state.data,
           action.payload
-        ]
+        ],
+        error: null
       };
     case BusinessSuggestionModule.ActionTypes.ERROR_BUSINESS_SUGGESTION_ACTION:
       return {
@@ -42,7 +54,8 @@ export function BusinessSuggestionReducer(
           type: LOG_TYPES.ERROR,
           message: (action.payload.error.message === undefined) ? action.payload.message : action.payload.error.message
         },
-        loading: false
+        loading: false,
+        error: action.payload.error
       };
     default:
       return state;

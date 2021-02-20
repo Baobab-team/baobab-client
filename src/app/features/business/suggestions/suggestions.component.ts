@@ -7,11 +7,13 @@ import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators'
 import { Logger } from '@Services/logger.service';
 import { CategoryModule } from '@Store/category/category.action';
 import { selectCategories$, selectCategoryLoading$ } from '@Store/category/category.selector';
-import { BusinessSuggestionModule } from '@Store/business-suggestion/business-suggestion.action';
+import { createBusinessSuggestion } from './state/business-suggestion.action';
 
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Phone } from '@Models/phone.model';
+import { getError } from 'app/features/business/suggestions/state/business-suggestion.selector';
+import { HttpErrorResponse } from '@angular/common/http';
+// import { Phone } from '@Models/phone.model';
 
 const log = new Logger('suggestion.component');
 
@@ -22,10 +24,12 @@ const log = new Logger('suggestion.component');
 })
 export class SuggestionsComponent implements OnInit {
   public categoriesLoading$: Observable<boolean>;
-  public categories$: Observable<(string | Category)[]>;
+  public categories$: Observable<(Category[])>;
   public unsubsscribe$ = new Subject<void>();
+  errors$: Observable<HttpErrorResponse>
   bsf: FormGroup;
   suggestion: BusinessSuggestion;
+  selectedCategory: Category;
 
   constructor(
     private formBuilder: RxFormBuilder,
@@ -46,14 +50,15 @@ export class SuggestionsComponent implements OnInit {
     this.store.dispatch(new CategoryModule.LoadListCategory());
     this.suggestion = new BusinessSuggestion();
     this.suggestion.business = new Business();
-    this.suggestion.business.phones = new Array<Phone>();
-    this.suggestion.business.phones.push(new Phone());
+    this.suggestion.business.category = new Category();
+    this.errors$ = this.store.select(getError);
     this.initForm();
   }
 
   initForm() {
     
     this.bsf = this.formBuilder.formGroup(this.suggestion);
+    // this.bsf.get("business.category").set = new FormControl({value: ''}, Validators.required);
     // this.bsf = this.formBuilder.group(
     //   {
     //     name: [null, [RxwebValidators.required]],
@@ -93,16 +98,29 @@ export class SuggestionsComponent implements OnInit {
     //   this.suggestion.business.phones.push(tel);
     // }
     console.log("Valid"+ this.bsf.value);
-
-    this.store.dispatch(new BusinessSuggestionModule.LoadCreateBusinessSuggestion(this.suggestion as BusinessSuggestion));
+    let payload = this.suggestion
+    this.store.dispatch(createBusinessSuggestion({payload}));
   }
 
-  addPhone(){
-    this.suggestion.business.phones.push(new Phone());
-    console.log("addPhone");
-    console.log(this.suggestion.business.phones.length);
-    console.log(this.bsf.get("business.phones") as FormControl);
+  onSelectCategory(id: number){
+    // const category = event.target.value;
+    // console.log(this.bsf.get("business.category").value);
+    // this.bsf.get("business.category").setValue(category);
+    console.log("ID: "+id);
+    this.categories$.subscribe( c =>    {
+      const cat = c[id - 1];
+      console.log(cat);
+      if(cat){
+        this.bsf.get("business.category").setValue(cat);
+      }
+    });
   }
+  // addPhone(){
+  //   this.suggestion.business.phones.push(new Phone());
+  //   console.log("addPhone");
+  //   console.log(this.suggestion.business.phones.length);
+  //   console.log(this.bsf.get("business.phones") as FormControl);
+  // }
 
   ngOnDestroy(): void {
     this.unsubsscribe$.next();

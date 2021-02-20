@@ -17,7 +17,7 @@ export const selectBusinessSuggesetionCreate$ = createSelector(
 
 
 // business error
-export const selectBusinessErrors$ = createSelector(
+export const getError = createSelector(
   selectBusinessSuggestionState$,
-  (business) => business.log
+  (business) => business.error
 );

@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { prop, propObject, required, url, email,propArray } from '@rxweb/reactive-form-validators';
 import { Log } from './log.model';
 import { Phone } from './phone.model';
@@ -34,10 +35,13 @@ export enum BUSINESS_STATUSES {
 export class Category {
   @prop()
   id?: number;
+  @required()
   @prop()
   name: string;
   @prop()
   slug: string;
+  @prop()
+  children: Category[];
 }
 
 export class BusinessHour {
@@ -86,9 +90,8 @@ export class Address {
 
 export class Business {
   readonly id?: number;
-  @propArray(Phone)
   phones: Phone[];
-  @propObject(Category)
+  @prop()
   category: Category;
   @prop()
   @required()
@@ -149,14 +152,6 @@ export interface BusinessState {
 
 export interface CategoryState {
   data: Category[];
-  loading: boolean;
-  loaded: boolean;
-  log: Log;
-}
-
-export interface BusinessSuggestionState {
-  data: any;
-  businessSuggestion: BusinessSuggestion
   loading: boolean;
   loaded: boolean;
   log: Log;
