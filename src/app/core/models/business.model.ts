@@ -150,6 +150,14 @@ export interface BusinessState {
   log: Log;
 }
 
+
+export interface BusinessSuggestionState {
+  data: any;
+  businessSuggestion: BusinessSuggestion
+  log: Log;
+  error: HttpErrorResponse;
+}
+
 export interface CategoryState {
   data: Category[];
   loading: boolean;

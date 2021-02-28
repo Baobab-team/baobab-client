@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BusinessSuggestionService } from '../../features/business/suggestions/business-suggestion.service';
+import { BusinessSuggestionService } from './business-suggestion.service';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('BusinessService', () => {

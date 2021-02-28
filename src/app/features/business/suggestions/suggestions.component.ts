@@ -7,13 +7,12 @@ import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators'
 import { Logger } from '@Services/logger.service';
 import { CategoryModule } from '@Store/category/category.action';
 import { selectCategories$, selectCategoryLoading$ } from '@Store/category/category.selector';
-import { createBusinessSuggestion } from './state/business-suggestion.action';
 
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { getError } from 'app/features/business/suggestions/state/business-suggestion.selector';
 import { HttpErrorResponse } from '@angular/common/http';
-// import { Phone } from '@Models/phone.model';
+import { getError, getSuggestionSuccess } from '@Store/business-suggestion/business-suggestion.selector';
+import { createBusinessSuggestion } from '@Store/business-suggestion/business-suggestion.action';
 
 const log = new Logger('suggestion.component');
 
@@ -27,6 +26,7 @@ export class SuggestionsComponent implements OnInit {
   public categories$: Observable<(Category[])>;
   public unsubsscribe$ = new Subject<void>();
   errors$: Observable<HttpErrorResponse>
+  successSuggestion$ : Observable<(BusinessSuggestion)>;
   bsf: FormGroup;
   suggestion: BusinessSuggestion;
   selectedCategory: Category;
@@ -52,6 +52,7 @@ export class SuggestionsComponent implements OnInit {
     this.suggestion.business = new Business();
     this.suggestion.business.category = new Category();
     this.errors$ = this.store.select(getError);
+    this.successSuggestion$ = this.store.select(getSuggestionSuccess);
     this.initForm();
   }
 
