@@ -159,6 +159,7 @@
     "suggestion.form.button.add_phone" : "Ajouter un numero",
     "suggestion.form.button.remove_phone" : "Retirer",
     "suggestion.form.success" : "Votre suggestion a bien ete recu",
+    "actions.suggestion" : "Faire une suggestion",
     "closed": "Fermé",
     "phone": "Telephone",
     "name": "Nom",

@@ -1,8 +1,9 @@
-<div class="suggestion">
-    <div class="d-flex justify-content-center">
-        <form [formGroup]="bsf" (ngSubmit)="onSubmit()" class="suggestion__form ">
-            <h3 class="text-center">{{'business-suggestion.title' | translate}}</h3>
-            <div class="row" >
+<div class="suggestion d-flex justify-content-center">
+    <div class="container row align-items-center">
+        <div class="col-md-6">
+            <form [formGroup]="bsf" (ngSubmit)="onSubmit()" class="suggestion__form ">
+            <h3>{{'business-suggestion.title' | translate}}</h3>
+            <!-- <div class="row" > -->
                 <div formGroupName="business">
                     <h5>{{ 'informations' | translate }}</h5>
                     <div class="form-group">
@@ -48,13 +49,13 @@
                     </div>      
                 </div>
 
-            </div>               
+            <!-- </div>                -->
     
             <hr>
 
             <h3>{{ 'business-suggestion.suggester_title' | translate}}</h3>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <!-- <div class="form-row"> -->
+                <div class="form-group ">
                     <input 
                         type="text" 
                         class="form-control" 
@@ -62,7 +63,7 @@
                         placeholder="{{ 'name' | translate }}"
                     >
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group">
                     <input 
                         type="text" 
                         class="form-control" 
@@ -70,7 +71,7 @@
                         placeholder="{{ 'email' | translate}}"
                     >
                 </div>
-            </div>
+            <!-- </div> -->
             <div *ngIf="errors$ | async as error ">
                 <div *ngFor="let errorMsg of error.error">
                     <div class="alert alert-danger" role="alert">
@@ -82,10 +83,13 @@
                 {{ 'suggestion.form.success' | translate }
             </div>
         <button class="btn btn-primary" type="submit">{{'submit' | translate}}</button>
-            <pre>Selected category{{selectedCategory | json }}</pre> 
-            <pre>{{bsf.value | json }}</pre> 
-            <pre>{{suggestion | json }}</pre> 
+       
         </form>
-
+        </div>
+        <div class="col-md-6">
+            <!-- <div class=""> -->
+                <img class="" src="../../../../assets/statics/images/img1.jpg"  alt="..."/> 
+            <!-- </div> -->
+        </div>
     </div>
 </div>
