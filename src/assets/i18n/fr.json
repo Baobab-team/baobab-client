@@ -133,11 +133,6 @@
             "sunday":"dimanche"
         }
     },
-    "business-suggestion": {
-        "title": "Faire une suggestion",
-        "suggester_title": "Vos informations",
-        "suggester_help_text": "Votre nom pour qu'on puisse vous contacter au cas-ou"
-    },
     "address" :{
         "address": "Addresse",
         "street_number": "# de rue",
@@ -158,7 +153,10 @@
     "suggestion.form.business.name.required" : "Nom requis",
     "suggestion.form.button.add_phone" : "Ajouter un numero",
     "suggestion.form.button.remove_phone" : "Retirer",
-    "suggestion.form.success" : "Votre suggestion a bien ete recu",
+    "suggestion.form.success" : "Votre suggestion a bien ete recu et sera revue par notre équipe",
+    "suggestion.title": "Faire une suggestion",
+    "suggestion.contact": "Votre contact",
+    "suggestion.contact.help_text": "Pour vous contacter si nécessaire",
     "actions.suggestion" : "Faire une suggestion",
     "closed": "Fermé",
     "phone": "Telephone",
