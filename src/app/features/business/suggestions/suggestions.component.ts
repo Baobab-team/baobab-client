@@ -25,7 +25,7 @@ export class SuggestionsComponent implements OnInit {
   public categories$: Observable<(Category[])>;
   public unsubsscribe$ = new Subject<void>();
   errors$: Observable<HttpErrorResponse>
-  successSuggestion$ : Observable<(BusinessSuggestion)>;
+  successSuggestion$: Observable<(BusinessSuggestion)>;
   bsf: FormGroup;
   suggestion: BusinessSuggestion;
   selectedCategory: Category;
@@ -33,7 +33,7 @@ export class SuggestionsComponent implements OnInit {
   constructor(
     private formBuilder: RxFormBuilder,
     private store: Store<any>
-  ) { 
+  ) {
     this.categoriesLoading$ = store.pipe(
       select(selectCategoryLoading$),
       takeUntil(this.unsubsscribe$)
@@ -55,28 +55,28 @@ export class SuggestionsComponent implements OnInit {
     this.bsf = this.formBuilder.formGroup(this.suggestion);
   }
 
-  onSubmit(){
+  onSubmit() {
     // TODO add better validation
-    if (this.bsf.invalid){
+    if (this.bsf.invalid) {
       return;
     }
-    
+
     let payload = this.suggestion
-    this.store.dispatch(createBusinessSuggestion({payload}));
+    this.store.dispatch(createBusinessSuggestion({ payload }));
     this.resetForm();
   }
 
-  onSelectCategory(id: number){
-    this.categories$.subscribe( c =>    {
+  onSelectCategory(id: number) {
+    this.categories$.subscribe(c => {
       const cat = c[id - 1];
-      if(cat){
+      if (cat) {
         this.bsf.get("business.category").setValue(cat);
       }
     });
   }
- 
-  resetForm(){
-    this.bsf.reset(this.bsf.value);       
+
+  resetForm() {
+    this.bsf.reset(this.bsf.value);
   }
 
   ngOnDestroy(): void {
