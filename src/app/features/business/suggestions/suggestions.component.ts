@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Address, Category, BusinessSuggestion, Business } from '@Models/business.model';
+import { FormGroup } from '@angular/forms';
+import { Category, BusinessSuggestion, Business } from '@Models/business.model';
 import { select, Store } from '@ngrx/store';
-import { RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { Logger } from '@Services/logger.service';
 import { CategoryModule } from '@Store/category/category.action';
 import { selectCategories$, selectCategoryLoading$ } from '@Store/category/category.selector';
@@ -53,75 +52,32 @@ export class SuggestionsComponent implements OnInit {
     this.suggestion.business.category = new Category();
     this.errors$ = this.store.select(getError);
     this.successSuggestion$ = this.store.select(getSuggestionSuccess);
-    this.initForm();
-  }
-
-  initForm() {
-    
     this.bsf = this.formBuilder.formGroup(this.suggestion);
-    // this.bsf.get("business.category").set = new FormControl({value: ''}, Validators.required);
-    // this.bsf = this.formBuilder.group(
-    //   {
-    //     name: [null, [RxwebValidators.required]],
-    //     email: [null, [RxwebValidators.required]],      
-    //     business: this.formBuilder.group({
-    //       category: ['Categories', []],
-    //       name: [null, [RxwebValidators.required]],
-    //       description: [null],
-    //       website: [null, []],
-    //       phones: this.formBuilder.array([this.getPhoneFormGroup()]),
-    //       email: [null, []],
-    //       address: this.formBuilder.group({
-    //         street_number: [null],
-    //         street_type: [null],
-    //         app_office_number: [null],
-    //         street_name: [null],
-    //         city: [null],
-    //         zip_code: [null],
-    //         province: ['Québec'],
-    //         country: ['Canada'],
-    //       }),
-    //     }),
-    //   });
   }
 
   onSubmit(){
+    // TODO add better validation
     if (this.bsf.invalid){
-      console.log("Invalid");
-      console.log(this.bsf.value);
       return;
     }
     
-    console.log("Valid"+ this.bsf.valid);
-    // var i;
-    // for (i = 0; i < this.telephones.length; i++) {
-    //   let tel = new Phone(this.telephones[i].value.number,this.telephones[i].value.number);
-    //   this.suggestion.business.phones.push(tel);
-    // }
-    console.log("Valid"+ this.bsf.value);
     let payload = this.suggestion
     this.store.dispatch(createBusinessSuggestion({payload}));
+    this.resetForm();
   }
 
   onSelectCategory(id: number){
-    // const category = event.target.value;
-    // console.log(this.bsf.get("business.category").value);
-    // this.bsf.get("business.category").setValue(category);
-    console.log("ID: "+id);
     this.categories$.subscribe( c =>    {
       const cat = c[id - 1];
-      console.log(cat);
       if(cat){
         this.bsf.get("business.category").setValue(cat);
       }
     });
   }
-  // addPhone(){
-  //   this.suggestion.business.phones.push(new Phone());
-  //   console.log("addPhone");
-  //   console.log(this.suggestion.business.phones.length);
-  //   console.log(this.bsf.get("business.phones") as FormControl);
-  // }
+ 
+  resetForm(){
+    this.bsf.reset(this.bsf.value);       
+  }
 
   ngOnDestroy(): void {
     this.unsubsscribe$.next();

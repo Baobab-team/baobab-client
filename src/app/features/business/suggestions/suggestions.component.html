@@ -3,7 +3,6 @@
         <div class="col-md-6">
             <form [formGroup]="bsf" (ngSubmit)="onSubmit()" class="suggestion__form ">
             <h3>{{'business-suggestion.title' | translate}}</h3>
-            <!-- <div class="row" > -->
                 <div formGroupName="business">
                     <h5>{{ 'informations' | translate }}</h5>
                     <div class="form-group">
@@ -47,14 +46,10 @@
                             rows="3"
                         ></textarea>
                     </div>      
-                </div>
-
-            <!-- </div>                -->
-    
+                </div>    
             <hr>
 
             <h3>{{ 'business-suggestion.suggester_title' | translate}}</h3>
-            <!-- <div class="form-row"> -->
                 <div class="form-group ">
                     <input 
                         type="text" 
@@ -71,7 +66,6 @@
                         placeholder="{{ 'email' | translate}}"
                     >
                 </div>
-            <!-- </div> -->
             <div *ngIf="errors$ | async as error ">
                 <div *ngFor="let errorMsg of error.error">
                     <div class="alert alert-danger" role="alert">
@@ -80,16 +74,14 @@
                 </div>
             </div>
             <div *ngIf="successSuggestion$ | async " class="alert alert-success" role="alert">
-                {{ 'suggestion.form.success' | translate }
+                {{ 'suggestion.form.success' | translate }}
             </div>
         <button class="btn btn-primary" type="submit">{{'submit' | translate}}</button>
        
         </form>
         </div>
         <div class="col-md-6">
-            <!-- <div class=""> -->
                 <img class="" src="../../../../assets/statics/images/img1.jpg"  alt="..."/> 
-            <!-- </div> -->
         </div>
     </div>
 </div>
