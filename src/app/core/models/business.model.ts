@@ -134,6 +134,8 @@ export class BusinessSuggestion {
   @prop()
   @required()
   name: string;
+  @prop()
+  is_owner: boolean
   @propObject(Business)
   business : Business;
 

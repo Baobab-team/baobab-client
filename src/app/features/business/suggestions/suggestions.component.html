@@ -50,23 +50,29 @@
             <hr>
 
             <h3>{{ 'suggestion.contact' | translate}}</h3>
-                <div class="form-group ">
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        formControlName="name" 
-                        placeholder="{{ 'name' | translate }}"
-                    >
-                </div>
-                <div class="form-group">
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        formControlName="email" 
-                        placeholder="{{ 'email' | translate}}"
-                    >
-                    <div class="form-text">{{ 'suggestion.contact.help_text' | translate}}</div>
-                </div>
+            <div class="form-group ">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="name" 
+                    placeholder="{{ 'name' | translate }}"
+                >
+            </div>
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="email" 
+                    placeholder="{{ 'email' | translate}}"
+                >
+            </div>
+            <p class="text-muted">{{ 'suggestion.contact.help_text' | translate}}</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="isOwner" formControlName="is_owner" >
+                <label class="form-check-label" for="isOwner">
+                    {{ 'suggestion.contact.is_owner' | translate }}
+                </label>
+            </div>
             <div *ngIf="errors$ | async as error ">
                 <div *ngFor="let errorMsg of error.error">
                     <div class="alert alert-danger" role="alert">
@@ -77,7 +83,7 @@
             <div *ngIf="successSuggestion$ | async " class="alert alert-success" role="alert">
                 {{ 'suggestion.form.success' | translate }}
             </div>
-        <button class="btn btn-primary" type="submit">{{'submit' | translate}}</button>
+        <button class="btn btn-primary submit-btn" type="submit">{{'submit' | translate}}</button>
        
         </form>
         </div>
