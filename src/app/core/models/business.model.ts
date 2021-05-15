@@ -1,3 +1,5 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { prop, propObject, required, url, email,propArray } from '@rxweb/reactive-form-validators';
 import { Log } from './log.model';
 import { Phone } from './phone.model';
 import { Search } from './search.model';
@@ -31,8 +33,14 @@ export enum BUSINESS_STATUSES {
 }
 
 export class Category {
+  @prop()
   id?: number;
+  @required()
+  @prop()
   name: string;
+  @prop()
+  slug: string;
+  @prop()
   children: Category[];
 }
 
@@ -56,27 +64,45 @@ export interface Tag {
   name: string;
 }
 
-export interface Address {
+export class Address {
   readonly id: number;
+  @prop()
+  app_office_number: number;
+  @prop()
   street_number: string;
+  @prop()
   street_type: string;
+  @prop()
   street_name: string;
+  @prop()
   direction: string;
+  @prop()
   city: string;
+  @prop()
   zip_code: string;
+  @prop()
   province: string;
+  @prop()
   country: string;
+
+  constructor(){}
 }
 
-export interface Business {
+export class Business {
   readonly id?: number;
-  phones?: Phone[];
+  phones: Phone[];
+  @prop()
   category: Category;
+  @prop()
+  @required()
   name: string;
   slug: string;
+  @prop()
   description: string;
   notes: string;
+  @url()
   website: string;
+  @email()
   email: string;
   // slogan?: string;
   // language: BUSINESS_LANGUAGE;
@@ -93,9 +119,26 @@ export interface Business {
     link: string
   }[];
   tags: Tag[];
+  @propArray(Address)
   addresses: Address[];
   payment_types: string[];
   business_hours: BusinessHour[];
+}
+
+
+export class BusinessSuggestion {
+  @email()
+  @prop()
+  @required()
+  email: string;
+  @prop()
+  @required()
+  name: string;
+  @prop()
+  is_owner: boolean
+  @propObject(Business)
+  business : Business;
+
 }
 
 export interface BusinessState {
@@ -107,6 +150,14 @@ export interface BusinessState {
   loading: boolean;
   loaded: boolean;
   log: Log;
+}
+
+
+export interface BusinessSuggestionState {
+  data: any;
+  businessSuggestion: BusinessSuggestion
+  log: Log;
+  error: HttpErrorResponse;
 }
 
 export interface CategoryState {

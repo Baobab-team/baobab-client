@@ -1,0 +1,23 @@
+@import "~assets/sass/variables";
+
+h1{
+    color: black;
+}
+
+hr { background-color: $clrOrange1; height: 3px; border: 0; }
+
+.suggestion{
+    &__form{ 
+        background-color: white;
+        padding: 5%;
+        margin: 5%;
+    }
+}
+
+.submit-btn{
+    margin-top: 30px
+}
+
+option:active{
+    color: black;
+}

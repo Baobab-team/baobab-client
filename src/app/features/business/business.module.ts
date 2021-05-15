@@ -6,13 +6,15 @@ import { LayoutsModule } from '../../layouts';
 import { DetailBusinessComponent } from './detail-business/detail-business.component';
 import { ResultItemComponent } from './components/result-item/result-item.component';
 import {ResultSearchComponent} from './result-search/result-search.component';
+import { SuggestionsComponent } from './suggestions/suggestions.component';
 
 
 @NgModule({
   declarations: [
     DetailBusinessComponent,
     ResultItemComponent,
-    ResultSearchComponent
+    ResultSearchComponent,
+    SuggestionsComponent
   ],
   imports: [
     CommonModule,

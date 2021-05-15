@@ -1,0 +1,94 @@
+<div class="suggestion d-flex justify-content-center">
+    <div class="container row align-items-center">
+        <div class="col-md-6">
+            <form [formGroup]="bsf" (ngSubmit)="onSubmit()" class="suggestion__form ">
+            <h3>{{'suggestion.title' | translate}}</h3>
+                <div formGroupName="business">
+                    <h5>{{ 'informations' | translate }}</h5>
+                    <div class="form-group">
+                        <select
+                            formGroupName="category" 
+                            (change)="onSelectCategory($event.target.value)"
+                            class="form-control">
+                            <option disabled>Categories</option>
+                            <option *ngFor="let c of (categories$ | async)" [value]="c.id" >
+                            {{c.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group" >
+                        <input type="text" 
+                            class="form-control"
+                            formControlName="name" 
+                            id="name"
+                            placeholder="{{ 'name' | translate }}"
+                        />
+                    </div>  
+                    <div class="form-group">
+                        <input type="email" 
+                            class="form-control"
+                            formControlName="email"
+                            placeholder="{{ 'email' | translate }}"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            formControlName="website"
+                            placeholder="{{ 'website' | translate }}"/>
+                    </div>
+                    <div class="form-group">
+                        <textarea 
+                            formControlName="description"
+                            placeholder="{{ 'description' | translate }}"
+                            class="form-control"
+                            rows="3"
+                        ></textarea>
+                    </div>      
+                </div>    
+            <hr>
+
+            <h3>{{ 'suggestion.contact' | translate}}</h3>
+            <div class="form-group ">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="name" 
+                    placeholder="{{ 'name' | translate }}"
+                >
+            </div>
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="email" 
+                    placeholder="{{ 'email' | translate}}"
+                >
+            </div>
+            <p class="text-muted">{{ 'suggestion.contact.help_text' | translate}}</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="isOwner" formControlName="is_owner" >
+                <label class="form-check-label" for="isOwner">
+                    {{ 'suggestion.contact.is_owner' | translate }}
+                </label>
+            </div>
+            <div *ngIf="errors$ | async as error ">
+                <div *ngFor="let errorMsg of error.error">
+                    <div class="alert alert-danger" role="alert">
+                        {{errorMsg}}
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="successSuggestion$ | async " class="alert alert-success" role="alert">
+                {{ 'suggestion.form.success' | translate }}
+            </div>
+        <button class="btn btn-primary submit-btn" type="submit">{{'submit' | translate}}</button>
+       
+        </form>
+        </div>
+        <div class="col-md-6">
+                <img class="" src="../../../../assets/statics/images/img1.jpg"  alt="..."/> 
+        </div>
+    </div>
+</div>

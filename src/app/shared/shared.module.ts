@@ -17,6 +17,7 @@ import { AdminSecondHeaderComponent } from './components/admin-second-header/adm
 import { ModalComponentComponent } from './components/modal-component/modal-component.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AdminSecondHeaderComponent,
     TruncatePipe,
     ModalComponentComponent,
-    LoadingComponent
+    LoadingComponent,
+    FieldErrorDisplayComponent
   ],
   imports: [
     SharedModule.MODULE_LIST,
@@ -47,6 +49,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderPageAdminComponent,
     ModalComponentComponent,
     LoadingComponent,
+    FieldErrorDisplayComponent,
     TruncatePipe,
     CommonModule,
     TranslateModule,

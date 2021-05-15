@@ -21,13 +21,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-
+import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RxReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     SharedModule,

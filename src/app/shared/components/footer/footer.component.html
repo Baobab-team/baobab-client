@@ -1,11 +1,9 @@
 <footer class="footer">
   <div class="footer__line align-middle">
     <div class="container">
-      <div class="row d-flex">
-        <div class="p-2">
-          Copyright © 2020 by Baobab
-        </div>
-        <div class="ml-auto p-2">
+      <div class="row d-flex p-2">
+        <div class="col-md-4">
+          <div class="slogan">Supporter les commerces de la communauté, c'est s'elever soi-même</div>
           <ul class="social_link">
             <li>
               <a href="https://www.facebook.com/lesfruitsdubaobab">
@@ -15,21 +13,51 @@
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/lesfruitsdubaobab/">
+              <a href="https://www.instagram.com/lesfruitsdubaobab">
                 <span style="color: white;">
                   <i class="fab fa-instagram fa-lg" aria-hidden="true"> </i>
                 </span>
               </a>
             </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="title">Support</h6>
+          <ul class="no-indent">
+            <li><a [routerLink]="['/suggestion']" >{{ 'actions.suggestion' | translate}}</a></li>
+          </ul>
+          <h6 class="title">Github</h6>
+          <ul class="no-indent">            
             <li>
               <a href="https://github.com/Baobab-team/baobab-client">
-                <span style="color: white;">
-                  <i class="fab fa-github fa-lg" aria-hidden="true"></i>
-                </span>
+                Front-end
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/Baobab-team/baobab-backend">
+                Back-end
               </a>
             </li>
           </ul>
         </div>
+        <div class="col-md-2">
+          <h6 class="title">Podcast</h6>
+          <ul class="no-indent">
+            <li><a href="https://open.spotify.com/show/3ZPDk22EGHlGMEXC26wkBm">Spotify</a></li>
+            <li>
+              <a href="https://anchor.fm/les-fruit-du-baobab">Anchor</a>
+            </li>
+            <li>
+              <a href="https://podcasts.apple.com/ca/podcast/les-fruits-du-baobab/id1546493193">Apple Podcast</a>
+            </li>
+            <li>
+              <a href="https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy80NTBkMzYwNC9wb2RjYXN0L3Jzcw==">Google Podcast</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col p-2">Copyright © 2020 by Les Fruits du Baobab</div>
       </div>
     </div>
   </div>

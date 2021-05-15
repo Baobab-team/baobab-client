@@ -3,6 +3,7 @@ import {environment} from '../environments';
 import { Const } from 'environments/const';
 import {I18nService} from '@Services/i18n.service';
 import {Logger} from '@Services/logger.service';
+import { ReactiveFormConfig } from '@rxweb/reactive-form-validators';
 
 declare var $: any;
 
@@ -30,5 +31,14 @@ export class AppComponent implements OnInit {
       Const.defaultLanguage,
       Const.supportedLanguages
     );
+
+    ReactiveFormConfig.set({
+      "validationMessage": {
+         "required": "error.message.required",
+         "url": "error.message.url",
+         "email": "error.message.email",
+      }
+    });
   }
+
 }

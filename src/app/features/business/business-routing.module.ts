@@ -2,6 +2,7 @@ import { DetailBusinessComponent } from './detail-business/detail-business.compo
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ResultSearchComponent} from './result-search/result-search.component';
+import { SuggestionsComponent } from './suggestions/suggestions.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'detail',
     component: DetailBusinessComponent
+  },
+  {
+    path: 'suggestion',
+    component: SuggestionsComponent
   }
 ];
 
