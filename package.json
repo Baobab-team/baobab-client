@@ -52,7 +52,7 @@
         "eslint": "^6.7.2",
         "express": "^4.17.1",
         "jquery": "^3.4.1",
-        "jszip": "^3.3.0",
+        "jszip": "^3.7.0",
         "messageformat": "^2.0.2",
         "ngx-toastr": "11.3.3",
         "ngx-translate-messageformat-compiler": "^4.4.0",
